@@ -1,6 +1,6 @@
 # React Movie Database
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8494b8e1-3c11-40bb-af62-43a9bf706fce/deploy-status)](https://app.netlify.com/sites/react-movie-databse/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/18281ab9-7b6c-4249-8713-c6dee5673258/deploy-status)](https://app.netlify.com/sites/react-move-db/deploys)
 
 ## Useful Links
 
