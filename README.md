@@ -14,7 +14,6 @@
 
 <https://youtu.be/nTeuhbP7wdE?t=18198>
 
-5:03:17 Build and prepare for Netlify
 5:05:58 Netlify drag and drop and Netlify CLI
 5:10:29 Netlify Continuos Deployment
 5:13:48 Bonus - Classes - SearchBar Component

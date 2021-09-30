@@ -1,23 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-// styles
-import { Wrapper, Content } from "./BreadCrumb.style";
+import { Link } from "react-router-dom";
+// Styles
+import { Wrapper, Content } from "./BreadCrumb.styles";
 
-const BreadCrumb = ({ movietitle }) => (
+const BreadCrumb = ({ movieTitle }) => (
 	<Wrapper>
 		<Content>
 			<Link to="/">
 				<span>Home</span>
 			</Link>
 			<span>|</span>
-			<span>{movietitle}</span>
+			<span>{movieTitle}</span>
 		</Content>
 	</Wrapper>
 );
 
-BreadCrumb.PropTypes = {
-	movietitle: PropTypes.string,
+BreadCrumb.propTypes = {
+	movieTitle: PropTypes.string,
 };
 
 export default BreadCrumb;
