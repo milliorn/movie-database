@@ -1,4 +1,4 @@
-# Learn React JS in This Free 7-Hour Course
+# React Movie Database
 
 <https://github.com/weibenfalk/react-rmdb-v3-starter-files>
 
