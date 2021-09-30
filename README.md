@@ -1,6 +1,8 @@
 # React Movie Database
 
-<https://github.com/weibenfalk/react-rmdb-v3-starter-files>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8494b8e1-3c11-40bb-af62-43a9bf706fce/deploy-status)](https://app.netlify.com/sites/react-movie-databse/deploys)
+
+## Useful Links
 
 <https://reactjs.org/>
 
@@ -11,25 +13,6 @@
 <https://reactjs.org/docs/react-without-jsx.html>
 
 <https://reactjs.org/docs/hooks-intro.html>
-
-<https://youtu.be/nTeuhbP7wdE?t=18198>
-
-5:05:58 Netlify drag and drop and Netlify CLI
-5:10:29 Netlify Continuos Deployment
-5:13:48 Bonus - Classes - SearchBar Component
-5:22:04 Bonus - Classes - Home Component
-5:33:14 Bonus - Classes - Movie Component
-5:40:39 Bonus - Typescript - Introduction
-5:42:20 Bonus - Typescript - Bootstrap project and copy files
-5:47:19 Bonus - Typescript - Refactor base files
-6:04:16 Bonus - Typescript - Refactor Home and Components
-6:14:55 Bonus - Typescript - Refactor Movie and Components
-6:25:52 Bonus - Login - Short about TMDB login and rating system
-6:29:25 Bonus - Login - Global Context
-6:34:34 Bonus - Login - Login Component
-6:50:49 Bonus - Login - Login Component - Styles
-6:53:47 Bonus - Login - Login from Header
-7:00:27 Bonus - Login - Rate Component
 
 ## Getting Started with Create React App
 

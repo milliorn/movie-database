@@ -369,3 +369,6 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .private
+/build
+.env
+.private
