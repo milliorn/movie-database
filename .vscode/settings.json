@@ -1,0 +1,19 @@
+{
+    "cSpell.words": [
+        "browserslist",
+        "movietitle",
+        "rmdb",
+        "TMDB"
+    ],
+    "emmet.excludeLanguages": [
+        "markdown"
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "cmake.cmakePath": "C:\\msys64\\mingw64\\bin\\cmake.exe",
+    "cmake.mingwSearchDirs": [
+        "C:\\msys64\\mingw64\\bin"
+    ],
+    "cmake.generator": "MinGW Makefiles"
+}
