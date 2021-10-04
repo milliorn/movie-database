@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 // Config
-import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-
+import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
 // Components
 import HeroImage from "./HeroImage";
 import Grid from "./Grid";
@@ -12,7 +10,6 @@ import SearchBar from "./SearchBar";
 import Button from "./Button";
 // Image
 import NoImage from "../images/no_image.jpg";
-
 // API
 import API from "../API";
 
@@ -65,14 +62,15 @@ class Home extends Component {
 	componentDidMount() {
 		this.fetchMovies(1);
 	}
+
 	render() {
 		const { searchTerm, movies, loading, error } = this.state;
 
-		if (error) return <div>Something went wrong...</div>;
+		if (error) return <div>Something went wrong ...</div>;
 
 		return (
 			<div>
-				{movies.results[0] ? (
+				{!searchTerm && movies.results[0] ? (
 					<HeroImage
 						image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.results[0].backdrop_path}`}
 						title={movies.results[0].original_title}
@@ -80,11 +78,11 @@ class Home extends Component {
 					/>
 				) : null}
 				<SearchBar setSearchTerm={this.handleSearch} />
-				<Grid header={searchTerm ? "Search Results" : "Popular Movies"}>
+				<Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
 					{movies.results.map((movie) => (
 						<Thumb
 							key={movie.id}
-							clickable={true}
+							clickable
 							image={
 								movie.poster_path
 									? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
