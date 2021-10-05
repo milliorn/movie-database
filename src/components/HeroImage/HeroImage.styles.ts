@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+// types
+type Props = {
+	image: string;
+}
+
+export const Wrapper = styled.div<Props>`
 	background: linear-gradient(
 		to bottom,
 		rgba(0, 0, 0, 0) 41%,
@@ -42,8 +47,8 @@ export const Text = styled.div`
     h1 {
         font-size: var(--fontSuperBig);
 
-        @media screen and(max - width: 720px) {
-            font - size: var(--fontBig);
+        @media screen and(max-width: 720px) {
+            font-size: var(--fontBig);
         }
     }
 
