@@ -11,7 +11,14 @@ const initialState = {
   total_results: 0,
 };
 
-export const useHomeFetch = () => {
+export const useHomeFetch = (): {
+  state: error;
+  loading: error;
+  error: error;
+  searchTerm: error;
+  setSearchTerm: error;
+  setIsLoadingMore: error;
+} => {
   const [searchTerm, setSearchTerm] = useState("");
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
