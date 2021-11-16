@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
         useHomeFetch();
 
-    console.log(state);
+    
 
     if (error) return <div>Something went wrong...oops!</div>;
 
