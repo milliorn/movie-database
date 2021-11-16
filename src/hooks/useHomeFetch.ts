@@ -49,12 +49,11 @@ export const useHomeFetch = (): {
       const sessionState = isPersistedState("homeState");
 
       if (sessionState) {
-        
         setState(sessionState);
         return;
       }
     }
-    
+
     setState(initialState);
     fetchMovies(1, searchTerm);
   }, [searchTerm]);
