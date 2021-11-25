@@ -17,7 +17,7 @@ import MovieInfo from './MovieInfo';
 const Movie: React.FC = () => {
     const { movieId } = useParams();
 
-    const { state: movie, loading, error } = useMovieFetch(movieId);
+    const { state: movie, loading, error } = useMovieFetch(movieId!);
 
     if (loading) return <Spinner />;
     if (error) return <div>Something went wrong...</div>;
