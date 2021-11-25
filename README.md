@@ -1,9 +1,9 @@
 # React Movie Database
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/18281ab9-7b6c-4249-8713-c6dee5673258/deploy-status)](https://app.netlify.com/sites/react-move-db/deploys)
+[![CodeQL](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml)
 [![DevSkim](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml)
 [![Lint Code Base](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml)
-[![CodeQL](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml)
 [![njsscan sarif](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml)
 
 ## Useful Links
