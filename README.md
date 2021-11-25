@@ -4,7 +4,7 @@
 [![CodeQL](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/codeql-analysis.yml)
 [![DevSkim](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml)
 [![Linter](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml)
-[![NodeJS Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml)
+[![NodeJS-Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml)
 [![SL Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml)
 
 ## Useful Links
