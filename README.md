@@ -5,6 +5,7 @@
 [![DevSkim](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml)
 [![Lint Code Base](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml)
 [![njsscan sarif](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml)
+[![SL Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml)
 
 ## Useful Links
 
