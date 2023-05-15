@@ -21,7 +21,5 @@
         "patch"
       ]
     }
-  ],
-  "onError": "close",
-  "onErrorMaxAttempts": 2
+  ]
 }
