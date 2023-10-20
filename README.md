@@ -1,10 +1,7 @@
 # React Movie Database
 
 [![Netlify](https://api.netlify.com/api/v1/badges/18281ab9-7b6c-4249-8713-c6dee5673258/deploy-status)](https://app.netlify.com/sites/react-move-db/deploys)
-[![DevSkim](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/devskim-analysis.yml)
-[![Linter](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/super-linter.yml)
-[![NodeJS-Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/njsscan-analysis.yml)
-[![SL Scan](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/milliorn/React-Movie-Database/actions/workflows/shiftleft-analysis.yml)
+
 
 This repository contains a movie database application built using React. It utilizes various libraries and technologies to create a user-friendly interface for browsing and searching movies.
 
