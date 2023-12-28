@@ -18,23 +18,23 @@ export const useHomeFetch = () => {
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const fetchMovies = async (page: number, searchTerm = "") => {
-    try {
-      setError(false);
-      setLoading(true);
+const fetchMovies = async (page: number, searchTerm = "") => {
+  try {
+    setError(false);
+    setLoading(true);
 
-      const movies = await API.fetchMovies(searchTerm, page);
+    const movies = await API.fetchMovies(searchTerm, page);
 
-      setState((prev) => ({
-        ...movies,
-        results:
-          page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
-      }));
-    } catch (error) {
-      setError(true);
-    }
-    setLoading(false);
-  };
+    setState((prev) => ({
+      ...movies,
+      results: page > 1 ? [...prev.results, ...(movies.results || [])] : [...(movies.results || [])],
+    }));
+  } catch (error) {
+    setError(true);
+  }
+  setLoading(false);
+};
+
 
   // Initial and search
   useEffect(() => {
