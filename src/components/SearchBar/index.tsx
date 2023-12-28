@@ -28,7 +28,13 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
   return (
     <Wrapper>
       <Content>
-        <img src={searchIcon} alt="search-icon" width="100%" height="100%" />
+        <img
+          src={searchIcon}
+          alt="search-icon"
+          width="100%"
+          height="100%"
+          loading="lazy"
+        />
         <input
           type="text"
           placeholder="Search Movie"
