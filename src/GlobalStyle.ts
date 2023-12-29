@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+    @font-face {
+        font-family: 'Abel';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+    }
     :root {
         --maxWidth: 1280px;
         --white: #fff;

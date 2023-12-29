@@ -10,15 +10,15 @@ type Props = {
 }
 
 const Thumb: React.FC<Props> = ({ image, movieId, clickable }) => (
-    <div>
-        {clickable ? (
-            <Link to={`/${movieId}`}>
-                <Image src={image} alt='movie-thumb' />
-            </Link>
-        ) : (
-            <Image src={image} alt='movie-thumb' />
-        )}
-    </div>
+  <div>
+    {clickable ? (
+      <Link to={`/${movieId}`}>
+        <Image src={image} alt='movie-thumb' />
+      </Link>
+    ) : (
+      <Image src={image} alt='movie-thumb' />
+    )}
+  </div>
 );
 
 export default Thumb;
