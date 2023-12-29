@@ -32,7 +32,7 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
           src={searchIcon}
           alt="search-icon"
           width="100%"
-          height="100%"
+          height="50%"
           loading="lazy"
         />
         <input
