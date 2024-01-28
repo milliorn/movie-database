@@ -5,9 +5,9 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Abel';
         font-style: normal;
         font-weight: 400;
-        font-display: swap;
-        src: url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+        src: url('https://fonts.gstatic.com/s/abel/v14/MwQ5bhbm2POE6VUyyLtWaZu9RCg.ttf') format('truetype');
     }
+
     :root {
         --maxWidth: 1280px;
         --white: #fff;
