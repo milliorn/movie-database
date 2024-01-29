@@ -29,10 +29,14 @@
     "full_screen": true,
     "show_on_start": true,
     "orientation": "portrait",
-    "background_color": "#ffffff"
+    "background_color": "#ffffff",
+    "name": "React Movie Database"
   },
   "lang": "en",
-  "categories": ["Entertainment", "Reference"],
+  "categories": [
+    "Entertainment",
+    "Reference"
+  ],
   "screenshots": [
     {
       "src": "screenshot1.png",
