@@ -37,14 +37,15 @@ export const Content = styled.div`
 `;
 
 export const Text = styled.div`
-  width: 100%;
-  padding: 20px 40px;
   color: var(--white);
   overflow: hidden;
+  padding: 20px 40px;
+  text-align: center;
+  width: 100%;
 
   .rating-directors {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
   }
 
   .score {
@@ -73,4 +74,14 @@ export const Text = styled.div`
       font-size: var(--fontBig);
     }
   }
+
+  @media screen and (max-width: 640px) {
+    .director, .rating, .score, .release, .status {
+      margin: 0;
+    }
+
+    .rating-directors {
+      flex-direction: column;
+      align-items: center;
+    }
 `;
