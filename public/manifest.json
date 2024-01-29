@@ -23,13 +23,13 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#000000",
+  "background_color": "#575757",
   "orientation": "portrait",
   "splash_screen": {
     "full_screen": true,
     "show_on_start": true,
     "orientation": "portrait",
-    "background_color": "#ffffff",
+    "background_color": "#575757",
     "name": "React Movie Database"
   },
   "lang": "en",
