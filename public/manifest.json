@@ -31,11 +31,12 @@
     "orientation": "portrait",
     "background_color": "#575757",
     "name": "React Movie Database",
+    "text_color": "#FFFFFF",
     "icons": [
       {
-        "src": "logo512.png",
-        "sizes": "512x512",
-        "type": "image/png"
+        "src": "logo192.png",
+        "type": "image/png",
+        "sizes": "192x192"
       }
     ]
   },
