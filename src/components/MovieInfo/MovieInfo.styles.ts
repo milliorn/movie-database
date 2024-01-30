@@ -43,22 +43,28 @@ export const Text = styled.div`
   text-align: center;
   width: 100%;
 
+  .website {
+    margin: 2rem 0;
+  }
+
+  .website a {
+    text-decoration: none;
+    color: var(--white);
+    cursor: pointer;
+  }
+
   .rating-directors {
     display: flex;
     justify-content: space-evenly;
   }
 
   .score {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
     background: #fff;
+    border-radius: 9999px;
     color: #000;
     font-weight: 800;
-    border-radius: 50%;
-    margin: 0;
+    justify-content: center;
   }
 
   .director {
@@ -76,7 +82,11 @@ export const Text = styled.div`
   }
 
   @media screen and (max-width: 640px) {
-    .director, .rating, .score, .release, .status {
+    .director,
+    .rating,
+    .score,
+    .release,
+    .status {
       margin: 0;
     }
 
@@ -84,4 +94,5 @@ export const Text = styled.div`
       flex-direction: column;
       align-items: center;
     }
+  }
 `;

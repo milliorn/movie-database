@@ -32,7 +32,11 @@ const MovieInfo: React.FC<Props> = ({ movie }) => (
           <h2>"{movie.tagline}"</h2>
           {/* <h3>PLOT</h3> */}
           <p>{movie.overview}</p>
-
+          <div className="website">
+            <a target="_blank" href={movie.homepage} rel="noreferrer">
+              Click to the official website
+            </a>
+          </div>
           <div className="rating-directors">
             <div className="rating">
               <h3>RATING</h3>

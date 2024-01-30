@@ -20,13 +20,14 @@ const defaultConfig = {
 export type Movie = {
   backdrop_path: string;
   budget: number;
+  homepage: string;
   id: number;
   original_title: string;
   overview: string;
   popularity: number;
   poster_path: string;
-  revenue: number;
   release_date: string;
+  revenue: number;
   runtime: number;
   status: string;
   tagline: string;
