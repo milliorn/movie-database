@@ -1,11 +1,16 @@
 {
   "background_color": "#575757",
+  "description": "A comprehensive database for movies built with React.",
+  "display": "standalone",
+  "name": "React Movie Database",
+  "orientation": "portrait",
+  "short_name": "Movie Database",
+  "start_url": ".",
+  "theme_color": "#111",
   "categories": [
     "Entertainment",
     "Reference"
   ],
-  "description": "A comprehensive database for movies built with React.",
-  "display": "standalone",
   "icons": [
     {
       "src": "favicon.ico",
@@ -24,8 +29,6 @@
       "purpose": "maskable"
     }
   ],
-  "name": "React Movie Database",
-  "orientation": "portrait",
   "screenshots": [
     {
       "src": "screenshot1.png",
@@ -37,8 +40,5 @@
       "sizes": "1265x990",
       "type": "image/png"
     }
-  ],
-  "short_name": "Movie Database",
-  "start_url": ".",
-  "theme_color": "#000000"
+  ]
 }
