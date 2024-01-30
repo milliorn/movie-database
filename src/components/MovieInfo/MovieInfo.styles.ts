@@ -24,11 +24,11 @@ export const Wrapper = styled.div<Props>`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  max-width: var(--maxWidth);
-  margin: 0 auto;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
+  display: flex;
+  margin: 0 auto;
+  max-width: var(--maxWidth);
 
   @media screen and (max-width: 768px) {
     display: block;
@@ -43,12 +43,23 @@ export const Text = styled.div`
   text-align: center;
   width: 100%;
 
+.company-logo {
+  align-items: center;
+  display: inline-flex; 
+  height: 50%;
+  justify-content: center;
+  width: 50%;
+  margin: 2rem auto;
+}
+
+
   .genre {
-    font-weight: 800;
-    display: flex;
-    justify-content: start;  
     align-items: center;
+    display: flex;
+    font-weight: 800;
     gap: 10px;
+    justify-content: center;  
+    margin: 2rem auto;
   }
 
   .website {
@@ -56,9 +67,9 @@ export const Text = styled.div`
   }
 
   .website a {
-    text-decoration: none;
     color: var(--white);
     cursor: pointer;
+    text-decoration: none;
   }
 
   .rating-directors {
@@ -95,12 +106,19 @@ export const Text = styled.div`
     .score,
     .release,
     .status {
-      margin: 0;
+      margin: 0.25rem 0;
+    }
+
+    .genre {
+      align-items: center;
+      flex-column: wrap;
+      flex-direction: column;
+      gap: 0px;
     }
 
     .rating-directors {
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
     }
   }
 `;

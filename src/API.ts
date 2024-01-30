@@ -27,6 +27,8 @@ export type Movie = {
   overview: string;
   popularity: number;
   poster_path: string;
+  production_companies: { name: string; id: number; logo_path: string }[]; // Include logo_path
+  logo_path: string;
   release_date: string;
   revenue: number;
   runtime: number;
