@@ -20,6 +20,7 @@ const defaultConfig = {
 export type Movie = {
   backdrop_path: string;
   budget: number;
+  genres: { id: number; name: string }[];
   homepage: string;
   id: number;
   original_title: string;

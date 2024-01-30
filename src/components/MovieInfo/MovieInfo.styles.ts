@@ -43,6 +43,14 @@ export const Text = styled.div`
   text-align: center;
   width: 100%;
 
+  .genre {
+    font-weight: 800;
+    display: flex;
+    justify-content: start;  
+    align-items: center;
+    gap: 10px;
+  }
+
   .website {
     margin: 2rem 0;
   }
