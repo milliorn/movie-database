@@ -38,7 +38,7 @@ const MovieInfo: React.FC<Props> = ({ movie }) => (
         <div className="rating-directors">
           <div className="rating">
             <h3>RATING</h3>
-            <div className="score">{movie.vote_average.toPrecision(3)}</div>
+            <div className="score">{movie.vote_average.toFixed()}/10</div>
           </div>
           <div className="director">
             <h3>DIRECTOR{movie.directors.length > 1 ? "S" : ""}</h3>
