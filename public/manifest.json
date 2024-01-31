@@ -1,4 +1,5 @@
 {
+  "author": "Scott Milliorn",
   "description": "A comprehensive database for movies built with React.",
   "display": "standalone",
   "name": "React Movie Database",
