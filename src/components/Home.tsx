@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Config
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
@@ -18,9 +18,21 @@ import NoImage from "../images/no_image.jpg";
 
 const Home: React.FC = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
-        useHomeFetch();
+    useHomeFetch();
 
   console.log(state);
+
+  useEffect(() => {
+    fetch("manifest.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const websiteName = data.name;
+        document.title = websiteName;
+      })
+      .catch((error) => {
+        console.error("Error fetching manifest.json", error);
+      });
+  }, []);
 
   if (error) return <div>Something went wrong...oops!</div>;
 
