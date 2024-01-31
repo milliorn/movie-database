@@ -29,7 +29,6 @@ const MovieInfo: React.FC<Props> = ({ movie }) => (
       <Text>
         <h1>{movie.title}</h1>
         <h2>"{movie.tagline}"</h2>
-        {/* <h3>PLOT</h3> */}
         <p>{movie.overview}</p>
         <div className="website">
           <a target="_blank" href={movie.homepage} rel="noreferrer">
