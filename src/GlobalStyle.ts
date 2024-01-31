@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Abel';
         font-style: normal;
         font-weight: 400;
-        src: url('https://fonts.gstatic.com/s/abel/v14/MwQ5bhbm2POE6VUyyLtWaZu9RCg.ttf') format('truetype');
+        src: url('https://fonts.googleapis.com/css2?family=Abel&display=swap') format('truetype');
     }
 
     :root {

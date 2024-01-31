@@ -29,16 +29,18 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
     <Wrapper>
       <Content>
         <img
-          src={searchIcon}
           alt="search-icon"
-          width="100%"
           height="50%"
           loading="lazy"
+          src={searchIcon}
+          width="100%"
         />
         <input
-          type="text"
-          placeholder="Search Movie"
+          id="searchBar"
+          name="searchBar"
           onChange={(event) => setState(event.currentTarget.value)}
+          placeholder="Search Movie"
+          type="text"
           value={state}
         />
       </Content>
