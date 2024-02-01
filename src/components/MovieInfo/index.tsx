@@ -16,7 +16,7 @@ type Props = {
 
 const MovieInfo: React.FC<Props> = ({ movie }) => (
   // console.log(movie),
-  <Wrapper backdrop={movie.backdrop_path}>
+  <Wrapper $backdrop={movie.backdrop_path}>
     <Content>
       <Thumb
         image={
