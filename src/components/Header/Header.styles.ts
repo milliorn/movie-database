@@ -2,28 +2,28 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background: var(--darkGrey);
-  padding: 0 20px;
+  padding: 0 1.25rem;
 `;
 
 export const Content = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
-  max-width: var(--maxWidth);
-  padding: 20px 0;
   margin: 0 auto;
+  max-width: var(--maxWidth);
+  padding: 1.25rem 0;
 `;
 
 export const LogoImg = styled.img`
-  width: 200px;
+  width: 12rem; /* 192px */
   @media screen and (max-width: 500px) {
-    width: 150px;
+    width: 10rem; /* 160px */
   }
 `;
 
 export const TMDBLogoImg = styled.img`
-  width: 100px;
+  width: 6rem; /* 96px */
   @media screen and (max-width: 500px) {
-    width: 80px;
+    width: 5rem; /* 80px */
   }
 `;
