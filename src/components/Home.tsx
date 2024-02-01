@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
-  console.log(state);
+  // console.log(state);
 
   useEffect(() => {
     fetch("manifest.json")
@@ -48,20 +48,18 @@ const Home: React.FC = () => {
       <SearchBar setSearchTerm={setSearchTerm} />
       <Grid header={searchTerm ? "Search Results" : "Popular Movies"}>
         {state.results.map((movie) => (
-          <>
-            <Thumb
-              key={movie.id}
-              clickable={true}
-              image={
-                movie.poster_path
-                  ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                  : NoImage
-              }
-              movieId={movie.id}
-              rating={movie.vote_average}
-              vote_count={movie.vote_count}
-            />
-          </>
+          <Thumb
+            key={movie.id}
+            clickable={true}
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : NoImage
+            }
+            movieId={movie.id}
+            rating={movie.vote_average}
+            vote_count={movie.vote_count}
+          />
         ))}
       </Grid>
       {loading && <Spinner />}

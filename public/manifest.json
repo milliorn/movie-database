@@ -1,11 +1,13 @@
 {
   "author": "Scott Milliorn",
+  "background_color": "#ffffff",
   "description": "A comprehensive database for movies built with React.",
   "display": "standalone",
   "name": "React Movie Database",
   "orientation": "portrait",
   "short_name": "Movie Database",
   "start_url": ".",
+  "theme_color": "#000000",
   "categories": [
     "Entertainment",
     "Reference"
