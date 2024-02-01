@@ -33,4 +33,5 @@ export const RatingText = styled.p`
   font-size: var(--fontBig);
   font-weight: bold;
   margin: 0 auto;
+  z-index: -100; // This is a hack to fix the z-index issue with the rating text
 `;
