@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
+    "skipLibCheck": false, // Enable type checking of declaration files (*.d.ts)
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -17,10 +17,23 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "noEmit": false, // Emit output files, which can be useful for debugging and verification
+    "jsx": "react",
+    "noImplicitAny": true, // Ensure all variables and parameters explicitly have a type
+    "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
+    "alwaysStrict": true, // Parse in strict mode and emit "use strict" for each source file
+    "strictNullChecks": true, // When strict is true, this is enabled by default, make sure it stays on
+    "strictFunctionTypes": true, // Ensure functions' parameters and return types are strictly checked
+    "strictPropertyInitialization": true, // Ensure non-undefined class properties are initialized in the constructor
+    "strictBindCallApply": true, // Ensure the arguments for bind, call, and apply methods are strictly validated
+    "noImplicitReturns": true, // Prevent functions from ending without a return value
+    "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
+    "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
   },
   "include": [
     "src"
-  ]
+  ],
+  "exclude": [
+    "node_modules"
+  ] // Exclude node_modules to speed up the compilation
 }
