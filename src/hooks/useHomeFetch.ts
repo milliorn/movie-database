@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 // API
 import API, { Movie } from "../API";
 // Helpers
-import { isPersistedState } from "../helpers";
+import { getPersistedState } from "../helpers";
 
 const initialState = {
   page: 0,
@@ -39,11 +39,11 @@ export const useHomeFetch = () => {
   // Initial and search
   useEffect(() => {
     if (!searchTerm) {
-      const sessionState = isPersistedState("homeState");
+      const sessionState = getPersistedState<typeof initialState>("homeState");
 
       if (sessionState) {
         console.log("Grabbing from sessionStorage");
-        setState(sessionState);
+        setState(sessionState as typeof initialState);
         return;
       }
     }
@@ -51,6 +51,7 @@ export const useHomeFetch = () => {
     setState(initialState);
     fetchMovies(1, searchTerm);
   }, [ searchTerm ]);
+
 
   useEffect(() => {
     if (!isLoadingMore) return;

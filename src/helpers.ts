@@ -14,7 +14,12 @@ export const convertMoney = (money: number): string => {
   return formatter.format(money);
 };
 
-export const isPersistedState = (stateName: string): any => {
+export const getPersistedState = <T>(stateName: string): T | null => {
   const sessionState = sessionStorage.getItem(stateName);
-  return sessionState && JSON.parse(sessionState);
+  try {
+    return sessionState ? (JSON.parse(sessionState) as T) : null;
+  } catch (error) {
+    console.error("Failed to parse session state for key", stateName, ":", error);
+    return null;
+  }
 };
