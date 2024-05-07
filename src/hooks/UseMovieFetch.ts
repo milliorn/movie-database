@@ -37,6 +37,14 @@ export const useMovieFetch = (movieId: string) => {
 
     const sessionState = getPersistedState<MovieState>(movieId);
 
+    if (sessionState instanceof Error) {
+      console.error("Error retrieving state:", sessionState);
+
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
     if (sessionState) {
       setState(sessionState);
       setLoading(false);

@@ -10,18 +10,24 @@ const calcTime = (time: number): string => {
 };
 
 /**
- * Converts a number representing money into a formatted currency string.
- * @param money - The number representing the amount of money.
- * @returns The formatted currency string.
+ * Formatter for USD currency.
+ */
+const usdFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 0,
+});
+
+/**
+ * Converts a number representing money into a formatted string.
+ * 
+ * @param money - The amount of money to convert.
+ * @returns The formatted string representing the money.
  */
 const convertMoney = (money: number): string => {
-  const formatter: Intl.NumberFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-  });
-  return formatter.format(money);
+  return usdFormatter.format(money);
 };
+
 
 /**
  * Retrieves the persisted state from the session storage.
@@ -29,7 +35,7 @@ const convertMoney = (money: number): string => {
  * @param stateName - The name of the state to retrieve.
  * @returns The persisted state if found, otherwise null.
  */
-const getPersistedState = <T>(stateName: string): T | null => {
+const getPersistedState = <T>(stateName: string): T | null | Error => {
   const sessionState = sessionStorage.getItem(stateName);
   try {
     return sessionState ? (JSON.parse(sessionState) as T) : null;
