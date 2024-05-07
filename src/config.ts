@@ -9,14 +9,21 @@ const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-U
 
 // For login and voting
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
-const LOGIN_URL = `${API_URL}authentication/token/validate_with_login?api_key=${API_KEY}`;
-const REQUEST_TOKEN_URL = `${API_URL}authentication/token/new?api_key=${API_KEY}`;
-const SESSION_ID_URL = `${API_URL}authentication/session/new?api_key=${API_KEY}`;
+const AUTH_BASE_URL = `${API_URL}authentication/`;  // New base URL for authentication paths
 
-// Sizes: w300, w780, w1280, original
-const BACKDROP_SIZE = "w1280";
-// w92, w154, w185, w342, w500, w780, original
-const POSTER_SIZE = "w780";
+const LOGIN_URL = `${AUTH_BASE_URL}token/validate_with_login?api_key=${API_KEY}`;
+const REQUEST_TOKEN_URL = `${AUTH_BASE_URL}token/new?api_key=${API_KEY}`;
+const SESSION_ID_URL = `${AUTH_BASE_URL}session/new?api_key=${API_KEY}`;
+
+enum ImageSizes {
+  Small = "w300",
+  Medium = "w780",
+  Large = "w1280",
+  Original = "original"
+}
+
+const BACKDROP_SIZE = ImageSizes.Large;
+const POSTER_SIZE = ImageSizes.Medium;
 
 export {
   API_KEY,

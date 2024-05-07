@@ -28,7 +28,6 @@ const convertMoney = (money: number): string => {
   return usdFormatter.format(money);
 };
 
-
 /**
  * Retrieves the persisted state from the session storage.
  * 
