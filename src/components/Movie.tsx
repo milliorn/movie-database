@@ -9,20 +9,21 @@ import Grid from "./Grid";
 import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
 import Spinner from "./Spinner";
-// Image
 import NoImage from "../images/no_image.jpg";
 // Hook
 import { useMovieFetch } from "../hooks/UseMovieFetch";
 
 const Movie: React.FC = () => {
-  const { movieId } = useParams();
-
-  const { state: movie, loading, error } = useMovieFetch(movieId!);
+  const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
+  const { state: movie, loading, error } = useMovieFetch(movieId || ''); // Always call the hook unconditionally
 
   useEffect(() => {
+    if (!movieId) {
+      return; // Do nothing if no movieId
+    }
     fetch("manifest.json")
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         const websiteName = data.name;
         // Update the title of the page when movie data changes
         if (movie && movie.original_title) {
@@ -30,11 +31,15 @@ const Movie: React.FC = () => {
           document.title = newTitle;
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching manifest.json", error);
       });
-  }, [movie]);
+  }, [movie, movieId]); // Dependency array includes movieId to handle changes
 
+  if (!movieId) {
+    return <div>No movie selected</div>; // Handling the case when no movieId is present
+  }
+  
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
 
@@ -50,7 +55,7 @@ const Movie: React.FC = () => {
         revenue={movie.revenue}
       />
       <Grid header="Actors">
-        {movie.actors.map((actor) => (
+        {movie.actors.map(actor => (
           <Actor
             key={actor.credit_id}
             name={actor.name}
