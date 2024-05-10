@@ -31,7 +31,8 @@
     "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
   },
   "include": [
-    "src"
+    "src",
+    "backend"
   ],
   "exclude": [
     "node_modules"
