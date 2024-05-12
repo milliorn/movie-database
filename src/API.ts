@@ -17,7 +17,7 @@ const defaultConfig = {
 
 // Types
 
-export type Movie = {
+export type MoviePropTypes = {
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -43,7 +43,7 @@ export type Movie = {
 
 export type Movies = {
   page: number;
-  results: Movie[];
+  results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
 };
@@ -91,7 +91,7 @@ const api = {
    * @param movieId - The ID of the movie to fetch.
    * @returns A Promise that resolves to a Movie object.
    */
-  fetchMovie: async (movieId: string): Promise<Movie> => {
+  fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
@@ -101,8 +101,10 @@ const api = {
    * @returns A Promise that resolves to a Credits object.
    */
   fetchCredits: async (movieId: string): Promise<Credits> => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-    return await (await fetch(creditsEndpoint)).json();
+    const response = await fetch(`http://localhost:3001/api/credits/${movieId}`); // This is a mock API
+    const credits = await response.json();
+    return credits;
+
   },
   // Bonus material below for login
   /**

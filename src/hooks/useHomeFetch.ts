@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 // API
-import API, { Movie } from "../API";
+import API, { MoviePropTypes } from "../API";
 // Helpers
 import { getPersistedState } from "../helpers";
 
 const initialState = {
   page: 0,
-  results: [] as Movie[],
+  results: [] as MoviePropTypes[],
   total_pages: 0,
   total_results: 0,
 };
