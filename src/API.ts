@@ -1,8 +1,6 @@
 import {
   SEARCH_BASE_URL,
   POPULAR_BASE_URL,
-  API_URL,
-  API_KEY,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
   SESSION_ID_URL,
@@ -92,8 +90,9 @@ const api = {
    * @returns A Promise that resolves to a Movie object.
    */
   fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
-    return await (await fetch(endpoint)).json();
+    const response = await fetch('http://localhost:3001/api/movie/' + movieId); // This is a mock API
+    const movie = await response.json();
+    return movie;
   },
   /**
    * Fetches the credits for a specific movie.
