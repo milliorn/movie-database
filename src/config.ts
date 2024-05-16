@@ -9,11 +9,6 @@ const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-U
 
 // For login and voting
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
-const AUTH_BASE_URL = `${API_URL}authentication/`;  // New base URL for authentication paths
-
-const LOGIN_URL = `${AUTH_BASE_URL}token/validate_with_login?api_key=${API_KEY}`;
-const REQUEST_TOKEN_URL = `${AUTH_BASE_URL}token/new?api_key=${API_KEY}`;
-const SESSION_ID_URL = `${AUTH_BASE_URL}session/new?api_key=${API_KEY}`;
 
 enum ImageSizes {
   Small = "w300",
