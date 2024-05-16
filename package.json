@@ -2,6 +2,7 @@
   "name": "react-rmdb",
   "version": "3.0.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "history": "5.3.0",
     "react": "^17.0.2",
