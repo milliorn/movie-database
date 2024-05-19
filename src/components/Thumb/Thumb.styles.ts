@@ -29,7 +29,7 @@ export const ThumbInfoContainer = styled.div`
 `;
 
 export const RatingText = styled.p`
-  color: black;
+  color: var(--lightGrey);
   font-size: var(--fontBig);
   font-weight: bold;
   margin: 0 auto;
