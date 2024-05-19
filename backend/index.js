@@ -12,13 +12,10 @@ dotenv.config();
 // Create an Express application
 const app = express();
 // Get the port from the environment variables or use 3002 as default
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 // Enable CORS for all routes
-const corsOptions = {
-  origin: '*' // or use '*' to allow all
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Get the API key from the environment variables
 const API_KEY = process.env.API_KEY;
@@ -53,7 +50,7 @@ app.get('/api/movies', async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    // console.log('Data received:', data);
+    console.log('Data received:', data);
     res.send(data);
   } catch (error) {
     console.error('Failed to fetch movies:', error);
@@ -65,7 +62,7 @@ app.get('/api/movie/:movieId', async (req, res) => {
   // Get the movieId from the URL parameters
   const { movieId } = req.params;
 
-  // console.log(`Fetching movie details for movie ID: ${movieId}`);
+  console.log(`Fetching movie details for movie ID: ${movieId}`);
 
   const url = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
 
@@ -74,7 +71,7 @@ app.get('/api/movie/:movieId', async (req, res) => {
     const response = await fetch(url);
     // Parse the JSON data from the response and send it back to the client as JSON data
     const data = await response.json();
-    // console.log('Data received:', data);
+    console.log('Data received:', data);
     // Send the data back to the client
     res.send(data);
   } catch (error) {
@@ -93,7 +90,7 @@ app.get('/api/credits/:movieId', async (req, res) => {
   // Get the movieId from the URL parameters
   const { movieId } = req.params;
 
-  // console.log(`Fetching credits for movie ID: ${movieId}`);
+  console.log(`Fetching credits for movie ID: ${movieId}`);
 
   // Construct the URL to fetch the credits for a movie
   const url = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
@@ -104,7 +101,7 @@ app.get('/api/credits/:movieId', async (req, res) => {
     // Parse the JSON data from the response and send it back to the client as JSON data 
     const data = await response.json();
     // Log received data to the console
-    // console.log('Data received:', data);
+    console.log('Data received:', data);
     // Send the data back to the client
     res.send(data);
   } catch (error) {

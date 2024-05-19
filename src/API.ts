@@ -1,19 +1,4 @@
-import {
-} from "./config";
 
-// const AUTH_BASE_URL = `${API_URL}authentication/`;  // New base URL for authentication paths
-// const LOGIN_URL = `${AUTH_BASE_URL}token/validate_with_login?api_key=${API_KEY}`;
-// const REQUEST_TOKEN_URL = `${AUTH_BASE_URL}token/new?api_key=${API_KEY}`;
-// const SESSION_ID_URL = `${AUTH_BASE_URL}session/new?api_key=${API_KEY}`;
-
-// const defaultConfig = {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// };
-
-// Types
 
 export type MoviePropTypes = {
   adult: boolean;
@@ -65,6 +50,8 @@ export type Credits = {
   crew: Crew[];
 };
 
+const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
+
 /**
  * The API object provides methods to fetch movies, movie details, and credits from the movie database API.
  */
@@ -80,8 +67,8 @@ const api = {
    */
   fetchMovies: async (searchTerm: string, page: number): Promise<Movies> => {
     const endpoint = searchTerm
-      ? `/api/movies?searchTerm=${searchTerm}&page=${page}`
-      : `/api/movies?page=${page}`;
+      ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
+      : `${BACKEND_API_URL}/api/movies?page=${page}`;
 
     return await (await fetch(endpoint)).json();
   },
@@ -91,7 +78,7 @@ const api = {
    * @returns A Promise that resolves to a Movie object.
    */
   fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
-    const response = await fetch('/api/movie/' + movieId); // This is a mock API
+    const response = await fetch(`${BACKEND_API_URL}/api/movie/${movieId}`); // This is a mock API
     const movie = await response.json();
     return movie;
   },
@@ -101,7 +88,7 @@ const api = {
    * @returns A Promise that resolves to a Credits object.
    */
   fetchCredits: async (movieId: string): Promise<Credits> => {
-    const response = await fetch(`/api/credits/${movieId}`); // This is a mock API
+    const response = await fetch(`${BACKEND_API_URL}/api/credits/${movieId}`); // This is a mock API
     const credits = await response.json();
     return credits;
   },

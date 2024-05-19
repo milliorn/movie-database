@@ -1,26 +1,19 @@
 import React, { useEffect } from "react";
-
-// Config
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-
-// Components
-import HeroImage from "./HeroImage";
-import Grid from "./Grid";
-import Thumb from "./Thumb";
-import Spinner from "./Spinner";
-import SearchBar from "./SearchBar";
-import Button from "./Button";
-// Hook
 import { useHomeFetch } from "../hooks/useHomeFetch";
-
-// Image
 import NoImage from "../images/no_image.jpg";
+import Button from "./Button";
+import Grid from "./Grid";
+import HeroImage from "./HeroImage";
+import SearchBar from "./SearchBar";
+import Spinner from "./Spinner";
+import Thumb from "./Thumb";
 
 const Home: React.FC = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
-  // console.log(state);
+  console.log(state);
 
   useEffect(() => {
     fetch("manifest.json")
