@@ -26,13 +26,15 @@ const MovieInfo: React.FC<Props> = ({ movie }) => {
         />
         <Text>
           <h1>{movie.title}</h1>
-          <h2>"{movie.tagline}"</h2>
+          {movie.tagline && <h3>{movie.tagline}</h3>}
           <p>{movie.overview}</p>
-          <div className="website">
-            <a target="_blank" href={movie.homepage} rel="noreferrer">
-              Click for official website
-            </a>
-          </div>
+          {movie.homepage && (
+            <div className="website">
+              <a target="_blank" href={movie.homepage} rel="noreferrer">
+                Click for official website
+              </a>
+            </div>
+          )}
           <div className="rating-directors">
             <div className="rating">
               <h3>RATING</h3>
@@ -60,14 +62,16 @@ const MovieInfo: React.FC<Props> = ({ movie }) => {
             ))}
           </div>
           <div className="production-companies">
-            {movie.production_companies.length > 0 && (
-              <img
-                key={movie.production_companies[0].id}
-                src={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.production_companies[0].logo_path}`}
-                alt={movie.production_companies[0].name}
-                className="company-logo"
-              />
-            )}
+            {movie.production_companies.map(company => (
+              company.logo_path != null && (
+                <img
+                  key={company.id}
+                  src={`${IMAGE_BASE_URL}${POSTER_SIZE}${company.logo_path}`}
+                  alt={company.name}
+                  className="company-logo"
+                />
+              )
+            ))}
           </div>
         </Text>
       </Content>
