@@ -11,6 +11,7 @@ dotenv.config();
 
 // Create an Express application
 const app = express();
+
 // Get the port from the environment variables or use 3002 as default
 const PORT = process.env.PORT || 3001;
 
@@ -36,12 +37,13 @@ const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-U
 app.get('/api/movies', async (req, res) => {
   const { searchTerm, page = 1 } = req.query;
 
-  if (!searchTerm) {
-    console.log(`Fetching popular movies for page: ${page}`);
-  }
-  else {
-    console.log(`Fetching movies for search term: ${searchTerm}, page: ${page}`);
-  }
+  // Local server
+  // if (!searchTerm) {
+  //   console.log(`Fetching popular movies for page: ${page}`);
+  // }
+  // else {
+  //   console.log(`Fetching movies for search term: ${searchTerm}, page: ${page}`);
+  // }
 
   const url = searchTerm
     ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
@@ -50,10 +52,10 @@ app.get('/api/movies', async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log('Data received:', data);
+    // console.log('Data received:', data);
     res.send(data);
   } catch (error) {
-    console.error('Failed to fetch movies:', error);
+    // console.error('Failed to fetch movies:', error);
     res.status(500).send({ error: 'Failed to fetch movies' });
   }
 })
@@ -71,7 +73,7 @@ app.get('/api/movie/:movieId', async (req, res) => {
     const response = await fetch(url);
     // Parse the JSON data from the response and send it back to the client as JSON data
     const data = await response.json();
-    console.log('Data received:', data);
+    // console.log('Data received:', data);
     // Send the data back to the client
     res.send(data);
   } catch (error) {
@@ -116,16 +118,20 @@ app.get('/api/credits/:movieId', async (req, res) => {
  * @param {Object} res - The response object
  * @returns {string} - The "Hello World!" message
  */
-app.get('/hello', (req, res) => {
+app.get('/api/hello', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.send('Welcome to the Movie API!');
 });
 
-// Start the server
+// local server
+// // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  console.log(`Hello World running on http://localhost:${PORT}/hello`);
+  // console.log(`Server is running on http://localhost:${PORT}`);
+  // console.log(`Hello World running on http://localhost:${PORT}/hello`);
+  console.log(`API running on port ${PORT}`);
 });
+
+module.exports = app;
