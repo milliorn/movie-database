@@ -1,23 +1,6 @@
-import {
-  SEARCH_BASE_URL,
-  POPULAR_BASE_URL,
-  API_URL,
-  API_KEY,
-  REQUEST_TOKEN_URL,
-  LOGIN_URL,
-  SESSION_ID_URL,
-} from "./config";
 
-const defaultConfig = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
 
-// Types
-
-export type Movie = {
+export type MoviePropTypes = {
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -43,7 +26,7 @@ export type Movie = {
 
 export type Movies = {
   page: number;
-  results: Movie[];
+  results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
 };
@@ -67,54 +50,92 @@ export type Credits = {
   crew: Crew[];
 };
 
+const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
+
+/**
+ * The API object provides methods to fetch movies, movie details, and credits from the movie database API.
+ */
+/**
+ * The API object provides methods for fetching movies, movie details, credits, and authentication.
+ */
 const api = {
+  /**
+   * Fetches a list of movies based on the search term and page number.
+   * @param searchTerm - The search term to filter movies.
+   * @param page - The page number of the search results.
+   * @returns A Promise that resolves to a Movies object.
+   */
   fetchMovies: async (searchTerm: string, page: number): Promise<Movies> => {
-    const endpoint: string = searchTerm
-      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
-      : `${POPULAR_BASE_URL}&page=${page}`;
+    const endpoint = searchTerm
+      ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
+      : `${BACKEND_API_URL}/api/movies?page=${page}`;
+
     return await (await fetch(endpoint)).json();
   },
-  fetchMovie: async (movieId: string): Promise<Movie> => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
-    return await (await fetch(endpoint)).json();
+  /**
+   * Fetches details of a specific movie.
+   * @param movieId - The ID of the movie to fetch.
+   * @returns A Promise that resolves to a Movie object.
+   */
+  fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
+    const response = await fetch(`${BACKEND_API_URL}/api/movie/${movieId}`); // This is a mock API
+    const movie = await response.json();
+    return movie;
   },
+  /**
+   * Fetches the credits for a specific movie.
+   * @param movieId - The ID of the movie to fetch credits for.
+   * @returns A Promise that resolves to a Credits object.
+   */
   fetchCredits: async (movieId: string): Promise<Credits> => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-    return await (await fetch(creditsEndpoint)).json();
+    const response = await fetch(`${BACKEND_API_URL}/api/credits/${movieId}`); // This is a mock API
+    const credits = await response.json();
+    return credits;
   },
   // Bonus material below for login
-  getRequestToken: async () => {
-    const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
-    return reqToken.request_token;
-  },
-  authenticate: async (
-    requestToken: string,
-    username: string,
-    password: string
-  ) => {
-    const bodyData = {
-      username,
-      password,
-      request_token: requestToken,
-    };
-    // First authenticate the requestToken
-    const data = await (
-      await fetch(LOGIN_URL, {
-        ...defaultConfig,
-        body: JSON.stringify(bodyData),
-      })
-    ).json();
-    // Then get the sessionId with the requestToken
-    if (data.success) {
-      const sessionId = await (
-        await fetch(SESSION_ID_URL, {
-          ...defaultConfig,
-          body: JSON.stringify({ request_token: requestToken }),
-        })
-      ).json();
-      return sessionId;
-    }
-  },
+  /**
+   * Fetches a request token for authentication.
+   * @returns A Promise that resolves to a request token.
+   */
+  // getRequestToken: async () => {
+  //   const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
+  //   return reqToken.request_token;
+  // },
+  /**
+   * Authenticates the user with the provided request token, username, and password.
+   * @param requestToken - The request token for authentication.
+   * @param username - The username of the user.
+   * @param password - The password of the user.
+   * @returns A Promise that resolves to a session ID.
+   */
+  // authenticate: async (
+  //   requestToken: string,
+  //   username: string,
+  //   password: string
+  // ) => {
+  //   const bodyData = {
+  //     username,
+  //     password,
+  //     request_token: requestToken,
+  //   };
+  //   // First authenticate the requestToken
+  //   const data = await (
+  //     await fetch(LOGIN_URL, {
+  //       ...defaultConfig,
+  //       body: JSON.stringify(bodyData),
+  //     })
+  //   ).json();
+  //   // Then get the sessionId with the requestToken
+  //   if (data.success) {
+  //     const sessionId = await (
+  //       await fetch(SESSION_ID_URL, {
+  //         ...defaultConfig,
+  //         body: JSON.stringify({ request_token: requestToken }),
+  //       })
+  //     ).json();
+  //     return sessionId;
+  //   }
+  // },
 };
 
 export default api;

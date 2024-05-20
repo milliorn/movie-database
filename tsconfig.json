@@ -31,9 +31,20 @@
     "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
   },
   "include": [
-    "src"
+    "src",
+    "api"
   ],
   "exclude": [
     "node_modules"
-  ] // Exclude node_modules to speed up the compilation
+  ], // Exclude node_modules to speed up the compilation
+  "overrides": [
+    {
+      "files": [
+        "api/*.ts"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    }
+  ]
 }

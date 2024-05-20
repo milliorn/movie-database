@@ -2,7 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "react-app",
-    "plugin:@typescript-eslint/recommended" // Adds TypeScript specific linting rules
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -10,19 +10,18 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": "./tsconfig.json" // Path to your tsconfig.json for TypeScript rules that need type info
+    "project": "./tsconfig.json"
   },
   "plugins": [
-    "@typescript-eslint" // Adds the TypeScript plugin
+    "@typescript-eslint"
   ],
   "rules": {
     "indent": [
       "error",
       2
     ],
-    // Add or customize TypeScript-specific rules below
-    "@typescript-eslint/explicit-module-boundary-types": "off", // Example rule
-    "@typescript-eslint/no-explicit-any": "warn" // Warns on usage of 'any' type
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "warn"
   },
   "overrides": [
     {
@@ -31,11 +30,10 @@
         "*.tsx"
       ],
       "rules": {
-        // Specific rules adjustments for TypeScript files
         "indent": [
           "error",
           2
-        ], // Ensures consistent indentation in TypeScript files
+        ],
         "@typescript-eslint/no-unused-vars": [
           "error",
           {
@@ -44,5 +42,9 @@
         ]
       }
     }
+  ],
+  "ignorePatterns": [
+    "build/**", // Ignores all files within the build directory
+    "node_modules/**" // Standard practice to ignore node_modules
   ]
 }

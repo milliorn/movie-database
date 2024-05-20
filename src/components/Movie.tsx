@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-// Config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-// Components
+import { useMovieFetch } from "../hooks/UseMovieFetch";
+import NoImage from "../images/no_image.jpg";
 import Actor from "./Actor";
 import BreadCrumb from "./BreadCrumb";
 import Grid from "./Grid";
 import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
 import Spinner from "./Spinner";
-import NoImage from "../images/no_image.jpg";
-// Hook
-import { useMovieFetch } from "../hooks/UseMovieFetch";
 
 const Movie: React.FC = () => {
   const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
@@ -43,7 +40,7 @@ const Movie: React.FC = () => {
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
 
-  // console.log(movie);
+  console.log(movie);
 
   return (
     <>
