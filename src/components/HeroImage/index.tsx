@@ -1,6 +1,5 @@
 import React from "react";
-// Styles
-import { Wrapper, Content, Text } from "./HeroImage.styles";
+import { Content, Text, Wrapper } from "./HeroImage.styles";
 
 type Props = {
   image: string;

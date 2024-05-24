@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-// Image
+import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../images/search-icon.svg";
-// Styles
-import { Wrapper, Content } from "./SearchBar.styles";
-// types
+import { Content, Wrapper } from "./SearchBar.styles";
+
 type Props = {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };

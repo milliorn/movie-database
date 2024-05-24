@@ -17,6 +17,7 @@ export const Wrapper = styled.div<Props>`
   background-size: 100%, cover;
   height: 38rem;
   position: relative;
+  display: block;
 
   @keyframes animateHeroImage {
     from {

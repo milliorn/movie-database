@@ -21,10 +21,10 @@ const Thumb: React.FC<Props> = ({
   <div>
     {clickable ? (
       <Link to={`/${movieId}`}>
-        <Image src={image} alt="movie-thumb" />
+        <Image src={image} alt="movie-thumb" loading="lazy" style={{ width: '100%', height: 'auto' }} />
       </Link>
     ) : (
-      <Image src={image} alt="movie-thumb" />
+      <Image src={image} alt="movie-thumb" loading="lazy" style={{ width: '100%', height: 'auto' }}  />
     )}
     <ThumbInfoContainer>
       {
