@@ -21,18 +21,14 @@ const Thumb: React.FC<Props> = ({
   <div>
     {clickable ? (
       <Link to={`/${movieId}`}>
-        <Image src={image} alt="movie-thumb" loading="lazy" style={{ width: '100%', height: 'auto' }} />
+        <Image src={image} alt="movie-thumb" />
       </Link>
     ) : (
-      <Image src={image} alt="movie-thumb" loading="lazy" style={{ width: '100%', height: 'auto' }}  />
+      <Image src={image} alt="movie-thumb" />
     )}
     <ThumbInfoContainer>
-      {
-        <RatingText style={{ marginTop: "0.125rem" }}>
-          Rating: {rating?.toFixed()}/10
-        </RatingText>
-      }
-      { <RatingText>👍 {vote_count}</RatingText>}
+      <RatingText>Rating: {rating?.toFixed(1)}</RatingText>
+      <RatingText>👍 {vote_count}</RatingText>
     </ThumbInfoContainer>
   </div>
 );

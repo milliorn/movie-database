@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Image = styled.img`
   animation: animateThumb 0.5s;
   border-radius: 20px;
-  height: auto; // maintain aspect ratio
-  max-width: 100%; // ensures image is not larger than its container
+  width: 100%; // ensures image is not larger than its container
+  aspect-ratio: 2/ 3; // Adjust according to your most common aspect ratio
   object-fit: cover; // covers the area of the div without distorting ratio
   transition: all 0.3s;
 

@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --darkGrey: #1c1c1c;
         --fontBig: 1.5rem;
-        --fontMed: 1.2rem;
+        --fontMed: 1.25rem;
         --fontSmall: 1rem;
         --fontSuperBig: 2.5rem;
         --lightGrey: #eee;
