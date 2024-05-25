@@ -11,10 +11,11 @@ export const Wrapper = styled.div<Props>`
       rgba(0, 0, 0, 0) 41%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url(${({ $image }) => $image}), var(--darkGrey);
+    url(${({ $image }) => $image}), var(--darkGrey) no-repeat center center / cover;
   animation: animateHeroImage 1s;
   background-position: center;
   background-size: 100%, cover;
+  display: block;
   height: 38rem;
   position: relative;
 

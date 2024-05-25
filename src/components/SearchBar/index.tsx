@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-// Image
+import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../images/search-icon.svg";
-// Styles
-import { Wrapper, Content } from "./SearchBar.styles";
-// types
+import { Content, Wrapper } from "./SearchBar.styles";
+
 type Props = {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -30,10 +28,9 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
       <Content>
         <img
           alt="search-icon"
-          height="50%"
-          loading="lazy"
           src={searchIcon}
-          width="100%"
+          style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', width: '30px', height: '30px' }}
+          loading="eager"
         />
         <input
           id="searchBar"
@@ -42,6 +39,7 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
           placeholder="Search Movie"
           type="text"
           value={state}
+          style={{ padding: '0 0 0 60px', width: '100%', height: '40px' }}
         />
       </Content>
     </Wrapper>

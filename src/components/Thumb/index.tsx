@@ -27,12 +27,8 @@ const Thumb: React.FC<Props> = ({
       <Image src={image} alt="movie-thumb" />
     )}
     <ThumbInfoContainer>
-      {
-        <RatingText style={{ marginTop: "0.125rem" }}>
-          Rating: {rating?.toFixed()}/10
-        </RatingText>
-      }
-      { <RatingText>👍 {vote_count}</RatingText>}
+      <RatingText>Rating: {rating?.toFixed(1)}</RatingText>
+      <RatingText>👍 {vote_count}</RatingText>
     </ThumbInfoContainer>
   </div>
 );
