@@ -10,9 +10,9 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   background: var(--medGrey);
-  border-radius: 1.5rem; /* 24px */
+  border-radius: 1.5rem;
   color: var(--white);
-  height: 3.5rem; /* 56px */
+  height: 3.5rem;
   margin: 0 auto;
   max-width: var(--maxWidth);
   position: relative;
@@ -22,10 +22,10 @@ export const Content = styled.div`
   img {
     position: absolute;
     left: 15px;
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Center vertically */
+    top: 50%;
+    transform: translateY(-50%);
     width: 30px;
-    height: 30px; /* Fixed dimensions */
+    height: 30px;
   }
 
   input {
@@ -33,12 +33,12 @@ export const Content = styled.div`
     border: 0;
     color: var(--white);
     font-size: var(--fontBig);
-    height: 40px;
     left: 0;
     margin: 8px 0;
-    padding: 0 0 0 60px;
+    padding-left: 60px; /* Fixed padding to not resize dynamically */
     position: absolute;
-    width: calc(100% - 60px); /* Adjust width to accommodate image */
+    width: 100%; /* Full width */
+    height: 40px; /* Fixed height */
 
     :focus {
       outline: none;
