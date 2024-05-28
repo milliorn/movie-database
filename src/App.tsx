@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
-import { GlobalStyle } from "./GlobalStyle";
+import { GlobalStyle } from "./Global.styles";
 
 function App(): React.JSX.Element {
   return (

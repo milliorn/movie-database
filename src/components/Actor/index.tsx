@@ -1,12 +1,6 @@
 import React from "react";
-// Styles
-import { Wrapper, Image } from "./Actor.styles";
-// Types
-type Props = {
-  name: string;
-  character: string;
-  imageUrl: string;
-};
+import { Props } from "./actor.props";
+import { Image, Wrapper } from "./actor.styles";
 
 const Actor: React.FC<Props> = ({ name, character, imageUrl }) => (
   <Wrapper>

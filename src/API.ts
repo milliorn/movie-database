@@ -1,47 +1,12 @@
 import { BACKEND_API_URL } from "./config";
-
-export type MoviePropTypes = {
-  adult: boolean;
-  backdrop_path: string;
-  budget: number;
-  genres: { id: number; name: string }[];
-  homepage: string;
-  id: number;
-  logo_path: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: { name: string; id: number; logo_path: string }[];
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  status: string;
-  tagline: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-};
+import { Crew, MoviePropTypes } from "./Global.props";
+import { Cast } from "./hooks/props";
 
 export type Movies = {
   page: number;
   results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
-};
-
-export type Cast = {
-  character: string;
-  credit_id: string;
-  name: string;
-  profile_path: string;
-};
-
-export type Crew = {
-  job: string;
-  name: string;
-  credit_id: number;
 };
 
 export type Credits = {

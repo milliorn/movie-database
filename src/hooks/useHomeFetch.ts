@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../API";
 import { getPersistedState } from "../helpers";
-import { MoviePropTypes } from "./props";
+import { MoviePropTypes } from "../Global.props";
 
 const initialState = {
   page: 0,
