@@ -1,4 +1,4 @@
-
+import { BACKEND_API_URL } from "./config";
 
 export type MoviePropTypes = {
   adult: boolean;
@@ -50,8 +50,6 @@ export type Credits = {
   crew: Crew[];
 };
 
-const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
-
 /**
  * The API object provides methods to fetch movies, movie details, and credits from the movie database API.
  */
@@ -92,50 +90,6 @@ const api = {
     const credits = await response.json();
     return credits;
   },
-  // Bonus material below for login
-  /**
-   * Fetches a request token for authentication.
-   * @returns A Promise that resolves to a request token.
-   */
-  // getRequestToken: async () => {
-  //   const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
-  //   return reqToken.request_token;
-  // },
-  /**
-   * Authenticates the user with the provided request token, username, and password.
-   * @param requestToken - The request token for authentication.
-   * @param username - The username of the user.
-   * @param password - The password of the user.
-   * @returns A Promise that resolves to a session ID.
-   */
-  // authenticate: async (
-  //   requestToken: string,
-  //   username: string,
-  //   password: string
-  // ) => {
-  //   const bodyData = {
-  //     username,
-  //     password,
-  //     request_token: requestToken,
-  //   };
-  //   // First authenticate the requestToken
-  //   const data = await (
-  //     await fetch(LOGIN_URL, {
-  //       ...defaultConfig,
-  //       body: JSON.stringify(bodyData),
-  //     })
-  //   ).json();
-  //   // Then get the sessionId with the requestToken
-  //   if (data.success) {
-  //     const sessionId = await (
-  //       await fetch(SESSION_ID_URL, {
-  //         ...defaultConfig,
-  //         body: JSON.stringify({ request_token: requestToken }),
-  //       })
-  //     ).json();
-  //     return sessionId;
-  //   }
-  // },
 };
 
 export default api;
