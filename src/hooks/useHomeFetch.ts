@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-// API
-import API, { MoviePropTypes } from "../API";
-// Helpers
+import { useEffect, useState } from "react";
+import api from "../API";
 import { getPersistedState } from "../helpers";
+import { MoviePropTypes } from "./props";
 
 const initialState = {
   page: 0,
@@ -23,7 +22,7 @@ export const useHomeFetch = () => {
       setError(false);
       setLoading(true);
 
-      const movies = await API.fetchMovies(searchTerm, page);
+      const movies = await api.fetchMovies(searchTerm, page);
 
       setState((prev) => ({
         ...movies,
