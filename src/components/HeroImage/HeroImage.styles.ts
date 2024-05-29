@@ -1,11 +1,7 @@
 import styled from "styled-components";
+import { WrapperProps } from "./heroImage.props";
 
-// types
-type Props = {
-  $image: string;
-};
-
-export const Wrapper = styled.div<Props>`
+export const Wrapper = styled.div<WrapperProps>`
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 41%,
