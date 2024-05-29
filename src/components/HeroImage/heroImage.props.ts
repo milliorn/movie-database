@@ -1,7 +1,7 @@
 export type HeroImageProps = {
   image: string;
-  title: string;
   text: string;
+  title: string;
 };
 
 export type WrapperProps = {
