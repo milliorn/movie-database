@@ -3,20 +3,22 @@ import { calcTime, convertMoney } from '../../helpers';
 import { MovieInfoBarProps } from './movieInfoBar.props';
 import { Content, Wrapper } from './movieInfoBar.styles';
 
-const MovieInfoBar: React.FC<MovieInfoBarProps> = ({ time, budget, revenue }) => (
-  <Wrapper>
-    <Content>
-      <div className='column'>
-        <p>Running time: {calcTime(time)}</p>
-      </div>
-      <div className='column'>
-        <p>Budget: {convertMoney(budget)}</p>
-      </div>
-      <div className='column'>
-        <p>Revenue: {convertMoney(revenue)}</p>
-      </div>
-    </Content>
-  </Wrapper>
-);
+function MovieInfoBar({ time, budget, revenue }: MovieInfoBarProps) {
+  return (
+    <Wrapper>
+      <Content>
+        <div className='column'>
+          <p>Running time: {calcTime(time)}</p>
+        </div>
+        <div className='column'>
+          <p>Budget: {convertMoney(budget)}</p>
+        </div>
+        <div className='column'>
+          <p>Revenue: {convertMoney(revenue)}</p>
+        </div>
+      </Content>
+    </Wrapper>
+  );
+}
 
 export default MovieInfoBar;
