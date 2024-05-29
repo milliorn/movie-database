@@ -1,16 +1,9 @@
 import React from 'react';
-// Helpers
 import { calcTime, convertMoney } from '../../helpers';
-// Styles
-import { Wrapper, Content } from './MovieInfoBar.styles';
-// Types
-type Props = {
-    time: number;
-    budget: number;
-    revenue: number;
-};
+import { MovieInfoBarProps } from './movieInfoBar.props';
+import { Content, Wrapper } from './movieInfoBar.styles';
 
-const MovieInfoBar: React.FC<Props> = ({ time, budget, revenue }) => (
+const MovieInfoBar: React.FC<MovieInfoBarProps> = ({ time, budget, revenue }) => (
   <Wrapper>
     <Content>
       <div className='column'>
