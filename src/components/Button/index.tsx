@@ -1,16 +1,13 @@
 import React from "react";
-import { Wrapper } from "./Button.styles";
+import { Props } from "./button.props";
+import { Wrapper } from "./button.styles";
 
-// types
-type Props = {
-  text: string;
-  callback: () => void;
-};
-
-const Button: React.FC<Props> = ({ text, callback }) => (
-  <Wrapper type="button" onClick={callback}>
-    {text}
-  </Wrapper>
-);
+function Button({ text, callback }: Props) {
+  return (
+    <Wrapper type="button" onClick={callback}>
+      {text}
+    </Wrapper>
+  );
+}
 
 export default Button;
