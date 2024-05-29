@@ -5,7 +5,7 @@ import { ThumbProps } from "./thumb.props";
 
 function Thumb({
   image, movieId, clickable, rating, vote_count,
-}: ThumbProps) {
+}: ThumbProps): React.JSX.Element {
   return (
     <div>
       {clickable ? (

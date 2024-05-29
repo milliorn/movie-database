@@ -5,7 +5,7 @@ import Thumb from "../Thumb";
 import { MovieInfoProps } from "./movieInfo.props";
 import { Content, Text, Wrapper } from "./movieInfo.styles";
 
-function MovieInfo({ movie }: MovieInfoProps) {
+function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
   // console.log(movie);
   return (
     <Wrapper $backdrop={movie.backdrop_path}>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Props } from "./breadCrumb.props";
 import { Content, Wrapper } from "./breadCrumb.styles";
 
-function BreadCrumb({ movieTitle }: Props) {
+function BreadCrumb({ movieTitle }: Props): React.JSX.Element {
   return (
     <Wrapper>
       <Content>

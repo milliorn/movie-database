@@ -3,7 +3,7 @@ import searchIcon from "../../images/search-icon.svg";
 import { Content, Wrapper } from "./searchBar.styles";
 import { SearchBarProps } from "./searchBar.props";
 
-function SearchBar({ setSearchTerm }: SearchBarProps) {
+function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
   const [ state, setState ] = useState("");
   const initial = useRef(true);
 
