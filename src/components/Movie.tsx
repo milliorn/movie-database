@@ -40,7 +40,7 @@ const Movie: React.FC = () => {
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
 
-  console.log(movie);
+  // console.log(movie);
 
   return (
     <>
