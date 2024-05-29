@@ -1,29 +1,20 @@
 import React from "react";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
-import { MovieState } from "../../hooks/useMovieFetch";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
+import { MovieInfoProps } from "./movieInfo.props";
 import { Content, Text, Wrapper } from "./movieInfo.styles";
 
-
-type Props = {
-  movie: MovieState;
-};
-
-const MovieInfo: React.FC<Props> = ({ movie }) => {
-  console.log(movie);
-
+function MovieInfo({ movie }: MovieInfoProps) {
+  // console.log(movie);
   return (
     <Wrapper $backdrop={movie.backdrop_path}>
       <Content>
         <Thumb
-          image={
-            movie.poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-              : NoImage
-          }
-          clickable={false}
-        />
+          image={movie.poster_path
+            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+            : NoImage}
+          clickable={false} />
         <Text>
           <h1>{movie.title}</h1>
           {movie.tagline && <h3>{movie.tagline}</h3>}
@@ -68,8 +59,7 @@ const MovieInfo: React.FC<Props> = ({ movie }) => {
                   key={company.id}
                   src={`${IMAGE_BASE_URL}${POSTER_SIZE}${company.logo_path}`}
                   alt={company.name}
-                  className="company-logo"
-                />
+                  className="company-logo" />
               )
             ))}
           </div>
@@ -77,6 +67,6 @@ const MovieInfo: React.FC<Props> = ({ movie }) => {
       </Content>
     </Wrapper>
   );
-};
+}
 
 export default MovieInfo;

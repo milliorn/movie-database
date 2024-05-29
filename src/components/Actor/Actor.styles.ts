@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  color: var(--white);
   background: var(--darkGrey);
   border-radius: 20px;
+  color: var(--white);
   padding: 5px;
   text-align: center;
 
@@ -17,9 +17,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
+  border-radius: 15px;
   display: block;
-  width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 15px;
+  width: 100%;
 `;
