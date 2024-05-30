@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeroImageProps } from "./heroImage.props";
-import { Content, Text, Wrapper } from "./heroImage.styles";
+import { Content, Text, Wrapper } from "./styles";
 
 function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
   // State to track if the image has loaded
