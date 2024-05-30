@@ -1,4 +1,4 @@
-import { MovieState } from "../../hooks/useMovieFetch";
+import { MovieState } from "../../hooks/useMoviesFetch";
 
 export type WrapperProps = {
   $backdrop: string;
