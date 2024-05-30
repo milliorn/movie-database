@@ -1,6 +1,6 @@
 import React from "react";
 import { Props } from "./button.props";
-import { Wrapper } from "./button.styles";
+import { Wrapper } from "./styles";
 
 function Button({ text, callback }: Props): React.JSX.Element {
   return (
