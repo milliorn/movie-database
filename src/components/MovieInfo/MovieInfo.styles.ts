@@ -1,17 +1,14 @@
 import styled from "styled-components";
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../config";
-// Types
-type Props = {
-  $backdrop: string;
-};
+import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../config";
+import { WrapperProps } from "./movieInfo.props";
 
-export const Wrapper = styled.div<Props>`
+export const Wrapper = styled.div<WrapperProps>`
   background: ${({ $backdrop }) =>
     $backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${$backdrop})` : "#000"};
-  background-size: cover;
-  background-position: center;
-  padding: 40px 20px;
   animation: animateMovieInfo 1s;
+  background-position: center;
+  background-size: cover;
+  padding: 40px 20px;
 
   @keyframes animatedMovieInfo {
     from {
@@ -48,8 +45,8 @@ export const Text = styled.div`
   display: inline-flex; 
   height: 50%;
   justify-content: center;
-  width: 50%;
   margin: 2rem auto;
+  width: 50%;
 }
 
 

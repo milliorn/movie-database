@@ -1,22 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// Styles
-import { Wrapper, Content } from "./BreadCrumb.styles";
-// Types
-type Props = {
-  movieTitle: string;
-};
+import { Props } from "./breadCrumb.props";
+import { Content, Wrapper } from "./breadCrumb.styles";
 
-const BreadCrumb: React.FC<Props> = ({ movieTitle }) => (
-  <Wrapper>
-    <Content>
-      <Link to="/">
-        <span>Home</span>
-      </Link>
-      <span>|</span>
-      <span>{movieTitle}</span>
-    </Content>
-  </Wrapper>
-);
+function BreadCrumb({ movieTitle }: Props): React.JSX.Element {
+  return (
+    <Wrapper>
+      <Content>
+        <Link to="/">
+          <span>Home</span>
+        </Link>
+        <span>|</span>
+        <span>{movieTitle}</span>
+      </Content>
+    </Wrapper>
+  );
+}
 
 export default BreadCrumb;

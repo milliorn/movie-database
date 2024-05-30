@@ -1,25 +1,23 @@
 import React from "react";
-// Routing
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// Components
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
+import { GlobalStyle } from "./Global.styles";
 
-// Styles
-import { GlobalStyle } from "./GlobalStyle";
-
-const App: React.FC = () => (
-  <Router>
-    <Header />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/:movieId" element={<Movie />} />
-      <Route path="/*" element={<NotFound />} />
-    </Routes>
-    <GlobalStyle />
-  </Router>
-);
+function App(): React.JSX.Element {
+  return (
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:movieId" element={<Movie />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+      <GlobalStyle />
+    </Router>
+  );
+}
 
 export default App;

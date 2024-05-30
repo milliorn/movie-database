@@ -15,17 +15,17 @@ export const Content = styled.div`
   height: 3.5rem;
   margin: 0 auto;
   max-width: var(--maxWidth);
+  overflow: hidden;
   position: relative;
   width: 100%;
-  overflow: hidden;
 
   img {
-    position: absolute;
+    height: 30px;
     left: 15px;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
-    height: 30px;
   }
 
   input {
@@ -33,12 +33,12 @@ export const Content = styled.div`
     border: 0;
     color: var(--white);
     font-size: var(--fontBig);
+    height: 40px; /* Fixed height */
     left: 0;
     margin: 8px 0;
     padding-left: 60px; /* Fixed padding to not resize dynamically */
     position: absolute;
     width: 100%; /* Full width */
-    height: 40px; /* Fixed height */
 
     :focus {
       outline: none;

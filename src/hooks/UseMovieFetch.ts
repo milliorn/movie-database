@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import API, { MoviePropTypes, Cast, Crew } from "../API";
-// Helpers
+import { useEffect, useState } from "react";
+import API from "../API";
+import { Crew, MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
-// Types
+import { Cast } from "./props";
+
 export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
 export const useMovieFetch = (movieId: string) => {

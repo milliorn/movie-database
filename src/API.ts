@@ -1,28 +1,6 @@
-
-
-export type MoviePropTypes = {
-  adult: boolean;
-  backdrop_path: string;
-  budget: number;
-  genres: { id: number; name: string }[];
-  homepage: string;
-  id: number;
-  logo_path: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: { name: string; id: number; logo_path: string }[];
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  status: string;
-  tagline: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-};
+import { BACKEND_API_URL } from "./config";
+import { Crew, MoviePropTypes } from "./Global.props";
+import { Cast } from "./hooks/props";
 
 export type Movies = {
   page: number;
@@ -31,30 +9,13 @@ export type Movies = {
   total_results: number;
 };
 
-export type Cast = {
-  character: string;
-  credit_id: string;
-  name: string;
-  profile_path: string;
-};
-
-export type Crew = {
-  job: string;
-  name: string;
-  credit_id: number;
-};
-
 export type Credits = {
   id: number;
   cast: Cast[];
   crew: Crew[];
 };
 
-const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
 
-/**
- * The API object provides methods to fetch movies, movie details, and credits from the movie database API.
- */
 /**
  * The API object provides methods for fetching movies, movie details, credits, and authentication.
  */
@@ -92,50 +53,6 @@ const api = {
     const credits = await response.json();
     return credits;
   },
-  // Bonus material below for login
-  /**
-   * Fetches a request token for authentication.
-   * @returns A Promise that resolves to a request token.
-   */
-  // getRequestToken: async () => {
-  //   const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
-  //   return reqToken.request_token;
-  // },
-  /**
-   * Authenticates the user with the provided request token, username, and password.
-   * @param requestToken - The request token for authentication.
-   * @param username - The username of the user.
-   * @param password - The password of the user.
-   * @returns A Promise that resolves to a session ID.
-   */
-  // authenticate: async (
-  //   requestToken: string,
-  //   username: string,
-  //   password: string
-  // ) => {
-  //   const bodyData = {
-  //     username,
-  //     password,
-  //     request_token: requestToken,
-  //   };
-  //   // First authenticate the requestToken
-  //   const data = await (
-  //     await fetch(LOGIN_URL, {
-  //       ...defaultConfig,
-  //       body: JSON.stringify(bodyData),
-  //     })
-  //   ).json();
-  //   // Then get the sessionId with the requestToken
-  //   if (data.success) {
-  //     const sessionId = await (
-  //       await fetch(SESSION_ID_URL, {
-  //         ...defaultConfig,
-  //         body: JSON.stringify({ request_token: requestToken }),
-  //       })
-  //     ).json();
-  //     return sessionId;
-  //   }
-  // },
 };
 
 export default api;

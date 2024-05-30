@@ -9,11 +9,10 @@ import SearchBar from "./SearchBar";
 import Spinner from "./Spinner";
 import Thumb from "./Thumb";
 
-const Home: React.FC = () => {
-  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
-    useHomeFetch();
+function Home() {
+  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
 
-  console.log(state);
+  // console.log(state);
 
   useEffect(() => {
     fetch("manifest.json")
@@ -31,12 +30,11 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {state.results[0] ? (
+      {state.results[ 0 ] ? (
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
-          title={state.results[0].original_title}
-          text={state.results[0].overview}
-        />
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[ 0 ].backdrop_path}`}
+          title={state.results[ 0 ].original_title}
+          text={state.results[ 0 ].overview} />
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />
       <Grid header={searchTerm ? "Search Results" : "Popular Movies"}>
@@ -44,15 +42,12 @@ const Home: React.FC = () => {
           <Thumb
             key={movie.id}
             clickable={true}
-            image={
-              movie.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                : NoImage
-            }
+            image={movie.poster_path
+              ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+              : NoImage}
             movieId={movie.id}
             rating={movie.vote_average}
-            vote_count={movie.vote_count}
-          />
+            vote_count={movie.vote_count} />
         ))}
       </Grid>
       {loading && <Spinner />}
@@ -61,6 +56,6 @@ const Home: React.FC = () => {
       )}
     </div>
   );
-};
+}
 
 export default Home;

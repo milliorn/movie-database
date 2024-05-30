@@ -1,13 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../images/search-icon.svg";
-import { Content, Wrapper } from "./SearchBar.styles";
+import { SearchBarProps } from "./searchBar.props";
+import { Content, Wrapper } from "./searchBar.styles";
 
-type Props = {
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-};
-
-const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
-  const [state, setState] = useState("");
+function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
+  const [ state, setState ] = useState("");
   const initial = useRef(true);
 
   useEffect(() => {
@@ -21,7 +18,7 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [setSearchTerm, state]);
+  }, [ setSearchTerm, state ]);
 
   return (
     <Wrapper>
@@ -30,8 +27,7 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
           alt="search-icon"
           src={searchIcon}
           style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', width: '30px', height: '30px' }}
-          loading="eager"
-        />
+          loading="eager" />
         <input
           id="searchBar"
           name="searchBar"
@@ -39,11 +35,10 @@ const SearchBar: React.FC<Props> = ({ setSearchTerm }) => {
           placeholder="Search Movie"
           type="text"
           value={state}
-          style={{ padding: '0 0 0 60px', width: '100%', height: '40px' }}
-        />
+          style={{ padding: '0 0 0 60px', width: '100%', height: '40px' }} />
       </Content>
     </Wrapper>
   );
-};
+}
 
 export default SearchBar;

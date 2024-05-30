@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-import { useMovieFetch } from "../hooks/UseMovieFetch";
+import { useMovieFetch } from "../hooks/useMovieFetch";
 import NoImage from "../images/no_image.jpg";
 import Actor from "./Actor";
 import BreadCrumb from "./BreadCrumb";
@@ -40,7 +40,7 @@ const Movie: React.FC = () => {
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
 
-  console.log(movie);
+  // console.log(movie);
 
   return (
     <>
