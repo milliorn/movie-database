@@ -1,6 +1,6 @@
 import React from "react";
 import { Props } from "./grid.props";
-import { Content, Wrapper } from "./grid.styles";
+import { Content, Wrapper } from "./styles";
 
 function Grid({ header, children }: Props): React.JSX.Element {
   return (
