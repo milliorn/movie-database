@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
-import { Content, LogoImg, TMDBLogoImg, Wrapper } from "./header.styles";
+import { Content, LogoImg, TMDBLogoImg, Wrapper } from "./styles";
 
 function Header(): React.JSX.Element {
   return (
