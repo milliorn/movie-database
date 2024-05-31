@@ -3,7 +3,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
 import { MovieInfoProps } from "./movieInfo.props";
-import { Content, Text, Wrapper } from "./movieInfo.styles";
+import { Content, Text, Wrapper } from "./styles";
 
 function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
   // console.log(movie);

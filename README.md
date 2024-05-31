@@ -1,8 +1,5 @@
 # React Movie Database
 
-[![Netlify](https://api.netlify.com/api/v1/badges/18281ab9-7b6c-4249-8713-c6dee5673258/deploy-status)](https://app.netlify.com/sites/react-move-db/deploys)
-
-
 This repository contains a movie database application built using React. It utilizes various libraries and technologies to create a user-friendly interface for browsing and searching movies.
 
 ## Getting Started
