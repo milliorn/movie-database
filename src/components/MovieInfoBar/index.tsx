@@ -1,7 +1,7 @@
 import React from 'react';
 import { calcTime, convertMoney } from '../../helpers';
 import { MovieInfoBarProps } from './movieInfoBar.props';
-import { Content, Wrapper } from './movieInfoBar.styles';
+import { Content, Wrapper } from './styles';
 
 function MovieInfoBar({ time, budget, revenue }: MovieInfoBarProps): React.JSX.Element {
   return (
