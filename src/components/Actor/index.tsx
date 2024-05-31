@@ -1,6 +1,6 @@
 import React from "react";
 import { Props } from "./actor.props";
-import { Image, Wrapper } from "./actor.styles";
+import { Image, Wrapper } from "./styles";
 
 function Actor({ name, character, imageUrl }: Props): React.JSX.Element {
   return (
