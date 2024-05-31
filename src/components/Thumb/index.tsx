@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ThumbProps } from "./thumb.props";
-import { Image, RatingText, ThumbInfoContainer } from "./thumb.styles";
+import { Image, RatingText, ThumbInfoContainer } from "./styles";
 
 function Thumb({
   image, movieId, clickable, rating, vote_count,
