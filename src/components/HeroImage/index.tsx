@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HeroImageProps } from "./heroImage.props";
+import { HeroImageProps } from "./props";
 import { Content, Text, Wrapper } from "./styles";
 
 function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Props } from "./breadCrumb.props";
+import { Props } from "./props";
 import { Content, Wrapper } from "./styles";
 
 function BreadCrumb({ movieTitle }: Props): React.JSX.Element {

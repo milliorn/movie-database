@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../images/search-icon.svg";
-import { SearchBarProps } from "./searchBar.props";
+import { SearchBarProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {

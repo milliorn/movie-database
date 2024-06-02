@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../API";
-import { getPersistedState } from "../helpers";
 import { MoviePropTypes } from "../Global.props";
+import { getPersistedState } from "../helpers";
 
 const initialState = {
   page: 0,
@@ -10,7 +10,11 @@ const initialState = {
   total_results: 0,
 };
 
-export const useHomeFetch = () => {
+/**
+ * Custom hook for fetching movies for the home page.
+ * @returns An object containing the state, loading status, error status, search term, and functions to update the search term and loading more movies.
+ */
+export function useHomeFetch() {
   const [ searchTerm, setSearchTerm ] = useState("");
   const [ state, setState ] = useState(initialState);
   const [ loading, setLoading ] = useState(false);
@@ -63,4 +67,4 @@ export const useHomeFetch = () => {
   }, [ searchTerm, state ]);
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
-};
+}

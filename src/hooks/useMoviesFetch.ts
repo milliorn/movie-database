@@ -6,7 +6,13 @@ import { Cast } from "./props";
 
 export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
-export const useMovieFetch = (movieId: string) => {
+/**
+ * Custom hook for fetching movie data.
+ *
+ * @param movieId - The ID of the movie to fetch.
+ * @returns An object containing the movie state, loading status, and error status.
+ */
+export function useMovieFetch(movieId: string): { state: MovieState; loading: boolean; error: boolean; } {
   const [ state, setState ] = useState<MovieState>({} as MovieState);
   const [ loading, setLoading ] = useState(true);
   const [ error, setError ] = useState(false);
@@ -61,4 +67,4 @@ export const useMovieFetch = (movieId: string) => {
   }, [ movieId, state ]);
 
   return { state, loading, error };
-};
+}
