@@ -1,4 +1,4 @@
-export type MoviePropTypes = {
+type MoviePropTypes = {
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -22,8 +22,10 @@ export type MoviePropTypes = {
   vote_count: number;
 };
 
-export type Crew = {
+type Crew = {
+  credit_id: number;
   job: string;
   name: string;
-  credit_id: number;
 };
+
+export type { MoviePropTypes, Crew }

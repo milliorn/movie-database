@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { WrapperProps } from "./heroImage.props";
+import { WrapperProps } from "./props";
 
 export const Wrapper = styled.div<WrapperProps>`
   background: linear-gradient(
