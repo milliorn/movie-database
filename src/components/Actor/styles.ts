@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 /**
  * Wrapper component for the Actor component.
- * 
+ *
  * @remarks
  * This component provides a styled wrapper for the Actor component.
  */
@@ -22,6 +22,12 @@ export const Wrapper = styled.div`
   }
 `;
 
+/**
+ * Image component for the Actor component.
+ *
+ * @remarks
+ * This component provides a styled image for the Actor component.
+ */
 export const Image = styled.img`
   border-radius: 15px;
   display: block;

@@ -12,11 +12,11 @@ import useMovieFetch from "../hooks/useMoviesFetch";
 
 /**
  * Renders the Movie component.
- * 
+ *
  * @returns The JSX.Element representing the Movie component.
  */
 function Movie(): React.JSX.Element {
-  const { movieId } = useParams<{ movieId?: string; }>(); // Ensure movieId is possibly undefined
+  const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
   const { state: movie, loading, error } = useMovieFetch(movieId || ""); // Always call the hook unconditionally
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Movie(): React.JSX.Element {
       .catch((error) => {
         console.error("Error fetching manifest.json", error);
       });
-  }, [ movie, movieId ]); // Dependency array includes movieId to handle changes
+  }, [movie, movieId]); // Dependency array includes movieId to handle changes
 
   if (!movieId) {
     return <div>No movie selected</div>; // Handling the case when no movieId is present
@@ -53,16 +53,20 @@ function Movie(): React.JSX.Element {
       <MovieInfoBar
         time={movie.runtime}
         budget={movie.budget}
-        revenue={movie.revenue} />
+        revenue={movie.revenue}
+      />
       <Grid header="Actors">
         {movie.actors.map((actor) => (
           <Actor
             key={actor.credit_id}
             name={actor.name}
             character={actor.character}
-            imageUrl={actor.profile_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-              : NoImage} />
+            imageUrl={
+              actor.profile_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+                : NoImage
+            }
+          />
         ))}
       </Grid>
     </>

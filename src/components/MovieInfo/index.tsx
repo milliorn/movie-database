@@ -7,7 +7,7 @@ import { MovieInfoProps } from "./props";
 
 /**
  * Renders the movie information.
- * 
+ *
  * @component
  * @param {Object} props - The component props.
  * @param {Movie} props.movie - The movie object containing the information to be displayed.

@@ -11,7 +11,7 @@ import useHomeFetch from "../hooks/useHomeFetch";
 
 /**
  * Renders the Home component.
- * 
+ *
  * @returns The JSX.Element representing the Home component.
  */
 function Home(): React.JSX.Element {

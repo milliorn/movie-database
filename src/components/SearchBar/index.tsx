@@ -5,7 +5,7 @@ import { Content, Wrapper } from "./styles";
 
 /**
  * Renders a search bar component.
- * 
+ *
  * @param setSearchTerm - A function to set the search term.
  * @returns The search bar component.
  */

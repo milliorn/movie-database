@@ -6,7 +6,7 @@ import { Content, LogoImg, TMDBLogoImg, Wrapper } from "./styles";
 
 /**
  * Renders the header component.
- * 
+ *
  * @returns The JSX.Element representing the header component.
  */
 function Header(): React.JSX.Element {
