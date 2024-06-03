@@ -9,7 +9,12 @@ import SearchBar from "./SearchBar";
 import Spinner from "./Spinner";
 import Thumb from "./Thumb";
 
-function Home() {
+/**
+ * Renders the Home component.
+ * 
+ * @returns The JSX.Element representing the Home component.
+ */
+function Home(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
