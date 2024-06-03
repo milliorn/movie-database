@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+/**
+ * Wrapper component for the Actor component.
+ * 
+ * @remarks
+ * This component provides a styled wrapper for the Actor component.
+ */
 export const Wrapper = styled.div`
   background: var(--darkGrey);
   border-radius: 20px;
