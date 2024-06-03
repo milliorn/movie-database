@@ -28,4 +28,4 @@ type Crew = {
   name: string;
 };
 
-export type { MoviePropTypes, Crew }
+export type { MoviePropTypes, Crew };

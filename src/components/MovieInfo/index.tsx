@@ -11,10 +11,13 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
     <Wrapper $backdrop={movie.backdrop_path}>
       <Content>
         <Thumb
-          image={movie.poster_path
-            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-            : NoImage}
-          clickable={false} />
+          image={
+            movie.poster_path
+              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+              : NoImage
+          }
+          clickable={false}
+        />
         <Text>
           <h1>{movie.title}</h1>
           {movie.tagline && <h3>{movie.tagline}</h3>}
@@ -53,15 +56,17 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
             ))}
           </div>
           <div className="production-companies">
-            {movie.production_companies.map(company => (
-              company.logo_path != null && (
-                <img
-                  key={company.id}
-                  src={`${IMAGE_BASE_URL}${POSTER_SIZE}${company.logo_path}`}
-                  alt={company.name}
-                  className="company-logo" />
-              )
-            ))}
+            {movie.production_companies.map(
+              (company) =>
+                company.logo_path != null && (
+                  <img
+                    key={company.id}
+                    src={`${IMAGE_BASE_URL}${POSTER_SIZE}${company.logo_path}`}
+                    alt={company.name}
+                    className="company-logo"
+                  />
+                ),
+            )}
           </div>
         </Text>
       </Content>

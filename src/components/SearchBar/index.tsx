@@ -4,7 +4,7 @@ import { SearchBarProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
-  const [ state, setState ] = useState("");
+  const [state, setState] = useState("");
   const initial = useRef(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [ setSearchTerm, state ]);
+  }, [setSearchTerm, state]);
 
   return (
     <Wrapper>
@@ -26,8 +26,16 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
         <img
           alt="search-icon"
           src={searchIcon}
-          style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', width: '30px', height: '30px' }}
-          loading="eager" />
+          style={{
+            position: "absolute",
+            left: "15px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "30px",
+            height: "30px",
+          }}
+          loading="eager"
+        />
         <input
           id="searchBar"
           name="searchBar"
@@ -35,7 +43,8 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
           placeholder="Search Movie"
           type="text"
           value={state}
-          style={{ padding: '0 0 0 60px', width: '100%', height: '40px' }} />
+          style={{ padding: "0 0 0 60px", width: "100%", height: "40px" }}
+        />
       </Content>
     </Wrapper>
   );

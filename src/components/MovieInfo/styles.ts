@@ -40,22 +40,21 @@ export const Text = styled.div`
   text-align: center;
   width: 100%;
 
-.company-logo {
-  align-items: center;
-  display: inline-flex; 
-  height: 50%;
-  justify-content: center;
-  margin: 2rem auto;
-  width: 50%;
-}
-
+  .company-logo {
+    align-items: center;
+    display: inline-flex;
+    height: 50%;
+    justify-content: center;
+    margin: 2rem auto;
+    width: 50%;
+  }
 
   .genre {
     align-items: center;
     display: flex;
     font-weight: 800;
     gap: 10px;
-    justify-content: center;  
+    justify-content: center;
     margin: 2rem auto;
   }
 

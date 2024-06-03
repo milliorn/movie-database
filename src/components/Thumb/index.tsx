@@ -4,7 +4,11 @@ import { Image, RatingText, ThumbInfoContainer } from "./styles";
 import { ThumbProps } from "./props";
 
 function Thumb({
-  image, movieId, clickable, rating, vote_count,
+  image,
+  movieId,
+  clickable,
+  rating,
+  vote_count,
 }: ThumbProps): React.JSX.Element {
   return (
     <div>
