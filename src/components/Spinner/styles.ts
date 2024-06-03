@@ -1,3 +1,6 @@
+/**
+ * Represents a spinner component with a rotating animation.
+ */
 import styled from "styled-components";
 
 export const Spinner = styled.div`

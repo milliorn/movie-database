@@ -1,6 +1,12 @@
+/**
+ * Styles for the SearchBar component.
+ */
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+/**
+ * Wrapper style for the SearchBar component.
+ */
+const Wrapper = styled.div`
   align-items: center;
   background: var(--darkGrey);
   display: flex;
@@ -8,7 +14,10 @@ export const Wrapper = styled.div`
   padding: 0 0.5rem;
 `;
 
-export const Content = styled.div`
+/**
+ * Content style for the SearchBar component.
+ */
+const Content = styled.div`
   background: var(--medGrey);
   border-radius: 1.5rem;
   color: var(--white);
@@ -44,4 +53,7 @@ export const Content = styled.div`
       outline: none;
     }
   }
+};
 `;
+
+export { Wrapper, Content };
