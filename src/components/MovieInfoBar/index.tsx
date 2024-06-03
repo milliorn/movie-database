@@ -1,19 +1,23 @@
-import React from 'react';
-import { calcTime, convertMoney } from '../../helpers';
-import { MovieInfoBarProps } from './movieInfoBar.props';
-import { Content, Wrapper } from './styles';
+import React from "react";
+import { calcTime, convertMoney } from "../../helpers";
+import { MovieInfoBarProps } from "./movieInfoBar.props";
+import { Content, Wrapper } from "./styles";
 
-function MovieInfoBar({ time, budget, revenue }: MovieInfoBarProps): React.JSX.Element {
+function MovieInfoBar({
+  time,
+  budget,
+  revenue,
+}: MovieInfoBarProps): React.JSX.Element {
   return (
     <Wrapper>
       <Content>
-        <div className='column'>
+        <div className="column">
           <p>Running time: {calcTime(time)}</p>
         </div>
-        <div className='column'>
+        <div className="column">
           <p>Budget: {convertMoney(budget)}</p>
         </div>
-        <div className='column'>
+        <div className="column">
           <p>Revenue: {convertMoney(revenue)}</p>
         </div>
       </Content>

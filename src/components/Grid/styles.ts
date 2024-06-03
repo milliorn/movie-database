@@ -22,6 +22,6 @@ export const Content = styled.div`
   img {
     height: auto; // Maintains the natural aspect ratio of the image
     object-fit: cover; // Ensures images cover the area without distorting their aspect ratio
-    width: 100%;  // Ensures the image is responsive and fills its container width
+    width: 100%; // Ensures the image is responsive and fills its container width
   }
 `;

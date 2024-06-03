@@ -12,10 +12,14 @@ export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
  * @param movieId - The ID of the movie to fetch.
  * @returns An object containing the movie state, loading status, and error status.
  */
-export function useMovieFetch(movieId: string): { state: MovieState; loading: boolean; error: boolean; } {
-  const [ state, setState ] = useState<MovieState>({} as MovieState);
-  const [ loading, setLoading ] = useState(true);
-  const [ error, setError ] = useState(false);
+export function useMovieFetch(movieId: string): {
+  state: MovieState;
+  loading: boolean;
+  error: boolean;
+} {
+  const [state, setState] = useState<MovieState>({} as MovieState);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -27,7 +31,7 @@ export function useMovieFetch(movieId: string): { state: MovieState; loading: bo
         const credits = await API.fetchCredits(movieId);
         // Get directors only
         const directors = credits.crew.filter(
-          (member) => member.job === "Director"
+          (member) => member.job === "Director",
         );
 
         setState({
@@ -59,12 +63,12 @@ export function useMovieFetch(movieId: string): { state: MovieState; loading: bo
     }
 
     fetchMovie();
-  }, [ movieId ]);
+  }, [movieId]);
 
   // Write to sessionStorage
   useEffect(() => {
     sessionStorage.setItem(movieId, JSON.stringify(state));
-  }, [ movieId, state ]);
+  }, [movieId, state]);
 
   return { state, loading, error };
 }

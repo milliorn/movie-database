@@ -20,7 +20,7 @@ const usdFormatter = new Intl.NumberFormat("en-US", {
 
 /**
  * Converts a number representing money into a formatted string.
- * 
+ *
  * @param money - The amount of money to convert.
  * @returns The formatted string representing the money.
  */
@@ -30,7 +30,7 @@ function convertMoney(money: number): string {
 
 /**
  * Retrieves the persisted state from the session storage.
- * 
+ *
  * @param stateName - The name of the state to retrieve.
  * @returns The persisted state if found, otherwise null.
  */
@@ -39,7 +39,12 @@ function getPersistedState<T>(stateName: string): T | null | Error {
   try {
     return sessionState ? (JSON.parse(sessionState) as T) : null;
   } catch (error) {
-    console.error("Failed to parse session state for key", stateName, ":", error);
+    console.error(
+      "Failed to parse session state for key",
+      stateName,
+      ":",
+      error,
+    );
     return null;
   }
 }

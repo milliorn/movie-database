@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
     "skipLibCheck": false, // Enable type checking of declaration files (*.d.ts)
     "esModuleInterop": true,
@@ -30,18 +26,11 @@
     "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
     "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
   },
-  "include": [
-    "src",
-    "api"
-  ],
-  "exclude": [
-    "node_modules"
-  ], // Exclude node_modules to speed up the compilation
+  "include": ["src", "api"],
+  "exclude": ["node_modules"], // Exclude node_modules to speed up the compilation
   "overrides": [
     {
-      "files": [
-        "api/*.ts"
-      ],
+      "files": ["api/*.ts"],
       "parserOptions": {
         "project": "./tsconfig.json"
       }

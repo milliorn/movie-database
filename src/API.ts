@@ -15,7 +15,6 @@ export type Credits = {
   crew: Crew[];
 };
 
-
 /**
  * The API object provides methods for fetching movies, movie details, credits, and authentication.
  */

@@ -14,7 +14,7 @@ function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
     // On image load completion, set 'loaded' to true to signify readiness
     img.onload = () => setLoaded(true);
     // Re-run this effect if 'image' prop changes, allowing for reactive updates
-  }, [image]);  
+  }, [image]);
 
   return (
     <Wrapper $image={loaded ? image : ""}>

@@ -2,12 +2,10 @@ import styled from "styled-components";
 import { WrapperProps } from "./props";
 
 export const Wrapper = styled.div<WrapperProps>`
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 41%,
-      rgba(0, 0, 0, 0.65) 100%
-    ),
-    url(${({ $image }) => $image}), var(--darkGrey) no-repeat center center / cover;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 41%, rgba(0, 0, 0, 0.65) 100%),
+    url(${({ $image }) => $image}),
+    var(--darkGrey) no-repeat center center / cover;
   animation: animateHeroImage 1s;
   background-position: center;
   background-size: 100%, cover;

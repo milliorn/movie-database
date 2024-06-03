@@ -8,10 +8,7 @@
   "short_name": "Movie Db",
   "start_url": ".",
   "theme_color": "#000000",
-  "categories": [
-    "Entertainment",
-    "Reference"
-  ],
+  "categories": ["Entertainment", "Reference"],
   "icons": [
     {
       "src": "favicon.ico",
