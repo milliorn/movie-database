@@ -5,6 +5,14 @@ import Thumb from "../Thumb";
 import { MovieInfoProps } from "./movieInfo.props";
 import { Content, Text, Wrapper } from "./styles";
 
+/**
+ * Renders the movie information.
+ * 
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Movie} props.movie - The movie object containing the information to be displayed.
+ * @returns {JSX.Element} - The rendered movie information component.
+ */
 function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
   // console.log(movie);
   return (
