@@ -11,14 +11,16 @@
     "styled-components": "6.1.11"
   },
   "scripts": {
-    "serve": "npm run build && serve -s build",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build:project": "npm run lint && npm run prettier:check && npm run build",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prettier:check": "prettier . --check",
-    "prettier:write": "prettier . --write"
+    "prettier:write": "prettier . --write",
+    "serve": "npm run build && serve -s build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "start:project": "npm run lint && npm run prettier:write && npm run start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
