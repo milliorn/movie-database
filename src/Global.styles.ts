@@ -1,3 +1,6 @@
+/**
+ * Defines the global styles for the application.
+ */
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
