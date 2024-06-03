@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-import { useHomeFetch } from "../hooks/useHomeFetch";
 import NoImage from "../images/no_image.jpg";
 import Button from "./Button";
 import Grid from "./Grid";
@@ -8,6 +7,7 @@ import HeroImage from "./HeroImage";
 import SearchBar from "./SearchBar";
 import Spinner from "./Spinner";
 import Thumb from "./Thumb";
+import useHomeFetch from "../hooks/useHomeFetch";
 
 /**
  * Renders the Home component.
