@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+/**
+ * Wrapper component for the BreadCrumb component.
+ * 
+ * This component provides a container for the BreadCrumb component.
+ */
 export const Wrapper = styled.div`
   align-items: center;
   background: var(--medGrey);
