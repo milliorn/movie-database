@@ -6,6 +6,12 @@ import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
 import { GlobalStyle } from "./Global.styles";
 
+/**
+ * The main component of the movie database application.
+ * Renders the header, routes, and global styles.
+ *
+ * @returns The JSX element representing the App component.
+ */
 function App(): React.JSX.Element {
   return (
     <Router>

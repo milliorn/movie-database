@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import API from "../API";
-import { Crew, MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
-import { Cast } from "./props";
+import { MovieState } from "./props";
 
-export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
+// export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
 /**
  * Custom hook for fetching movie data.
@@ -12,14 +11,14 @@ export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
  * @param movieId - The ID of the movie to fetch.
  * @returns An object containing the movie state, loading status, and error status.
  */
-export function useMovieFetch(movieId: string): {
+function useMovieFetch(movieId: string): {
   state: MovieState;
   loading: boolean;
   error: boolean;
 } {
-  const [state, setState] = useState<MovieState>({} as MovieState);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [ state, setState ] = useState<MovieState>({} as MovieState);
+  const [ loading, setLoading ] = useState(true);
+  const [ error, setError ] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -63,12 +62,14 @@ export function useMovieFetch(movieId: string): {
     }
 
     fetchMovie();
-  }, [movieId]);
+  }, [ movieId ]);
 
   // Write to sessionStorage
   useEffect(() => {
     sessionStorage.setItem(movieId, JSON.stringify(state));
-  }, [movieId, state]);
+  }, [ movieId, state ]);
 
   return { state, loading, error };
 }
+
+export default useMovieFetch;

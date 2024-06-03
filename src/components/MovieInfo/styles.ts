@@ -4,7 +4,7 @@
 
 import styled from "styled-components";
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../config";
-import { WrapperProps } from "./movieInfo.props";
+import { WrapperProps } from "./props";
 
 /**
  * Wrapper component for the MovieInfo.

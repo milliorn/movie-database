@@ -1,4 +1,4 @@
-import { MovieState } from "../../hooks/useMoviesFetch";
+import { MovieState } from "../../hooks/props";
 
 /**
  * Props for the wrapper component of the MovieInfo component.

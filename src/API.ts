@@ -1,6 +1,5 @@
 import { BACKEND_API_URL } from "./config";
-import { Crew, MoviePropTypes } from "./Global.props";
-import { Cast } from "./hooks/props";
+import { Cast, Crew, MoviePropTypes } from "./Global.props";
 
 export type Movies = {
   page: number;

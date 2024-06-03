@@ -28,4 +28,14 @@ type Crew = {
   name: string;
 };
 
-export type { MoviePropTypes, Crew };
+/**
+ * Represents the cast of a movie.
+ */
+type Cast = {
+  character: string;
+  credit_id: string;
+  name: string;
+  profile_path: string;
+};
+
+export type { MoviePropTypes, Crew, Cast };
