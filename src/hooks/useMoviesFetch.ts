@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import API from "../API";
 import { getPersistedState } from "../helpers";
 import { MovieState } from "./props";
+import { api } from "../API";
 
 // export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
@@ -16,9 +16,9 @@ function useMovieFetch(movieId: string): {
   loading: boolean;
   error: boolean;
 } {
-  const [state, setState] = useState<MovieState>({} as MovieState);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [ state, setState ] = useState<MovieState>({} as MovieState);
+  const [ loading, setLoading ] = useState(true);
+  const [ error, setError ] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -26,8 +26,8 @@ function useMovieFetch(movieId: string): {
         setLoading(true);
         setError(false);
 
-        const movie = await API.fetchMovie(movieId);
-        const credits = await API.fetchCredits(movieId);
+        const movie = await api.fetchMovie(movieId);
+        const credits = await api.fetchCredits(movieId);
         // Get directors only
         const directors = credits.crew.filter(
           (member) => member.job === "Director",
@@ -62,12 +62,12 @@ function useMovieFetch(movieId: string): {
     }
 
     fetchMovie();
-  }, [movieId]);
+  }, [ movieId ]);
 
   // Write to sessionStorage
   useEffect(() => {
     sessionStorage.setItem(movieId, JSON.stringify(state));
-  }, [movieId, state]);
+  }, [ movieId, state ]);
 
   return { state, loading, error };
 }

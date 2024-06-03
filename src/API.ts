@@ -1,17 +1,23 @@
 import { BACKEND_API_URL } from "./config";
 import { Cast, Crew, MoviePropTypes } from "./Global.props";
 
-export type Movies = {
+/**
+ * Represents a collection of movies.
+ */
+type Movies = {
   page: number;
   results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
 };
 
-export type Credits = {
-  id: number;
+/**
+ * Represents the credits for a movie or TV show.
+ */
+type Credits = {
   cast: Cast[];
   crew: Crew[];
+  id: number;
 };
 
 /**
@@ -53,4 +59,5 @@ const api = {
   },
 };
 
-export default api;
+export { api }; export type { Movies, Credits };
+
