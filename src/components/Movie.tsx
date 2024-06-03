@@ -10,8 +10,13 @@ import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
 import Spinner from "./Spinner";
 
-const Movie: React.FC = () => {
-  const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
+/**
+ * Renders the Movie component.
+ * 
+ * @returns The JSX.Element representing the Movie component.
+ */
+function Movie(): React.JSX.Element {
+  const { movieId } = useParams<{ movieId?: string; }>(); // Ensure movieId is possibly undefined
   const { state: movie, loading, error } = useMovieFetch(movieId || ""); // Always call the hook unconditionally
 
   useEffect(() => {
@@ -31,7 +36,7 @@ const Movie: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching manifest.json", error);
       });
-  }, [movie, movieId]); // Dependency array includes movieId to handle changes
+  }, [ movie, movieId ]); // Dependency array includes movieId to handle changes
 
   if (!movieId) {
     return <div>No movie selected</div>; // Handling the case when no movieId is present
@@ -41,7 +46,6 @@ const Movie: React.FC = () => {
   if (error) return <div>Something went wrong...</div>;
 
   // console.log(movie);
-
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />
@@ -49,24 +53,20 @@ const Movie: React.FC = () => {
       <MovieInfoBar
         time={movie.runtime}
         budget={movie.budget}
-        revenue={movie.revenue}
-      />
+        revenue={movie.revenue} />
       <Grid header="Actors">
         {movie.actors.map((actor) => (
           <Actor
             key={actor.credit_id}
             name={actor.name}
             character={actor.character}
-            imageUrl={
-              actor.profile_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-                : NoImage
-            }
-          />
+            imageUrl={actor.profile_path
+              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+              : NoImage} />
         ))}
       </Grid>
     </>
   );
-};
+}
 
 export default Movie;

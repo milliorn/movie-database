@@ -1,5 +1,12 @@
 import React from "react";
 
-const NotFound: React.FC = () => <div>NotFound</div>;
+/**
+ * Renders the NotFound component.
+ *
+ * @returns The JSX.Element representing the NotFound component.
+ */
+function NotFound(): React.JSX.Element {
+  return <div>NotFound</div>;
+}
 
 export default NotFound;
