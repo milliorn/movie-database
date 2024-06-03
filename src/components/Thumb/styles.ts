@@ -1,6 +1,12 @@
+/**
+ * Styles for the Thumb component.
+ */
 import styled from "styled-components";
 
-export const Image = styled.img`
+/**
+ * Styled image component for the Thumb.
+ */
+const Image = styled.img`
   animation: animateThumb 0.5s;
   aspect-ratio: 2/ 3; // Adjust according to your most common aspect ratio
   border-radius: 20px;
@@ -22,17 +28,25 @@ export const Image = styled.img`
   }
 `;
 
-export const ThumbInfoContainer = styled.div`
+/**
+ * Container for the Thumb information.
+ */
+const ThumbInfoContainer = styled.div`
   align-items: center; // centers items vertically
   display: flex;
   justify-content: space-between;
   padding: 0.5rem; // added padding for spacing
 `;
 
-export const RatingText = styled.p`
+/**
+ * Text component for the rating.
+ */
+const RatingText = styled.p`
   color: var(--lightGrey);
   font-size: var(--fontBig);
   font-weight: bold;
   margin: 0 auto;
   z-index: -100; // This is a hack to fix the z-index issue with the rating text
 `;
+
+export { Image, RatingText, ThumbInfoContainer };
