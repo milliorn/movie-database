@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import api from "../API";
 import { MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
+import { api } from "../API";
 
+/**
+ * Represents the initial state for the home fetch hook.
+ */
 const initialState = {
   page: 0,
   results: [] as MoviePropTypes[],
@@ -12,15 +15,20 @@ const initialState = {
 
 /**
  * Custom hook for fetching movies for the home page.
- * @returns An object containing the state, loading status, error status, search term, and functions to update the search term and loading more movies.
+ * @returns An object containing the state, loading status, error status, search term, setSearchTerm function, and isLoadingMore status.
  */
-export function useHomeFetch() {
+function useHomeFetch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
+  /**
+   * Fetches movies from the API based on the specified page and search term.
+   * @param page - The page number to fetch movies from.
+   * @param searchTerm - The search term to filter movies by.
+   */
   const fetchMovies = async (page: number, searchTerm = "") => {
     try {
       setError(false);
@@ -69,3 +77,5 @@ export function useHomeFetch() {
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 }
+
+export default useHomeFetch;

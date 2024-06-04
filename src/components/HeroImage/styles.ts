@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { WrapperProps } from "./props";
 
-export const Wrapper = styled.div<WrapperProps>`
+/**
+ * Represents a styled div component for the hero image wrapper.
+ * @param $image - The URL of the image to be displayed as the background.
+ */
+const Wrapper = styled.div<WrapperProps>`
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0) 41%, rgba(0, 0, 0, 0.65) 100%),
     url(${({ $image }) => $image}),
@@ -23,13 +27,19 @@ export const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-export const Content = styled.div`
+/**
+ * Represents a styled div component for the content within the hero image.
+ */
+const Content = styled.div`
   margin: 0 auto;
   max-width: var(--maxWidth);
   padding: 1.25rem; /* 20px */
 `;
 
-export const Text = styled.div`
+/**
+ * Represents a styled div component for displaying text within the hero image.
+ */
+const Text = styled.div`
   bottom: 40px;
   color: var(--white);
   margin-right: 1.25rem; /* 20px */
@@ -57,4 +67,7 @@ export const Text = styled.div`
   @media screen and (max-width: 720px) {
     max-width: 100%;
   }
+};
 `;
+
+export { Wrapper, Content, Text };

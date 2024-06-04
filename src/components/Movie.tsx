@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-import { useMovieFetch } from "../hooks/useMoviesFetch";
 import NoImage from "../images/no_image.jpg";
 import Actor from "./Actor";
 import BreadCrumb from "./BreadCrumb";
@@ -9,8 +8,14 @@ import Grid from "./Grid";
 import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
 import Spinner from "./Spinner";
+import useMovieFetch from "../hooks/useMoviesFetch";
 
-const Movie: React.FC = () => {
+/**
+ * Renders the Movie component.
+ *
+ * @returns The JSX.Element representing the Movie component.
+ */
+function Movie(): React.JSX.Element {
   const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
   const { state: movie, loading, error } = useMovieFetch(movieId || ""); // Always call the hook unconditionally
 
@@ -41,7 +46,6 @@ const Movie: React.FC = () => {
   if (error) return <div>Something went wrong...</div>;
 
   // console.log(movie);
-
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />
@@ -67,6 +71,6 @@ const Movie: React.FC = () => {
       </Grid>
     </>
   );
-};
+}
 
 export default Movie;

@@ -1,7 +1,15 @@
+/**
+ * Styles for the MovieInfo component.
+ */
+
 import styled from "styled-components";
 import { BACKDROP_SIZE, IMAGE_BASE_URL } from "../../config";
-import { WrapperProps } from "./movieInfo.props";
+import { WrapperProps } from "./props";
 
+/**
+ * Wrapper component for the MovieInfo.
+ * @param $backdrop - The backdrop image URL.
+ */
 export const Wrapper = styled.div<WrapperProps>`
   background: ${({ $backdrop }) =>
     $backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${$backdrop})` : "#000"};
@@ -20,6 +28,9 @@ export const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
+/**
+ * Content container for the MovieInfo.
+ */
 export const Content = styled.div`
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
@@ -33,6 +44,9 @@ export const Content = styled.div`
   }
 `;
 
+/**
+ * Text container for the MovieInfo.
+ */
 export const Text = styled.div`
   color: var(--white);
   overflow: hidden;
@@ -40,6 +54,9 @@ export const Text = styled.div`
   text-align: center;
   width: 100%;
 
+  /**
+   * Company logo container.
+   */
   .company-logo {
     align-items: center;
     display: inline-flex;
@@ -49,6 +66,9 @@ export const Text = styled.div`
     width: 50%;
   }
 
+  /**
+   * Genre container.
+   */
   .genre {
     align-items: center;
     display: flex;
@@ -58,21 +78,33 @@ export const Text = styled.div`
     margin: 2rem auto;
   }
 
+  /**
+   * Website container.
+   */
   .website {
     margin: 2rem 0;
   }
 
+  /**
+   * Website link.
+   */
   .website a {
     color: var(--white);
     cursor: pointer;
     text-decoration: none;
   }
 
+  /**
+   * Rating and directors container.
+   */
   .rating-directors {
     display: flex;
     justify-content: space-evenly;
   }
 
+  /**
+   * Score container.
+   */
   .score {
     align-items: center;
     background: #fff;
@@ -82,6 +114,9 @@ export const Text = styled.div`
     justify-content: center;
   }
 
+  /**
+   * Director container.
+   */
   .director {
     margin: 0 0 0 40px;
 
@@ -90,6 +125,9 @@ export const Text = styled.div`
     }
   }
 
+  /**
+   * Heading 1.
+   */
   h1 {
     @media screen and (max-width: 768px) {
       font-size: var(--fontBig);
@@ -97,6 +135,9 @@ export const Text = styled.div`
   }
 
   @media screen and (max-width: 640px) {
+    /**
+     * Responsive styles for smaller screens.
+     */
     .director,
     .rating,
     .score,
@@ -117,4 +158,5 @@ export const Text = styled.div`
       flex-direction: column;
     }
   }
+};
 `;

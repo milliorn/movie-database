@@ -2,9 +2,17 @@ import React from "react";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
-import { MovieInfoProps } from "./movieInfo.props";
 import { Content, Text, Wrapper } from "./styles";
+import { MovieInfoProps } from "./props";
 
+/**
+ * Renders the movie information.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Movie} props.movie - The movie object containing the information to be displayed.
+ * @returns {JSX.Element} - The rendered movie information component.
+ */
 function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
   // console.log(movie);
   return (

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+/**
+ * Wrapper component for the button.
+ */
 export const Wrapper = styled.button`
   background: var(--darkGrey);
   border-radius: 30px;

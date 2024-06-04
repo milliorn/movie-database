@@ -1,8 +1,14 @@
 import React from "react";
-import { Props } from "./props";
 import { Wrapper } from "./styles";
+import { ButtonProps } from "./props";
 
-function Button({ text, callback }: Props): React.JSX.Element {
+/**
+ * Renders a button component.
+ *
+ * @param {ButtonProps} props - The props for the button component.
+ * @returns {React.JSX.Element} The rendered button component.
+ */
+function Button({ text, callback }: ButtonProps): React.JSX.Element {
   return (
     <Wrapper type="button" onClick={callback}>
       {text}

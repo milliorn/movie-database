@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import API from "../API";
-import { Crew, MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
-import { Cast } from "./props";
+import { MovieState } from "./props";
+import { api } from "../API";
 
-export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
+// export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
 /**
  * Custom hook for fetching movie data.
@@ -12,7 +11,7 @@ export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
  * @param movieId - The ID of the movie to fetch.
  * @returns An object containing the movie state, loading status, and error status.
  */
-export function useMovieFetch(movieId: string): {
+function useMovieFetch(movieId: string): {
   state: MovieState;
   loading: boolean;
   error: boolean;
@@ -27,8 +26,8 @@ export function useMovieFetch(movieId: string): {
         setLoading(true);
         setError(false);
 
-        const movie = await API.fetchMovie(movieId);
-        const credits = await API.fetchCredits(movieId);
+        const movie = await api.fetchMovie(movieId);
+        const credits = await api.fetchCredits(movieId);
         // Get directors only
         const directors = credits.crew.filter(
           (member) => member.job === "Director",
@@ -72,3 +71,5 @@ export function useMovieFetch(movieId: string): {
 
   return { state, loading, error };
 }
+
+export default useMovieFetch;

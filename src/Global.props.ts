@@ -1,3 +1,6 @@
+/**
+ * Represents the properties of a movie.
+ */
 type MoviePropTypes = {
   adult: boolean;
   backdrop_path: string;
@@ -22,10 +25,23 @@ type MoviePropTypes = {
   vote_count: number;
 };
 
+/**
+ * Represents a crew member in a movie.
+ */
 type Crew = {
   credit_id: number;
   job: string;
   name: string;
 };
 
-export type { MoviePropTypes, Crew };
+/**
+ * Represents the cast of a movie.
+ */
+type Cast = {
+  character: string;
+  credit_id: string;
+  name: string;
+  profile_path: string;
+};
+
+export type { MoviePropTypes, Crew, Cast };

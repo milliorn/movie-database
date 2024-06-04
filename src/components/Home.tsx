@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
-import { useHomeFetch } from "../hooks/useHomeFetch";
 import NoImage from "../images/no_image.jpg";
 import Button from "./Button";
 import Grid from "./Grid";
@@ -8,8 +7,14 @@ import HeroImage from "./HeroImage";
 import SearchBar from "./SearchBar";
 import Spinner from "./Spinner";
 import Thumb from "./Thumb";
+import useHomeFetch from "../hooks/useHomeFetch";
 
-function Home() {
+/**
+ * Renders the Home component.
+ *
+ * @returns The JSX.Element representing the Home component.
+ */
+function Home(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 

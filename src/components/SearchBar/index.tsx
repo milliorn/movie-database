@@ -3,6 +3,12 @@ import searchIcon from "../../images/search-icon.svg";
 import { SearchBarProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
+/**
+ * Renders a search bar component.
+ *
+ * @param setSearchTerm - A function to set the search term.
+ * @returns The search bar component.
+ */
 function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
   const [state, setState] = useState("");
   const initial = useRef(true);
