@@ -16,9 +16,9 @@ function useMovieFetch(movieId: string): {
   loading: boolean;
   error: boolean;
 } {
-  const [ state, setState ] = useState<MovieState>({} as MovieState);
-  const [ loading, setLoading ] = useState(true);
-  const [ error, setError ] = useState(false);
+  const [state, setState] = useState<MovieState>({} as MovieState);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -62,12 +62,12 @@ function useMovieFetch(movieId: string): {
     }
 
     fetchMovie();
-  }, [ movieId ]);
+  }, [movieId]);
 
   // Write to sessionStorage
   useEffect(() => {
     sessionStorage.setItem(movieId, JSON.stringify(state));
-  }, [ movieId, state ]);
+  }, [movieId, state]);
 
   return { state, loading, error };
 }
