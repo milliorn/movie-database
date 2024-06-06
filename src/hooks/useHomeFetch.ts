@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { api } from "../API";
 import { MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
-import { api } from "../API";
 
 /**
  * Represents the initial state for the home fetch hook.

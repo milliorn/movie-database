@@ -60,4 +60,4 @@ const api = {
 };
 
 export { api };
-export type { Movies, Credits };
+export type { Credits, Movies };

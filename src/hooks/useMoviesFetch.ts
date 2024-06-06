@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
+import { api } from "../API";
 import { getPersistedState } from "../helpers";
 import { MovieState } from "./props";
-import { api } from "../API";
-
-// export type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
 /**
  * Custom hook for fetching movie data.

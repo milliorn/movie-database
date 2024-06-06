@@ -70,4 +70,4 @@ const Text = styled.div`
 };
 `;
 
-export { Wrapper, Content, Text };
+export { Content, Text, Wrapper };
