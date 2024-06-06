@@ -1,6 +1,6 @@
 import React from "react";
-import { Content, Wrapper } from "./styles";
 import { GridProps } from "./props";
+import { Content, Wrapper } from "./styles";
 
 /**
  * Renders a grid component with a header and content.

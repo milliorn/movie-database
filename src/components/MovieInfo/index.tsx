@@ -2,8 +2,8 @@ import React from "react";
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
-import { Content, Text, Wrapper } from "./styles";
 import { MovieInfoProps } from "./props";
+import { Content, Text, Wrapper } from "./styles";
 
 /**
  * Renders the movie information.

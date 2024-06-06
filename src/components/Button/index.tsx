@@ -1,6 +1,6 @@
 import React from "react";
-import { Wrapper } from "./styles";
 import { ButtonProps } from "./props";
+import { Wrapper } from "./styles";
 
 /**
  * Renders a button component.

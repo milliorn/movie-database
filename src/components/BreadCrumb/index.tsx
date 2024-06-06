@@ -7,8 +7,8 @@
  */
 import React from "react";
 import { Link } from "react-router-dom";
-import { Content, Wrapper } from "./styles";
 import { BreadCrumbProps } from "./props";
+import { Content, Wrapper } from "./styles";
 
 function BreadCrumb({ movieTitle }: BreadCrumbProps): React.JSX.Element {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image, RatingText, ThumbInfoContainer } from "./styles";
 import { ThumbProps } from "./props";
+import { Image, RatingText, ThumbInfoContainer } from "./styles";
 
 /**
  * Thumbnail component for displaying movie information.
