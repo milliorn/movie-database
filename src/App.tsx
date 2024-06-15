@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Movie from "./components/Movie";
 import NotFound from "./components/NotFound";
 import { GlobalStyle } from "./Global.styles";
+import NowPlayingMovies from "./components/NowPlayingMovies";
 
 /**
  * The main component of the movie database application.
@@ -19,6 +20,7 @@ function App(): React.JSX.Element {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:movieId" element={<Movie />} />
+        <Route path="nowPlayingMovies" element={<NowPlayingMovies />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <GlobalStyle />
