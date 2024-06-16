@@ -1,46 +1,43 @@
-import { useState, useEffect } from 'react';
-import { api } from '../../API';
-import { MoviePropTypes } from '../../Global.props';
+import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
+import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import Button from "../Button";
+import Grid from "../Grid";
+import HeroImage from "../HeroImage";
+import Spinner from "../Spinner";
+import Thumb from "../Thumb";
+import NoImage from "../../images/no_image.jpg";
 
-type Movies = {
-  page: number;
-  results: MoviePropTypes[];
-  total_pages: number;
-  total_results: number;
-};
 
 function NowPlayingMovies() {
-  const [ error, setError ] = useState('');
-  const [ loading, setLoading ] = useState(true);
-  const [ movies, setMovies ] = useState<MoviePropTypes[]>([]);
+  const { state, loading, error, setIsLoadingMore } = useNowPlayingMovies();
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data: Movies = await api.fetchNowPlayingMovies(1); // Fetch the first page
-        setMovies(data.results); // Assuming the API returns an object with a results array
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch movies');
-        setLoading(false);
-        console.error(err);
-      }
-    };
-
-    fetchMovies();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <div>Something went wrong...oops!</div>;
 
   return (
     <div>
-      <h1>Now Playing Movies</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>{movie.title}</li> // Adjust according to your MoviePropTypes
+      {state.results[ 0 ] && (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[ 0 ].backdrop_path}`}
+          title={state.results[ 0 ].original_title}
+          text={state.results[ 0 ].overview}
+        />
+      )}
+      <Grid header="Now Playing Movies">
+        {state.results.map(movie => (
+          <Thumb
+            key={movie.id}
+            clickable
+            image={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : NoImage}
+            movieId={movie.id}
+            rating={movie.vote_average}
+            vote_count={movie.vote_count}
+          />
         ))}
-      </ul>
+      </Grid>
+      {loading && <Spinner />}
+      {state.page < state.total_pages && !loading && (
+        <Button text="Load More" callback={() => setIsLoadingMore(true)} />
+      )}
     </div>
   );
 }
