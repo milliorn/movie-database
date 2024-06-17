@@ -10,10 +10,10 @@ const initialState = {
 };
 
 function useNowPlayingMovies() {
-  const [ state, setState ] = useState(initialState);
-  const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState(false);
   const [ isLoadingMore, setIsLoadingMore ] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const [ state, setState ] = useState(initialState);
 
   const fetchMovies = async (page: number) => {
     setLoading(true);

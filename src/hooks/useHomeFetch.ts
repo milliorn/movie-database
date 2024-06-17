@@ -18,11 +18,11 @@ const initialState = {
  * @returns An object containing the state, loading status, error status, search term, setSearchTerm function, and isLoadingMore status.
  */
 function useHomeFetch() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [state, setState] = useState(initialState);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [state, setState] = useState(initialState);
 
   /**
    * Fetches movies from the API based on the specified page and search term.
