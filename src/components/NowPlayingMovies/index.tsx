@@ -13,6 +13,8 @@ function NowPlayingMovies() {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
+  console.log(state);
+
   return (
     <div>
       {state.results[ 0 ] && (
