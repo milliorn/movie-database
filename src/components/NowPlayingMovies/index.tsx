@@ -1,33 +1,43 @@
+import React, { useEffect } from "react";
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import NoImage from "../../images/no_image.jpg";
 import Button from "../Button";
 import Grid from "../Grid";
 import HeroImage from "../HeroImage";
+import SearchBar from "../SearchBar";
 import Spinner from "../Spinner";
 import Thumb from "../Thumb";
-import NoImage from "../../images/no_image.jpg";
 
+function NowPlayingMovies(): React.JSX.Element {
+  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useNowPlayingMovies();
 
-function NowPlayingMovies() {
-  const { state, loading, error, setIsLoadingMore } = useNowPlayingMovies();
+  useEffect(() => {
+    document.title = "Now Playing Movies"; // Set the page title
+  }, []);
 
   if (error) return <div>Something went wrong...oops!</div>;
 
   return (
     <div>
-      {state.results[ 0 ] && (
+      {state.results[ 0 ] ? (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[ 0 ].backdrop_path}`}
           title={state.results[ 0 ].original_title}
           text={state.results[ 0 ].overview}
         />
-      )}
-      <Grid header="Now Playing Movies">
-        {state.results.map(movie => (
+      ) : null}
+      <SearchBar setSearchTerm={setSearchTerm} />
+      <Grid header={searchTerm ? "Search Results" : "Now Playing Movies"}>
+        {state.results.map((movie) => (
           <Thumb
             key={movie.id}
-            clickable
-            image={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : NoImage}
+            clickable={true}
+            image={
+              movie.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                : NoImage
+            }
             movieId={movie.id}
             rating={movie.vote_average}
             vote_count={movie.vote_count}

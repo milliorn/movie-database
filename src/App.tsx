@@ -20,7 +20,7 @@ function App(): React.JSX.Element {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:movieId" element={<Movie />} />
-        <Route path="nowPlayingMovies" element={<NowPlayingMovies />} />
+        <Route path="now_playing" element={<NowPlayingMovies />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <GlobalStyle />
