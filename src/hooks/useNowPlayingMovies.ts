@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { MoviePropTypes } from "../Global.props";
-
-const initialState = {
-  page: 0,
-  results: [] as MoviePropTypes[],
-  total_pages: 0,
-  total_results: 0,
-};
+import { initialState } from "./props";
 
 function useNowPlayingMovies() {
-  const [ error, setError ] = useState(false); 
-  const [ isLoadingMore, setIsLoadingMore ] = useState(false);  
-  const [ loading, setLoading ] = useState(false);  
+  const [ error, setError ] = useState(false);
+  const [ isLoadingMore, setIsLoadingMore ] = useState(false);
+  const [ loading, setLoading ] = useState(false);
   const [ searchTerm, setSearchTerm ] = useState("");  // manage the search term state
-  const [ state, setState ] = useState(initialState); 
+  const [ state, setState ] = useState(initialState);
 
-  const fetchMovies = async (page: number) => {
+  const fetchMovies = useCallback(async (page: number) => {
     try {
       setError(false);
       setLoading(true);
@@ -35,18 +28,18 @@ function useNowPlayingMovies() {
       console.error("Failed to fetch now playing movies:", err);
     }
     setLoading(false);
-  };
+  }, [ searchTerm, setError, setLoading, setState ]);
 
   // Fetch movies when the component mounts and when searchTerm changes
   useEffect(() => {
     fetchMovies(1);
-  }, [ searchTerm ]);
+  }, [ searchTerm, fetchMovies ]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
     fetchMovies(state.page + 1);
     setIsLoadingMore(false);
-  }, [ isLoadingMore, state.page ]);
+  }, [ isLoadingMore, state.page, setIsLoadingMore, fetchMovies ]);
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 }
