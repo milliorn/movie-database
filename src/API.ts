@@ -79,9 +79,15 @@ const api = {
    */
   fetchNowPlayingMovies: async (page: number, searchTerm?: string): Promise<Movies> => {
     const endpoint = searchTerm
-      ? `${BACKEND_API_URL}/api/movies?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}`
+      ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies/now_playing?page=${page}`;
 
+    /*     const endpoint = searchTerm
+          ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
+          : `${BACKEND_API_URL}/api/movies?page=${page}`;
+        return await (await fetch(endpoint)).json();
+      },
+      */
     const response = await fetch(endpoint);
     return await response.json();
   }

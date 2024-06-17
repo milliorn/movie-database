@@ -10,18 +10,21 @@ const initialState = {
 };
 
 function useNowPlayingMovies() {
-  const [ error, setError ] = useState(false);
-  const [ isLoadingMore, setIsLoadingMore ] = useState(false);
-  const [ loading, setLoading ] = useState(false);
-  const [ state, setState ] = useState(initialState);
-  const [ searchTerm, setSearchTerm ] = useState("");  // Added searchTerm state
+  const [ error, setError ] = useState(false); 
+  const [ isLoadingMore, setIsLoadingMore ] = useState(false);  
+  const [ loading, setLoading ] = useState(false);  
+  const [ searchTerm, setSearchTerm ] = useState("");  // manage the search term state
+  const [ state, setState ] = useState(initialState); 
 
   const fetchMovies = async (page: number) => {
     try {
       setError(false);
       setLoading(true);
 
-      const movies = await api.fetchNowPlayingMovies(page);  // No need to pass searchTerm for "Now Playing"
+      // Conditionally use the search term in the API request
+      const movies = searchTerm
+        ? await api.fetchMovies(searchTerm, page)
+        : await api.fetchNowPlayingMovies(page);
 
       setState(prev => ({
         ...movies,
@@ -34,9 +37,10 @@ function useNowPlayingMovies() {
     setLoading(false);
   };
 
+  // Fetch movies when the component mounts and when searchTerm changes
   useEffect(() => {
     fetchMovies(1);
-  }, []);
+  }, [ searchTerm ]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
