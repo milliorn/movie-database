@@ -18,6 +18,8 @@ function NowPlayingMovies(): React.JSX.Element {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
+  console.log(state.results);
+
   return (
     <div>
       {state.results[ 0 ] ? (

@@ -2,6 +2,18 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import { initialState } from "./props";
 
+/**
+ * Custom hook for fetching now playing movies from an API.
+ * 
+ * @returns {{
+ *   state: object,
+ *   loading: boolean,
+ *   error: boolean,
+ *   searchTerm: string,
+ *   setSearchTerm: (term: string) => void,
+ *   setIsLoadingMore: (isLoading: boolean) => void
+ * }} - An object containing the state, loading status, error status, search term, and functions to update the search term and loading status.
+ */
 function useNowPlayingMovies() {
   const [ error, setError ] = useState(false);
   const [ isLoadingMore, setIsLoadingMore ] = useState(false);
@@ -9,6 +21,14 @@ function useNowPlayingMovies() {
   const [ searchTerm, setSearchTerm ] = useState("");  // manage the search term state
   const [ state, setState ] = useState(initialState);
 
+  /**
+   * Fetches movies from the API based on the provided page number.
+   * If a search term is provided, it fetches movies based on the search term.
+   * Otherwise, it fetches now playing movies.
+   *
+   * @param {number} page - The page number to fetch movies from.
+   * @returns {Promise<void>} - A promise that resolves when the movies are fetched.
+   */
   const fetchMovies = useCallback(async (page: number) => {
     try {
       setError(false);
