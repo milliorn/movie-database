@@ -9,6 +9,20 @@ const initialState = {
   total_results: 0,
 };
 
-export type { MovieState };
+interface MoviesState {
+  page: number;
+  results: MoviePropTypes[];
+  total_pages: number;
+  total_results: number;
+}
 
-export { initialState };
+const moviesState: MoviesState = {
+  page: 0,
+  results: [],
+  total_pages: 0,
+  total_results: 0,
+};
+
+export type { MovieState, MoviesState };
+
+export { initialState, moviesState };

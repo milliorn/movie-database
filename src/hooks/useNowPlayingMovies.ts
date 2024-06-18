@@ -1,20 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { MoviePropTypes } from "../Global.props";
-
-interface MoviesState {
-  page: number;
-  results: MoviePropTypes[];
-  total_pages: number;
-  total_results: number;
-}
-
-const moviesState: MoviesState = {
-  page: 0,
-  results: [],
-  total_pages: 0,
-  total_results: 0,
-};
+import { MoviesState, moviesState } from "./props";
 
 /**
  * Custom hook for fetching now playing movies.
