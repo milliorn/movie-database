@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../API";
-import { MoviePropTypes } from "../Global.props";
 import { getPersistedState } from "../helpers";
-
-/**
- * Represents the initial state for the home fetch hook.
- */
-const initialState = {
-  page: 0,
-  results: [] as MoviePropTypes[],
-  total_pages: 0,
-  total_results: 0,
-};
+import { initialState } from "./props";
 
 /**
  * Custom hook for fetching movies for the home page.

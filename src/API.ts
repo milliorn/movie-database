@@ -60,7 +60,9 @@ const api = {
    * @returns A promise that resolves to a Movies object.
    */
   fetchTopRatedMovies: async (page: number): Promise<Movies> => {
-    const response = await fetch(`${BACKEND_API_URL}/api/movies/top_rated?page=${page}`);
+    const response = await fetch(
+      `${BACKEND_API_URL}/api/movies/top_rated?page=${page}`,
+    );
     return await response.json();
   },
   /**
@@ -69,7 +71,9 @@ const api = {
    * @returns A promise that resolves to a Movies object.
    */
   fetchUpcomingMovies: async (page: number): Promise<Movies> => {
-    const response = await fetch(`${BACKEND_API_URL}/api/movies/upcoming?page=${page}`);
+    const response = await fetch(
+      `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`,
+    );
     return await response.json();
   },
   /**
@@ -77,15 +81,23 @@ const api = {
    * @param page - The page number of the movie list.
    * @returns A promise that resolves to a Movies object.
    */
-  fetchNowPlayingMovies: async (page: number, searchTerm?: string): Promise<Movies> => {
+  fetchNowPlayingMovies: async (
+    page: number,
+    searchTerm?: string,
+  ): Promise<Movies> => {
     const endpoint = searchTerm
-      ? `${BACKEND_API_URL}/api/movies?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}`
+      ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies/now_playing?page=${page}`;
 
+    /*     const endpoint = searchTerm
+          ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
+          : `${BACKEND_API_URL}/api/movies?page=${page}`;
+        return await (await fetch(endpoint)).json();
+      },
+      */
     const response = await fetch(endpoint);
     return await response.json();
-  }
-
+  },
 };
 
 export { api };
