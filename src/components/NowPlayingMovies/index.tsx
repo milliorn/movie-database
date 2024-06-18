@@ -9,6 +9,11 @@ import SearchBar from "../SearchBar";
 import Spinner from "../Spinner";
 import Thumb from "../Thumb";
 
+/**
+ * Renders the component for displaying now playing movies.
+ *
+ * @returns The JSX element representing the NowPlayingMovies component.
+ */
 function NowPlayingMovies(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useNowPlayingMovies();
 
@@ -18,7 +23,7 @@ function NowPlayingMovies(): React.JSX.Element {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
-  console.log(state.results);
+  // console.log(state.results);
 
   return (
     <div>
