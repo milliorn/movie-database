@@ -5,8 +5,9 @@ import styled from "styled-components";
  */
 export const Wrapper = styled.button`
   background: var(--darkGrey);
-  border-radius: 30px;
-  border: 0;
+  border-radius: 1rem;
+  border: solid var(--white);
+  border-width: 2px;
   color: var(--white);
   cursor: pointer;
   display: block;
