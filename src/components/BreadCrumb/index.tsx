@@ -6,17 +6,28 @@
  * @returns {JSX.Element} The rendered breadcrumb component.
  */
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BreadCrumbProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 function BreadCrumb({ movieTitle }: BreadCrumbProps): React.JSX.Element {
+  const navigate = useNavigate(); // React Router hook to navigate to a different page
+
   return (
     <Wrapper>
       <Content>
-        <Link to="/">
-          <span>Home</span>
-        </Link>
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            background: "none",
+            border: "none",
+            color: "var(--white)",
+            cursor: "pointer",
+            textDecoration: "none",
+            fontSize: "var(--fontMed)",
+          }}>
+          Previous Page
+        </button>
         <span>|</span>
         <span>{movieTitle}</span>
       </Content>
