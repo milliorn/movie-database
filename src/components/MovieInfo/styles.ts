@@ -59,11 +59,15 @@ export const Text = styled.div`
    */
   .company-logo {
     align-items: center;
-    display: inline-flex;
-    height: 50%;
+    backdrop-filter: blur(8px);
+    display: block;
     justify-content: center;
-    margin: 2rem auto;
-    width: 50%;
+    margin: 1rem auto;
+
+    @media screen and (min-width: 768px) {
+      height: 40%;
+      width: 40%;
+    }
   }
 
   /**
