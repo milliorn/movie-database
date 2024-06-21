@@ -16,7 +16,7 @@ export const Wrapper = styled.div<WrapperProps>`
   animation: animateMovieInfo 1s;
   background-position: center;
   background-size: cover;
-  padding: 40px 20px;
+  padding: 2.5rem 1.25rem;
 
   @keyframes animatedMovieInfo {
     from {
