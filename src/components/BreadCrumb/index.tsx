@@ -25,7 +25,8 @@ function BreadCrumb({ movieTitle }: BreadCrumbProps): React.JSX.Element {
             cursor: "pointer",
             textDecoration: "none",
             fontSize: "var(--fontMed)",
-          }}>
+          }}
+        >
           Previous Page
         </button>
         <span>|</span>

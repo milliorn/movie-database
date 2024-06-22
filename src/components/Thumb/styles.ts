@@ -18,10 +18,11 @@ const Image = styled.img<ImageProps>`
   object-fit: cover;
   transition: all 0.3s;
   width: 100%;
-  border: ${({ $isClicked }) => $isClicked ? '2px solid var(--white)' : 'none'};
+  border: ${({ $isClicked }) =>
+    $isClicked ? "2px solid var(--white)" : "none"};
 
   &:hover {
-    opacity: ${({ $isClicked }) => $isClicked ? '0.8' : '1'};
+    opacity: ${({ $isClicked }) => ($isClicked ? "0.8" : "1")};
   }
 
   animation: animateThumb 0.5s;
