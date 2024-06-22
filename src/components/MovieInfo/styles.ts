@@ -16,7 +16,7 @@ export const Wrapper = styled.div<WrapperProps>`
   animation: animateMovieInfo 1s;
   background-position: center;
   background-size: cover;
-  padding: 40px 20px;
+  padding: 2.5rem 1.25rem;
 
   @keyframes animatedMovieInfo {
     from {
@@ -59,14 +59,16 @@ export const Text = styled.div`
    */
   .company-logo {
     align-items: center;
-    backdrop-filter: blur(8px);
+backdrop-filter: invert(100%);
     display: block;
     justify-content: center;
     margin: 1rem auto;
+    width: 50%;
+    border: 1px solid var(--white);
 
     @media screen and (min-width: 768px) {
-      height: 40%;
-      width: 40%;
+      width: 30%;
+
     }
   }
 

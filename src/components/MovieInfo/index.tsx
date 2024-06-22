@@ -1,5 +1,5 @@
 import React from "react";
-import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
+import { COMPANY_POSTER_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
 import { MovieInfoProps } from "./props";
@@ -69,7 +69,7 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
                 company.logo_path != null && (
                   <img
                     key={company.id}
-                    src={`${IMAGE_BASE_URL}${POSTER_SIZE}${company.logo_path}`}
+                    src={`${IMAGE_BASE_URL}${COMPANY_POSTER_SIZE}${company.logo_path}`}
                     alt={company.name}
                     className="company-logo"
                   />

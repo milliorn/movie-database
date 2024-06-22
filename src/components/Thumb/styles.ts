@@ -3,21 +3,29 @@
  */
 import styled from "styled-components";
 
+type ImageProps = {
+  alt: string;
+  $isClicked: boolean;
+  src: string;
+};
+
 /**
  * Styled image component for the Thumb.
  */
-const Image = styled.img`
-  animation: animateThumb 0.5s;
-  aspect-ratio: 2/ 3; // Adjust according to your most common aspect ratio
+const Image = styled.img<ImageProps>`
+  aspect-ratio: 2/3;
   border-radius: 20px;
-  object-fit: cover; // covers the area of the div without distorting ratio
+  object-fit: cover;
   transition: all 0.3s;
-  width: 100%; // ensures image is not larger than its container
+  width: 100%;
+  border: ${({ $isClicked }) =>
+    $isClicked ? "2px solid var(--white)" : "none"};
 
-  :hover {
-    opacity: 0.8;
+  &:hover {
+    opacity: ${({ $isClicked }) => ($isClicked ? "0.8" : "1")};
   }
 
+  animation: animateThumb 0.5s;
   @keyframes animateThumb {
     from {
       opacity: 0;
