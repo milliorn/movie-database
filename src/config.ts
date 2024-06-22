@@ -23,9 +23,10 @@ const BACKDROP_SIZE = ImageSizes.Large;
  */
 const POSTER_SIZE = ImageSizes.Medium;
 
+const COMPANY_POSTER_SIZE = ImageSizes.Small;
 /**
  * The URL for the backend API.
  */
 const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
 
-export { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE, BACKEND_API_URL };
+export { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE, BACKEND_API_URL, COMPANY_POSTER_SIZE };
