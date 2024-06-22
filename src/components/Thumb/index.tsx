@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import { ThumbProps } from "./props";
 import { Image, RatingText, ThumbInfoContainer } from "./styles";
 
+
 /**
- * Thumbnail component for displaying movie information.
+ * Renders a thumbnail component for a movie.
  *
  * @param {ThumbProps} props - The props for the Thumb component.
- * @param {string} props.image - The URL of the movie thumbnail image.
- * @param {number} props.movieId - The ID of the movie.
- * @param {boolean} props.clickable - Indicates whether the thumbnail is clickable.
- * @param {number} props.rating - The rating of the movie.
- * @param {number} props.vote_count - The number of votes for the movie.
  * @returns {React.JSX.Element} The rendered Thumb component.
  */
 function Thumb({
@@ -25,10 +21,10 @@ function Thumb({
     <div>
       {clickable ? (
         <Link to={`/${movieId}`}>
-          <Image src={image} alt="movie-thumb" />
+          <Image src={image} alt="movie-thumb" isClicked={true} />
         </Link>
       ) : (
-        <Image src={image} alt="movie-thumb" />
+        <Image src={image} alt="movie-thumb" isClicked={false} />
       )}
       <ThumbInfoContainer>
         <RatingText>Rating: {rating?.toFixed(1)}</RatingText>
