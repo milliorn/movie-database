@@ -12,7 +12,7 @@ import { Content, Wrapper } from "./styles";
  */
 function Grid({ header, children }: GridProps): React.JSX.Element {
   return (
-    <Wrapper>
+    <Wrapper className="grid-wrapper">
       <h1>{header}</h1>
       <Content>{children}</Content>
     </Wrapper>

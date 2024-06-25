@@ -35,7 +35,7 @@ function Home(): React.JSX.Element {
   if (error) return <div>Something went wrong...oops!</div>;
 
   return (
-    <div>
+    <div className="home-component">
       {state.results[0] ? (
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}

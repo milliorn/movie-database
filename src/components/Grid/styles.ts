@@ -9,7 +9,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   margin: 0 auto;
   max-width: var(--maxWidth);
-  padding: 0 1.25rem;
+  padding: 0 20px;
 
   /**
    * Styles for the heading inside the Grid component.
