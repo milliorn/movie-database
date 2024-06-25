@@ -20,15 +20,18 @@ export const Content = styled.div`
   max-width: var(--maxWidth);
   padding: 0 20px;
   width: 100%;
+  align-items: center;
+  text-align: left;
+
+  @media screen and (max-width: 768px) {
+    font-size: var(--fontSmall);
+  }
 
   span {
     color: var(--white);
     font-size: var(--fontMed);
     padding-right: 10px;
 
-    @media screen and (max-width: 768px) {
-      font-size: var(--fontSmall);
-    }
   }
 
   button {
