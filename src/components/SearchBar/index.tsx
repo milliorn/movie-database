@@ -27,7 +27,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
   }, [setSearchTerm, state]);
 
   return (
-    <Wrapper>
+    <Wrapper className="searchbar-component">
       <Content>
         <img
           alt="search-icon"
@@ -40,7 +40,6 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
             width: "30px",
             height: "30px",
           }}
-          loading="eager"
         />
         <input
           id="searchBar"

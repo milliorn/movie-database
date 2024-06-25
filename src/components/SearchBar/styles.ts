@@ -10,8 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   background: var(--darkGrey);
   display: flex;
-  height: 6rem;
-  padding: 0 0.5rem;
+  margin: 16px 12px;
 `;
 
 /**
