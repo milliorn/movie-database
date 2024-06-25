@@ -30,6 +30,7 @@ export const Wrapper = styled.div`
  */
 export const Image = styled.img`
   border-radius: 15px;
+  border: 2px solid var(--white);
   display: block;
   height: 200px;
   object-fit: cover;
