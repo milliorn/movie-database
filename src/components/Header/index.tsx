@@ -16,7 +16,7 @@ function Header(): React.JSX.Element {
         <Link to="/">
           <LogoImg src={RMDBLogo} alt="rmdb-logo" />
         </Link>
-        <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" />
+        <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" width="300" height="118" />
       </Content>
     </Wrapper>
   );
