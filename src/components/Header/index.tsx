@@ -14,7 +14,7 @@ function Header(): React.JSX.Element {
     <Wrapper>
       <Content>
         <Link to="/">
-          <LogoImg src={RMDBLogo} alt="rmdb-logo" />
+          <LogoImg src={RMDBLogo} alt="rmdb-logo" width="334" height="52" />
         </Link>
         <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" width="300" height="118" />
       </Content>

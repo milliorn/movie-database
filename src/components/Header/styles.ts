@@ -25,6 +25,8 @@ const Content = styled.div`
  */
 const LogoImg = styled.img`
   width: 12rem; /* 192px */
+  height: auto; /* ensure the height adjusts to maintain the aspect ratio */
+
   @media screen and (max-width: 500px) {
     width: 10rem; /* 160px */
   }
