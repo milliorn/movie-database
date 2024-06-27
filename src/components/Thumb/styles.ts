@@ -22,7 +22,7 @@ const Image = styled.img<ImageProps>`
     $isClicked ? "2px solid var(--white)" : "none"};
 
   &:hover {
-    opacity: ${({ $isClicked }) => ($isClicked ? "0.8" : "1")};
+    opacity: ${({ $isClicked }) => ($isClicked ? "0.5" : "1")};
   }
 
   animation: animateThumb 0.5s;
