@@ -48,6 +48,7 @@ export const Content = styled.div`
   }
 
   button:hover {
-  animation: none;
+    animation: none;
+    opacity: 0.5;
   }
 `;
