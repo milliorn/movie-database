@@ -34,7 +34,7 @@ export const Content = styled.div`
   }
 
   button {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     @keyframes pulse {
       0%,
