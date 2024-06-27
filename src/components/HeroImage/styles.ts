@@ -58,7 +58,11 @@ const Text = styled.div`
 
   p {
     font-size: var(--fontMed);
-
+    line-height: 1.5; /* Improved line height for better readability */
+    letter-spacing: 0.5px; /* Slightly increased letter spacing */
+    backdrop-filter: blur(4px); // Background blur for readability
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Text shadow for readability
+    
     @media screen and (max-width: 720px) {
       font-size: var(--fontSmall);
     }
