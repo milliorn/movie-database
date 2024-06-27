@@ -66,9 +66,10 @@ export const Text = styled.div`
     margin: 1rem auto;
     width: 50%;
 
-    @media screen and (min-width: 768px) {
-      width: 30%;
-
+    @media screen and (min-width: 640px) {
+      display: inline-block;
+      margin: 1rem;
+      width: 25%;
     }
   }
 

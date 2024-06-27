@@ -7,7 +7,7 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
  * Enum representing different image sizes available for movie images.
  */
 enum ImageSizes {
-  Small = "w300",
+  Small = "w200",
   Medium = "w780",
   Large = "w1280",
   Original = "original",
