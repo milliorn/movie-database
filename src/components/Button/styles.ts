@@ -19,11 +19,10 @@ export const Wrapper = styled.button`
   transition: all 0.3s;
   width: 25%;
 
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse {
-    0%,
-    100% {
+    0%, 100% {
       opacity: 1;
     }
     50% {
@@ -31,7 +30,9 @@ export const Wrapper = styled.button`
     }
   }
 
-  :hover {
-    opacity: 0.8;
+  &:hover {
+    background: var(--medGrey);
+    animation-play-state: paused;  // This will pause the animation when hovered
   }
 `;
+
