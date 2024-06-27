@@ -59,12 +59,12 @@ export const Text = styled.div`
    */
   .company-logo {
     align-items: center;
-backdrop-filter: invert(100%);
+    backdrop-filter: invert(100%);
+    border: 1px solid var(--white);
     display: block;
     justify-content: center;
     margin: 1rem auto;
     width: 50%;
-    border: 1px solid var(--white);
 
     @media screen and (min-width: 768px) {
       width: 30%;
@@ -128,6 +128,14 @@ backdrop-filter: invert(100%);
 
     p {
       margin: 0;
+    }
+  }
+
+  .movie-overview {
+    font-size: var(--fontSmall);
+
+    @media screen and (min-width: 640px) {
+      font-size: var(--fontMed);
     }
   }
 
