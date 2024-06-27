@@ -46,4 +46,8 @@ export const Content = styled.div`
       }
     }
   }
+
+  button:hover {
+  animation: none;
+  }
 `;
