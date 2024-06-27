@@ -17,7 +17,7 @@ function Thumb({
   vote_count,
 }: ThumbProps): React.JSX.Element {
   return (
-    <div className="thumb-component">
+    <div className="">
       {clickable ? (
         <Link to={`/${movieId}`}>
           <Image src={image} alt="movie-thumb" $isClicked={true} />
