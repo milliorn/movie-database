@@ -38,7 +38,7 @@ const LogoImg = styled.img`
 const TMDBLogoImg = styled.img`
   width: 6rem; /* 96px */
   height: auto; /* ensure the height adjusts to maintain the aspect ratio */
-  
+
   @media screen and (max-width: 500px) {
     width: 5rem; /* 80px */
   }
