@@ -4,19 +4,11 @@ import { MoviesState, moviesState } from "./props";
 
 /**
  * Custom hook for fetching now playing movies.
+ * It provides the current state of the movies, loading status, error status,
+ * search term, and a function to load more movies.
  *
- * This hook fetches movies based on the provided page number and search term.
- * If a search term is provided, it fetches movies matching the search term.
- * Otherwise, it fetches now playing movies and sorts them by release date.
- *
- * @returns {{
- *   state: MoviesState,
- *   loading: boolean,
- *   error: boolean,
- *   searchTerm: string,
- *   setSearchTerm: React.Dispatch<React.SetStateAction<string>>,
- *   setIsLoadingMore: React.Dispatch<React.SetStateAction<boolean>>
- * }} - An object containing the state, loading status, error status, search term, and functions to update the search term and loading status.
+ * @returns {Object} - An object containing the current state of the movies, loading status, error status,
+ * search term, and a function to load more movies.
  */
 function useNowPlayingMovies() {
   const [error, setError] = useState(false);
