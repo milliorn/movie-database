@@ -4,8 +4,8 @@ import { getPersistedState } from "../helpers";
 import { initialState } from "./props";
 
 /**
- * Custom hook for fetching movies for the home page.
- * @returns An object containing the state, loading status, error status, search term, setSearchTerm function, and isLoadingMore status.
+ * Custom hook for fetching movies from the API based on the specified page and search term.
+ * @returns An object containing the state, loading status, error status, search term, and functions to update the search term and load more movies.
  */
 function useHomeFetch() {
   const [error, setError] = useState(false);
