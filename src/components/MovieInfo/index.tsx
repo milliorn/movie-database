@@ -29,7 +29,7 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
         <Text>
           <h1>{movie.title}</h1>
           {movie.tagline && <h3>{movie.tagline}</h3>}
-          <p>{movie.overview}</p>
+          <p className="movie-overview">{movie.overview}</p>
           {movie.homepage && (
             <div className="website">
               <a target="_blank" href={movie.homepage} rel="noreferrer">

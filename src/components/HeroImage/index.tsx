@@ -14,14 +14,14 @@ import { Content, Text, Wrapper } from "./styles";
  * @returns {JSX.Element} - The rendered hero image component.
  */
 function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
-  const [ loaded, setLoaded ] = useState(false); // Image loaded state
+  const [loaded, setLoaded] = useState(false); // Image loaded state
 
   // Preload the image and set the loaded state
   useEffect(() => {
     const img = new Image(); // Create a new image element
     img.src = image; // Set the image source
     img.onload = () => setLoaded(true); // Set the loaded state when the image is loaded
-  }, [ image ]); // Run the effect when the image URL changes
+  }, [image]); // Run the effect when the image URL changes
 
   return (
     <>

@@ -31,19 +31,24 @@ export const Content = styled.div`
     color: var(--white);
     font-size: var(--fontMed);
     padding-right: 10px;
-
   }
 
   button {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     @keyframes pulse {
-      0%, 100% {
+      0%,
+      100% {
         opacity: 1;
       }
       50% {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
+  }
+
+  button:hover {
+    animation: none;
+    opacity: 0.5;
   }
 `;
