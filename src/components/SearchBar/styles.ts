@@ -47,10 +47,11 @@ const Content = styled.div`
     padding-left: 60px; /* Fixed padding to not resize dynamically */
     position: absolute;
     width: 100%; /* Full width */
+  }
 
-    :focus {
-      outline: none;
-    }
+  input[type="text"]:focus {
+  // Remove the default focus styling
+    outline: none;
   }
 };
 `;
