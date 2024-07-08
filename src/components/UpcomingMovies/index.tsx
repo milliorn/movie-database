@@ -10,16 +10,16 @@ import Spinner from "../Spinner";
 import Thumb from "../Thumb";
 
 /**
- * Renders the component for displaying now playing movies.
+ * Renders the component for displaying upcoming movies.
  *
- * @returns The JSX element representing the NowPlayingMovies component.
+ * @returns The JSX element representing the UpcomingMovies component.
  */
 function UpcomingMovies(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useNowPlayingMovies();
 
   useEffect(() => {
-    document.title = "Now Playing Movies"; // Set the page title
+    document.title = "Upcoming Movies"; // Set the page title
   }, []);
 
   if (error) return <div>Something went wrong...oops!</div>;
@@ -28,15 +28,15 @@ function UpcomingMovies(): React.JSX.Element {
 
   return (
     <div>
-      {state.results[0] ? (
+      {state.results[ 0 ] ? (
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
-          title={state.results[0].original_title}
-          text={state.results[0].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[ 0 ].backdrop_path}`}
+          title={state.results[ 0 ].original_title}
+          text={state.results[ 0 ].overview}
         />
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />
-      <Grid header={searchTerm ? "Search Results" : "Now Playing Movies"}>
+      <Grid header={searchTerm ? "Search Results" : "Upcoming Movies"}>
         {state.results.map((movie) => (
           <Thumb
             key={movie.id}
