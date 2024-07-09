@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
-import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import useUpcomingMovies from "../../hooks/useUpcomingMovies";
 import NoImage from "../../images/no_image.jpg";
 import Button from "../Button";
 import Grid from "../Grid";
@@ -16,7 +16,7 @@ import Thumb from "../Thumb";
  */
 function UpcomingMovies(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
-    useNowPlayingMovies();
+    useUpcomingMovies();
 
   useEffect(() => {
     document.title = "Upcoming Movies"; // Set the page title
@@ -24,7 +24,7 @@ function UpcomingMovies(): React.JSX.Element {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
-  // console.log(state.results);
+  console.log(state.results);
 
   return (
     <div>
