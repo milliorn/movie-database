@@ -2,42 +2,26 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import { MoviesState, moviesState } from "./props";
 
-/**
- * Custom hook for fetching now playing movies.
- * It provides the current state of the movies, loading status, error status,
- * search term, and a function to load more movies.
- *
- * @returns {Object} - An object containing the current state of the movies, loading status, error status,
- * search term, and a function to load more movies.
- */
-function useNowPlayingMovies() {
+
+function useUpcomingMovies() {
   const [ error, setError ] = useState(false);
   const [ isLoadingMore, setIsLoadingMore ] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ searchTerm, setSearchTerm ] = useState("");
   const [ state, setState ] = useState<MoviesState>(moviesState);
 
-  /**
-   * Fetches movies based on the provided page number and search term.
-   * If a search term is provided, it fetches movies matching the search term.
-   * Otherwise, it fetches now playing movies and sorts them by release date.
-   *
-   * @param {number} page - The page number of the movies to fetch.
-   * @returns {Promise<void>} - A promise that resolves when the movies are fetched.
-   */
   const fetchMovies = useCallback(
     async (page: number) => {
       try {
         setError(false);
         setLoading(true);
 
-        // Explicitly declare movies with a type
         let movies: MoviesState;
 
         if (searchTerm) {
           movies = await api.fetchMovies(searchTerm, page);
         } else {
-          const response = await api.fetchNowPlayingMovies(page);
+          const response = await api.fetchUpcomingMovies(page);
 
           movies = {
             ...response,
@@ -51,12 +35,11 @@ function useNowPlayingMovies() {
 
         setState((prev) => ({
           ...movies,
-          results:
-            page > 1 ? [ ...prev.results, ...movies.results ] : movies.results,
+          results: page > 1 ? [ ...prev.results, ...movies.results ] : movies.results,
         }));
       } catch (err) {
         setError(true);
-        console.error("Failed to fetch now playing movies:", err);
+        console.error("Failed to fetch upcoming movies:", err);
       }
 
       setLoading(false);
@@ -84,4 +67,4 @@ function useNowPlayingMovies() {
   };
 }
 
-export default useNowPlayingMovies;
+export default useUpcomingMovies;
