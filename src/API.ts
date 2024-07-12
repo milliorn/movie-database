@@ -70,10 +70,15 @@ const api = {
    * @param page - The page number of the movie list.
    * @returns A promise that resolves to a Movies object.
    */
-  fetchUpcomingMovies: async (page: number): Promise<Movies> => {
-    const response = await fetch(
-      `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`,
-    );
+  fetchUpcomingMovies: async (
+    page: number,
+    searchTerm?: string,
+  ): Promise<Movies> => {
+    const endpoint = searchTerm
+      ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
+      : `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`;
+
+    const response = await fetch(endpoint);
     return await response.json();
   },
   /**
