@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import { MoviesState, moviesState } from "./props";
+import { getPersistedState } from "../helpers";
 
 /**
  * Custom hook for fetching now playing movies.
@@ -26,33 +27,25 @@ function useNowPlayingMovies() {
    * @returns {Promise<void>} - A promise that resolves when the movies are fetched.
    */
   const fetchMovies = useCallback(
-    async (page: number) => {
+    async (page: number, searchTerm = "") => {
       try {
         setError(false);
         setLoading(true);
 
-        // Explicitly declare movies with a type
-        let movies: MoviesState;
+        const movies = await api.fetchNowPlayingMovies(page, searchTerm);
 
-        if (searchTerm) {
-          movies = await api.fetchMovies(searchTerm, page);
-        } else {
-          const response = await api.fetchNowPlayingMovies(page);
-
-          movies = {
-            ...response,
-            results: response.results.sort(
-              (a, b) =>
-                new Date(b.release_date).getTime() -
-                new Date(a.release_date).getTime(),
-            ),
-          };
-        }
+        movies.results.sort(
+          (a, b) =>
+            new Date(b.release_date).getTime() -
+            new Date(a.release_date).getTime(),
+        );
 
         setState((prev) => ({
           ...movies,
           results:
-            page > 1 ? [ ...prev.results, ...movies.results ] : movies.results,
+            page > 1
+              ? [ ...prev.results, ...movies.results ]
+              : movies.results,
         }));
       } catch (err) {
         setError(true);
@@ -61,18 +54,38 @@ function useNowPlayingMovies() {
 
       setLoading(false);
     },
-    [ searchTerm, setError, setLoading, setState ],
+    [ setError, setLoading, setState ],
   );
 
   useEffect(() => {
-    fetchMovies(1);
+    if (!searchTerm) {
+      const sessionState = getPersistedState<typeof moviesState>("nowPlayingState");
+
+      if (sessionState) {
+        console.log("Grabbing from sessionStorage");
+        setState(sessionState as typeof moviesState);
+        return;
+      }
+    }
+
+    console.log("Grabbing from API");
+
+    setState(moviesState);
+    fetchMovies(1, searchTerm);
+
   }, [ searchTerm, fetchMovies ]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
-    fetchMovies(state.page + 1);
+
+    fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
-  }, [ isLoadingMore, state.page, setIsLoadingMore, fetchMovies ]);
+
+  }, [ fetchMovies, isLoadingMore, searchTerm, state.page ]);
+
+  useEffect(() => {
+    if (!searchTerm) sessionStorage.setItem("nowPlayingState", JSON.stringify(state));
+  }, [ searchTerm, state ]);
 
   return {
     state,
