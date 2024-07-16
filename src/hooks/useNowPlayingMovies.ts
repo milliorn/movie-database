@@ -50,9 +50,9 @@ function useNowPlayingMovies() {
       } catch (err) {
         setError(true);
         console.error("Failed to fetch now playing movies:", err);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     },
     [ setError, setLoading, setState ],
   );

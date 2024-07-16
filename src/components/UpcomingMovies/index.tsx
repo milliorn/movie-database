@@ -24,7 +24,7 @@ function UpcomingMovies(): React.JSX.Element {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
-  console.log(state.results);
+  // console.log(state.results);
 
   return (
     <div>
