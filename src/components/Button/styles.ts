@@ -22,7 +22,8 @@ export const Wrapper = styled.button`
   animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -32,7 +33,6 @@ export const Wrapper = styled.button`
 
   &:hover {
     background: var(--medGrey);
-    animation-play-state: paused;  // This will pause the animation when hovered
+    animation-play-state: paused; // This will pause the animation when hovered
   }
 `;
-
