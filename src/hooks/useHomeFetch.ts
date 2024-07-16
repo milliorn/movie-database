@@ -36,7 +36,9 @@ function useHomeFetch() {
         }));
       } catch (error) {
         setError(true);
+        console.error("Failed to fetch movies:", error);
       }
+
       setLoading(false);
     },
     [ setError, setLoading, setState ]
@@ -62,9 +64,11 @@ function useHomeFetch() {
 
   useEffect(() => {
     if (!isLoadingMore) return;
+
     fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
-  }, [ isLoadingMore, state.page, searchTerm, fetchMovies ]); // Correctly included fetchMovies
+
+  }, [ isLoadingMore, state.page, searchTerm, fetchMovies ]);
 
 
   useEffect(() => {
