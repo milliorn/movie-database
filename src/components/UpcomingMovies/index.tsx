@@ -24,15 +24,15 @@ function UpcomingMovies(): React.JSX.Element {
 
   if (error) return <div>Something went wrong...oops!</div>;
 
-  console.log(state.results);
+  // console.log(state.results);
 
   return (
     <div>
-      {state.results[ 0 ] ? (
+      {state.results[0] ? (
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[ 0 ].backdrop_path}`}
-          title={state.results[ 0 ].original_title}
-          text={state.results[ 0 ].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
+          title={state.results[0].original_title}
+          text={state.results[0].overview}
         />
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />

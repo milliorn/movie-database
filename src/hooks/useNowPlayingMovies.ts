@@ -12,11 +12,11 @@ import { getPersistedState } from "../helpers";
  * search term, and a function to load more movies.
  */
 function useNowPlayingMovies() {
-  const [ error, setError ] = useState(false);
-  const [ isLoadingMore, setIsLoadingMore ] = useState(false);
-  const [ loading, setLoading ] = useState(false);
-  const [ searchTerm, setSearchTerm ] = useState("");
-  const [ state, setState ] = useState<MoviesState>(moviesState);
+  const [error, setError] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [state, setState] = useState<MoviesState>(moviesState);
 
   /**
    * Fetches movies based on the provided page number and search term.
@@ -43,23 +43,22 @@ function useNowPlayingMovies() {
         setState((prev) => ({
           ...movies,
           results:
-            page > 1
-              ? [ ...prev.results, ...movies.results ]
-              : movies.results,
+            page > 1 ? [...prev.results, ...movies.results] : movies.results,
         }));
       } catch (err) {
         setError(true);
         console.error("Failed to fetch now playing movies:", err);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     },
-    [ setError, setLoading, setState ],
+    [setError, setLoading, setState],
   );
 
   useEffect(() => {
     if (!searchTerm) {
-      const sessionState = getPersistedState<typeof moviesState>("nowPlayingState");
+      const sessionState =
+        getPersistedState<typeof moviesState>("nowPlayingState");
 
       if (sessionState) {
         console.log("Grabbing from sessionStorage");
@@ -72,20 +71,19 @@ function useNowPlayingMovies() {
 
     setState(moviesState);
     fetchMovies(1, searchTerm);
-
-  }, [ searchTerm, fetchMovies ]);
+  }, [searchTerm, fetchMovies]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
 
     fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
-
-  }, [ fetchMovies, isLoadingMore, searchTerm, state.page ]);
+  }, [fetchMovies, isLoadingMore, searchTerm, state.page]);
 
   useEffect(() => {
-    if (!searchTerm) sessionStorage.setItem("nowPlayingState", JSON.stringify(state));
-  }, [ searchTerm, state ]);
+    if (!searchTerm)
+      sessionStorage.setItem("nowPlayingState", JSON.stringify(state));
+  }, [searchTerm, state]);
 
   return {
     state,

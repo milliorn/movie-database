@@ -8,11 +8,11 @@ import { initialState } from "./props";
  * @returns An object containing the state, loading status, error status, search term, and functions to update the search term and load more movies.
  */
 function useHomeFetch() {
-  const [ error, setError ] = useState(false);
-  const [ isLoadingMore, setIsLoadingMore ] = useState(false);
-  const [ loading, setLoading ] = useState(false);
-  const [ searchTerm, setSearchTerm ] = useState("");
-  const [ state, setState ] = useState(initialState);
+  const [error, setError] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [state, setState] = useState(initialState);
 
   /**
    * Fetches movies from the API based on the specified page and search term.
@@ -31,8 +31,8 @@ function useHomeFetch() {
           ...movies,
           results:
             page > 1
-              ? [ ...prev.results, ...(movies.results || []) ]
-              : [ ...(movies.results || []) ],
+              ? [...prev.results, ...(movies.results || [])]
+              : [...(movies.results || [])],
         }));
       } catch (error) {
         setError(true);
@@ -41,7 +41,7 @@ function useHomeFetch() {
 
       setLoading(false);
     },
-    [ setError, setLoading, setState ]
+    [setError, setLoading, setState],
   );
 
   // Initial and search
@@ -59,21 +59,18 @@ function useHomeFetch() {
 
     setState(initialState);
     fetchMovies(1, searchTerm);
-
-  }, [ fetchMovies, searchTerm ]);
+  }, [fetchMovies, searchTerm]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
 
     fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
-
-  }, [ isLoadingMore, state.page, searchTerm, fetchMovies ]);
-
+  }, [isLoadingMore, state.page, searchTerm, fetchMovies]);
 
   useEffect(() => {
     if (!searchTerm) sessionStorage.setItem("homeState", JSON.stringify(state));
-  }, [ searchTerm, state ]);
+  }, [searchTerm, state]);
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 }

@@ -16,8 +16,17 @@ function Header(): React.JSX.Element {
         <Link to="/">
           <LogoImg src={RMDBLogo} alt="rmdb-logo" width="334" height="52" />
         </Link>
-        <Link to='https://www.themoviedb.org' target="_blank" rel="noopener noreferrer" >
-          <TMDBLogoImg src={TMDBLogo} alt="tmdb-logo" width="300" height="118" />
+        <Link
+          to="https://www.themoviedb.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TMDBLogoImg
+            src={TMDBLogo}
+            alt="tmdb-logo"
+            width="300"
+            height="118"
+          />
         </Link>
       </Content>
     </Wrapper>
