@@ -10,7 +10,6 @@ function Header() {
 
   const toggleNav = () => {
     setNavOpen(!navOpen);
-    document.body.style.overflow = navOpen ? "auto" : "hidden";
   };
 
   return (
