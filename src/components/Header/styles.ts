@@ -1,5 +1,34 @@
 import styled from "styled-components";
 
+type NavOverlayProps = {
+  show: boolean;
+};
+
+const NavOverlay = styled.div<NavOverlayProps>`
+  align-items: center;
+  background: var(--darkGrey);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: ${({ show }) => (show ? '0' : '-100%')};
+  transition: top 700ms ease-in-out;
+  width: 100%;
+  z-index: 10;
+`;
+
+const NavItem = styled.div`
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    color: var(--medGrey);
+  }
+`;
+
 /**
  * Wrapper component for the header.
  */
@@ -24,8 +53,10 @@ const Content = styled.div`
  * Logo image component for the header.
  */
 const LogoImg = styled.img`
-  width: 12rem; /* 192px */
+  cursor: pointer;
   height: auto; /* ensure the height adjusts to maintain the aspect ratio */
+  width: 12rem; /* 192px */
+  z-index: 100;
 
   @media screen and (max-width: 500px) {
     width: 10rem; /* 160px */
@@ -36,12 +67,12 @@ const LogoImg = styled.img`
  * TMDB logo image component for the header.
  */
 const TMDBLogoImg = styled.img`
-  width: 6rem; /* 96px */
   height: auto; /* ensure the height adjusts to maintain the aspect ratio */
+  width: 6rem; /* 96px */
 
   @media screen and (max-width: 500px) {
     width: 5rem; /* 80px */
   }
 `;
 
-export { Content, LogoImg, TMDBLogoImg, Wrapper };
+export { Content, LogoImg, TMDBLogoImg, Wrapper, NavOverlay, NavItem };

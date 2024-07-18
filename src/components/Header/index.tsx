@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
-import { Content, LogoImg, TMDBLogoImg, Wrapper } from "./styles";
+import { Content, LogoImg, NavItem, NavOverlay, TMDBLogoImg, Wrapper } from "./styles";
 
-/**
- * Renders the header component.
- *
- * @returns The JSX.Element representing the header component.
- */
-function Header(): React.JSX.Element {
+
+function Header() {
+  const [ navOpen, setNavOpen ] = useState(false);
+
+  const toggleNav = () => {
+    setNavOpen(!navOpen);
+    document.body.style.overflow = navOpen ? "auto" : "hidden";
+  };
+
   return (
     <Wrapper>
       <Content>
-        <Link to="/">
-          <LogoImg src={RMDBLogo} alt="rmdb-logo" width="334" height="52" />
-        </Link>
-        <Link
-          to="https://www.themoviedb.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <LogoImg src={RMDBLogo} alt="RMDB Logo" onClick={toggleNav} width="334" height="52" />
+
+        <NavOverlay show={navOpen}>
+          <NavItem onClick={() => setNavOpen(false)}>Popular</NavItem>
+          <NavItem onClick={() => setNavOpen(false)}>Now Playing</NavItem>
+          <NavItem onClick={() => setNavOpen(false)}>Upcoming</NavItem>
+        </NavOverlay>
+
+        <Link to="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer">
           <TMDBLogoImg
             src={TMDBLogo}
             alt="tmdb-logo"
