@@ -11,9 +11,16 @@ import {
   Wrapper,
 } from "./styles";
 
+/**
+ * Renders the header component of the movie database.
+ * @returns The rendered header component.
+ */
 function Header() {
   const [navOpen, setNavOpen] = useState(false);
 
+  /**
+   * Toggles the navigation menu.
+   */
   const toggleNav = () => {
     setNavOpen(!navOpen);
   };

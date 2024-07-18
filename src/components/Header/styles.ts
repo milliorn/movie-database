@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+/**
+ * Represents the overlay component for the navigation menu.
+ *
+ * @remarks
+ * This component is used to display a full-screen overlay for the navigation menu.
+ *
+ * @param $show - A boolean value indicating whether the overlay should be shown or hidden.
+ */
 const NavOverlay = styled.div<{ $show: boolean }>`
   align-items: center;
   background: var(--darkGrey);
