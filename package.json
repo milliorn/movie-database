@@ -16,6 +16,7 @@
     "build:project": "npm run lint && npm run prettier:check && npm run build",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:project": "npm run lint && npm run prettier:write",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "serve": "npm run build && serve -s build",

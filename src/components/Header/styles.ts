@@ -10,7 +10,7 @@ const NavOverlay = styled.div<{ $show: boolean }>`
   justify-content: center;
   left: 0;
   position: fixed;
-  top: ${({ $show }) => ($show ? '0' : '-100%')};
+  top: ${({ $show }) => ($show ? "0" : "-100%")};
   transition: top 700ms ease-in-out;
   width: 100%;
   z-index: 10;
