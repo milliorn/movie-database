@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
