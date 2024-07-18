@@ -46,7 +46,7 @@ const Text = styled.div`
   max-width: 42rem; /* 672px */
   min-height: 6rem; /* 96px */
   position: absolute;
-  z-index: 100;
+  z-index: 1;
 
   h1 {
     font-size: var(--fontSuperBig);

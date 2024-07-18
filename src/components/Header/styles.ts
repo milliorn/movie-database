@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-type NavOverlayProps = {
-  show: boolean;
-};
-
-const NavOverlay = styled.div<NavOverlayProps>`
+/**
+ * Represents the overlay component for the navigation menu.
+ *
+ * @remarks
+ * This component is used to display a full-screen overlay for the navigation menu.
+ *
+ * @param $show - A boolean value indicating whether the overlay should be shown or hidden.
+ */
+const NavOverlay = styled.div<{ $show: boolean }>`
   align-items: center;
   background: var(--darkGrey);
   display: flex;
@@ -13,17 +18,19 @@ const NavOverlay = styled.div<NavOverlayProps>`
   justify-content: center;
   left: 0;
   position: fixed;
-  top: ${({ show }) => (show ? '0' : '-100%')};
+  top: ${({ $show }) => ($show ? "0" : "-100%")};
   transition: top 700ms ease-in-out;
   width: 100%;
   z-index: 10;
 `;
 
-const NavItem = styled.div`
+const NavItem = styled(Link)`
   color: white;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
+  text-decoration: none;
+
   &:hover {
     color: var(--medGrey);
   }
