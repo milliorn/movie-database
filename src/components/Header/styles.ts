@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-type NavOverlayProps = {
-  show: boolean;
-};
-
-const NavOverlay = styled.div<NavOverlayProps>`
+const NavOverlay = styled.div<{ $show: boolean }>`
   align-items: center;
   background: var(--darkGrey);
   display: flex;
@@ -13,7 +9,7 @@ const NavOverlay = styled.div<NavOverlayProps>`
   justify-content: center;
   left: 0;
   position: fixed;
-  top: ${({ show }) => (show ? '0' : '-100%')};
+  top: ${({ $show }) => ($show ? '0' : '-100%')};
   transition: top 700ms ease-in-out;
   width: 100%;
   z-index: 10;

@@ -18,7 +18,7 @@ function Header() {
       <Content>
         <LogoImg src={RMDBLogo} alt="RMDB Logo" onClick={toggleNav} width="334" height="52" />
 
-        <NavOverlay show={navOpen}>
+        <NavOverlay $show={navOpen}>
           <NavItem onClick={() => setNavOpen(false)}>Popular</NavItem>
           <NavItem onClick={() => setNavOpen(false)}>Now Playing</NavItem>
           <NavItem onClick={() => setNavOpen(false)}>Upcoming</NavItem>
