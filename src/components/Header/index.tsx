@@ -19,9 +19,9 @@ function Header() {
         <LogoImg src={RMDBLogo} alt="RMDB Logo" onClick={toggleNav} width="334" height="52" />
 
         <NavOverlay $show={navOpen}>
-          <NavItem onClick={() => setNavOpen(false)}>Popular</NavItem>
-          <NavItem onClick={() => setNavOpen(false)}>Now Playing</NavItem>
-          <NavItem onClick={() => setNavOpen(false)}>Upcoming</NavItem>
+          <NavItem to="/" onClick={() => setNavOpen(false)}>Popular</NavItem>
+          <NavItem to="/now_playing" onClick={() => setNavOpen(false)}>Now Playing</NavItem>
+          <NavItem to="/upcoming" onClick={() => setNavOpen(false)}>Upcoming</NavItem>
         </NavOverlay>
 
         <Link to="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer">

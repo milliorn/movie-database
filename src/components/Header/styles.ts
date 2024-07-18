@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const NavOverlay = styled.div<{ $show: boolean }>`
   align-items: center;
@@ -15,11 +16,13 @@ const NavOverlay = styled.div<{ $show: boolean }>`
   z-index: 10;
 `;
 
-const NavItem = styled.div`
+const NavItem = styled(Link)`
   color: white;
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
+  text-decoration: none;
+
   &:hover {
     color: var(--medGrey);
   }
