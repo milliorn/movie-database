@@ -374,3 +374,4 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 .env.development
+package-lock.json
