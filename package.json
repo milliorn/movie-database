@@ -15,7 +15,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/cors": "^2.8.17",
     "@types/node": "24.11.0",
-    "@types/react": "^19.2.10",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.2",
     "@types/react-helmet": "^6.1.11",
     "@types/react-router-dom": "5.3.3",
