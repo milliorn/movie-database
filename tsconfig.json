@@ -30,7 +30,8 @@
     "exactOptionalPropertyTypes": true, // Disallow assigning undefined to optional properties explicitly
     "noUncheckedIndexedAccess": true, // Add undefined to array/object index signatures
     "allowUnreachableCode": false, // Error on unreachable code
-    "allowUnusedLabels": false // Error on unused labels
+    "allowUnusedLabels": false, // Error on unused labels
+    "noPropertyAccessFromIndexSignature": true // Require bracket notation for index signature access
   },
   "include": ["src"],
   "exclude": ["node_modules"] // Exclude node_modules to speed up the compilation
