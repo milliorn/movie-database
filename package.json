@@ -32,14 +32,12 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:project": "npm run lint && npm run prettier:check && npm run build",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:project": "npm run lint && npm run prettier:write",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "preview": "vite preview",
-    "start": "vite",
-    "start:project": "npm run lint && npm run prettier:write && npm run start"
+    "start": "vite"
   },
   "browserslist": {
     "production": [
