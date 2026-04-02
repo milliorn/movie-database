@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import type { HeroImageProps } from "./props";
 import { Content, Text, Wrapper } from "./styles";
 
@@ -18,18 +17,20 @@ function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
 
   // Preload the image and set the loaded state
   useEffect(() => {
-    const img = new Image(); // Create a new image element
-    img.src = image; // Set the image source
+    const img = new Image();
+    img.src = image;
+
     img.onload = () => {
       setLoaded(true);
-    }; // Set the loaded state when the image is loaded
-  }, [image]); // Run the effect when the image URL changes
+    };
+    
+    return () => {
+      img.onload = null;
+    };
+  }, [image]);
 
   return (
     <>
-      <Helmet>
-        <link rel="preload" href={image} as="image" />
-      </Helmet>
       <Wrapper $image={loaded ? image : ""}>
         <Content>
           <Text>
