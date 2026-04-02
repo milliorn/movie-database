@@ -1,4 +1,5 @@
 import React from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -16,19 +17,21 @@ import { GlobalStyle } from "./Global.styles";
  */
 function App(): React.JSX.Element {
   return (
-    <Router>
-      <main>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:movieId" element={<Movie />} />
-          <Route path="now_playing" element={<NowPlayingMovies />} />
-          <Route path="upcoming" element={<UpcomingMovies />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-        <GlobalStyle />
-      </main>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <main>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:movieId" element={<Movie />} />
+            <Route path="now_playing" element={<NowPlayingMovies />} />
+            <Route path="upcoming" element={<UpcomingMovies />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <GlobalStyle />
+        </main>
+      </Router>
+    </HelmetProvider>
   );
 }
 

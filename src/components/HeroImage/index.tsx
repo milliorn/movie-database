@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import type { HeroImageProps } from "./props";
 import { Content, Text, Wrapper } from "./styles";
 
