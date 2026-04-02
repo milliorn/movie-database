@@ -1,7 +1,9 @@
 /**
  * The base URL for retrieving movie images from the TMDB API.
  */
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+const IMAGE_BASE_URL: string = import.meta.env[
+  "VITE_IMAGE_BASE_URL"
+] as string;
 
 /**
  * Enum representing different image sizes available for movie images.
