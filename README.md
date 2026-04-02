@@ -12,16 +12,16 @@ The app runs at `http://localhost:5173`.
 
 ## Scripts
 
-| Script | Description |
-| --- | --- |
-| `npm start` | Start the Vite dev server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Lint and auto-fix with ESLint |
-| `npm run prettier:check` | Check formatting with Prettier |
-| `npm run prettier:write` | Format all files with Prettier |
-| `npm run build:project` | Lint + format check + build |
-| `npm run start:project` | Lint + format + start |
+| Script                   | Description                          |
+| ------------------------ | ------------------------------------ |
+| `npm start`              | Start the Vite dev server            |
+| `npm run build`          | Build for production                 |
+| `npm run preview`        | Preview the production build locally |
+| `npm run lint`           | Lint and auto-fix with ESLint        |
+| `npm run prettier:check` | Check formatting with Prettier       |
+| `npm run prettier:write` | Format all files with Prettier       |
+| `npm run build:project`  | Lint + format check + build          |
+| `npm run start:project`  | Lint + format + start                |
 
 ## Dependencies
 
