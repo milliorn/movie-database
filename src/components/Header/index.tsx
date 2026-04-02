@@ -37,13 +37,28 @@ function Header(): React.JSX.Element {
         />
 
         <NavOverlay $show={navOpen}>
-          <NavItem to="/" onClick={() => { setNavOpen(false); }}>
+          <NavItem
+            to="/"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Popular
           </NavItem>
-          <NavItem to="/now_playing" onClick={() => { setNavOpen(false); }}>
+          <NavItem
+            to="/now_playing"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Now Playing
           </NavItem>
-          <NavItem to="/upcoming" onClick={() => { setNavOpen(false); }}>
+          <NavItem
+            to="/upcoming"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Upcoming
           </NavItem>
         </NavOverlay>

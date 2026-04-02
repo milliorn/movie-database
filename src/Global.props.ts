@@ -14,7 +14,11 @@ interface MoviePropTypes {
   overview: string;
   popularity: number;
   poster_path: string | null;
-  production_companies: { name: string; id: number; logo_path: string | null }[];
+  production_companies: {
+    name: string;
+    id: number;
+    logo_path: string | null;
+  }[];
   release_date: string;
   revenue: number;
   runtime: number;

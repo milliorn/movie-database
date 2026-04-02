@@ -61,7 +61,12 @@ function Home(): React.JSX.Element {
       </Grid>
       {loading && <Spinner />}
       {state.page < state.total_pages && !loading && (
-        <Button text="Load More" callback={() => { setIsLoadingMore(true); }} />
+        <Button
+          text="Load More"
+          callback={() => {
+            setIsLoadingMore(true);
+          }}
+        />
       )}
     </div>
   );

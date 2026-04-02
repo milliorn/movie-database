@@ -20,7 +20,9 @@ function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
   useEffect(() => {
     const img = new Image(); // Create a new image element
     img.src = image; // Set the image source
-    img.onload = () => { setLoaded(true); }; // Set the loaded state when the image is loaded
+    img.onload = () => {
+      setLoaded(true);
+    }; // Set the loaded state when the image is loaded
   }, [image]); // Run the effect when the image URL changes
 
   return (

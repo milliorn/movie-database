@@ -15,7 +15,7 @@ function useHomeFetch(): {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setIsLoadingMore: React.Dispatch<React.SetStateAction<boolean>>;
-  } {
+} {
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -56,7 +56,8 @@ function useHomeFetch(): {
   useEffect(() => {
     const load = async () => {
       if (!searchTerm) {
-        const sessionState = getPersistedState<typeof initialState>("homeState");
+        const sessionState =
+          getPersistedState<typeof initialState>("homeState");
 
         if (sessionState) {
           console.log("Grabbing from sessionStorage");

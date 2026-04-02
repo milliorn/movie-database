@@ -17,7 +17,9 @@ function BreadCrumb({ movieTitle }: BreadCrumbProps): React.JSX.Element {
     <Wrapper>
       <Content>
         <button
-          onClick={() => { void navigate(-1); }}
+          onClick={() => {
+            void navigate(-1);
+          }}
           style={{
             background: "none",
             border: "none",

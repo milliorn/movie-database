@@ -34,18 +34,30 @@ export default tseslint.config(
       "react/prop-types": "off",
 
       // Formatting
-      "indent": ["error", 2],
+      indent: ["error", 2],
 
       // TypeScript - strictness
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/explicit-module-boundary-types": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/no-misused-promises": "error",
       "@typescript-eslint/await-thenable": "error",
-      "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
-      "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
-      "@typescript-eslint/consistent-type-exports": ["error", { "fixMixedExportsWithInlineTypeSpecifier": true }],
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        { allowNumber: true },
+      ],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports" },
+      ],
+      "@typescript-eslint/consistent-type-exports": [
+        "error",
+        { fixMixedExportsWithInlineTypeSpecifier: true },
+      ],
     },
   },
 );

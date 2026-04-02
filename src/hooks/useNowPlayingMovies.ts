@@ -20,7 +20,7 @@ function useNowPlayingMovies(): {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setIsLoadingMore: React.Dispatch<React.SetStateAction<boolean>>;
-  } {
+} {
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
