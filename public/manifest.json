@@ -1,6 +1,6 @@
 {
   "author": "Scott Milliorn",
-  "background_color": "#ffffff",
+  "background_color": "#000000",
   "description": "A comprehensive database for movies built with React and the TMDB API.",
   "display": "standalone",
   "name": "React Movie Database",
