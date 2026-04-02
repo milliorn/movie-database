@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../API";
 import { getPersistedState } from "../helpers";
-import { MovieState } from "./props";
+import type { MovieState } from "./props";
 
 /**
  * Custom hook for fetching movie data.
@@ -14,12 +14,27 @@ function useMovieFetch(movieId: string): {
   loading: boolean;
   error: boolean;
 } {
-  const [state, setState] = useState<MovieState>({} as MovieState);
+  const [state, setState] = useState({} as MovieState);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
+      const sessionState = getPersistedState<MovieState>(movieId);
+
+      if (sessionState instanceof Error) {
+        console.error("Error retrieving state:", sessionState);
+        setError(true);
+        setLoading(false);
+        return;
+      }
+
+      if (sessionState) {
+        setState(sessionState);
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         setError(false);
@@ -38,28 +53,12 @@ function useMovieFetch(movieId: string): {
         });
 
         setLoading(false);
-      } catch (error) {
+      } catch (_err) {
         setError(true);
       }
     };
 
-    const sessionState = getPersistedState<MovieState>(movieId);
-
-    if (sessionState instanceof Error) {
-      console.error("Error retrieving state:", sessionState);
-
-      setError(true);
-      setLoading(false);
-      return;
-    }
-
-    if (sessionState) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
-
-    fetchMovie();
+    void fetchMovie();
   }, [movieId]);
 
   // Write to sessionStorage

@@ -1,5 +1,5 @@
 import React from "react";
-import { GridProps } from "./props";
+import type { GridProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 /**

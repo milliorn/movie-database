@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { WrapperProps } from "./props";
+import type { WrapperProps } from "./props";
 
 /**
  * Represents a styled div component for the hero image wrapper.

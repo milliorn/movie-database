@@ -3,17 +3,17 @@
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
-    "skipLibCheck": false, // Enable type checking of declaration files (*.d.ts)
+    "skipLibCheck": true, // Skip type checking of declaration files (*.d.ts) in node_modules
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false, // Emit output files, which can be useful for debugging and verification
+    "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": true, // Ensure all variables and parameters explicitly have a type
     "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
@@ -24,16 +24,15 @@
     "strictBindCallApply": true, // Ensure the arguments for bind, call, and apply methods are strictly validated
     "noImplicitReturns": true, // Prevent functions from ending without a return value
     "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
-    "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
+    "useUnknownInCatchVariables": true, // Catch clause variables use 'unknown' type instead of 'any'
+    "noUnusedLocals": true, // Error on unused local variables
+    "noUnusedParameters": true, // Error on unused function parameters
+    "exactOptionalPropertyTypes": true, // Disallow assigning undefined to optional properties explicitly
+    "noUncheckedIndexedAccess": true, // Add undefined to array/object index signatures
+    "allowUnreachableCode": false, // Error on unreachable code
+    "allowUnusedLabels": false, // Error on unused labels
+    "noPropertyAccessFromIndexSignature": true // Require bracket notation for index signature access
   },
-  "include": ["src", "api"],
-  "exclude": ["node_modules"], // Exclude node_modules to speed up the compilation
-  "overrides": [
-    {
-      "files": ["api/*.ts"],
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      }
-    }
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"] // Exclude node_modules to speed up the compilation
 }

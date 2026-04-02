@@ -1,24 +1,24 @@
 import { BACKEND_API_URL } from "./config";
-import { Cast, Crew, MoviePropTypes } from "./Global.props";
+import type { Cast, Crew, MoviePropTypes } from "./Global.props";
 
 /**
  * Represents a collection of movies.
  */
-type Movies = {
+interface Movies {
   page: number;
   results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
-};
+}
 
 /**
  * Represents the credits for a movie or TV show.
  */
-type Credits = {
+interface Credits {
   cast: Cast[];
   crew: Crew[];
   id: number;
-};
+}
 
 /**
  * The API object provides methods for fetching movies, movie details, credits, and more.
@@ -34,7 +34,7 @@ const api = {
     const endpoint = searchTerm
       ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies?page=${page}`;
-    return await (await fetch(endpoint)).json();
+    return (await (await fetch(endpoint)).json()) as unknown as Movies;
   },
   /**
    * Fetches details of a specific movie.
@@ -43,7 +43,7 @@ const api = {
    */
   fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
     const response = await fetch(`${BACKEND_API_URL}/api/movie/${movieId}`);
-    return await response.json();
+    return (await response.json()) as unknown as MoviePropTypes;
   },
   /**
    * Fetches the credits for a specific movie.
@@ -52,7 +52,7 @@ const api = {
    */
   fetchCredits: async (movieId: string): Promise<Credits> => {
     const response = await fetch(`${BACKEND_API_URL}/api/credits/${movieId}`);
-    return await response.json();
+    return (await response.json()) as unknown as Credits;
   },
   /**
    * Fetches a list of top rated movies based on the page number.
@@ -63,7 +63,7 @@ const api = {
     const response = await fetch(
       `${BACKEND_API_URL}/api/movies/top_rated?page=${page}`,
     );
-    return await response.json();
+    return (await response.json()) as unknown as Movies;
   },
   /**
    * Fetches a list of upcoming movies based on the page number.
@@ -79,7 +79,7 @@ const api = {
       : `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`;
 
     const response = await fetch(endpoint);
-    return await response.json();
+    return (await response.json()) as unknown as Movies;
   },
   /**
    * Fetches a list of now playing movies based on the page number.
@@ -95,7 +95,7 @@ const api = {
       : `${BACKEND_API_URL}/api/movies/now_playing?page=${page}`;
 
     const response = await fetch(endpoint);
-    return await response.json();
+    return (await response.json()) as unknown as Movies;
   },
 };
 

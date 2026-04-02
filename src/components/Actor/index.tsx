@@ -1,5 +1,5 @@
 import React from "react";
-import { ActorProps } from "./props";
+import type { ActorProps } from "./props";
 import { Image, Wrapper } from "./styles";
 
 /**

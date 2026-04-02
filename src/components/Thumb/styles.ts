@@ -3,11 +3,11 @@
  */
 import styled from "styled-components";
 
-type ImageProps = {
+interface ImageProps {
   alt: string;
   $isClicked: boolean;
   src: string;
-};
+}
 
 /**
  * Styled image component for the Thumb.

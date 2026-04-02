@@ -27,7 +27,9 @@ const COMPANY_POSTER_SIZE = ImageSizes.Small;
 /**
  * The URL for the backend API.
  */
-const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
+const BACKEND_API_URL: string = import.meta.env[
+  "VITE_BACKEND_API_URL"
+] as string;
 
 export {
   BACKDROP_SIZE,

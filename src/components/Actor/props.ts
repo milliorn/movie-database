@@ -1,8 +1,8 @@
 /**
  * Represents the props for the Actor component.
  */
-export type ActorProps = {
+export interface ActorProps {
   character: string;
   imageUrl: string;
   name: string;
-};
+}

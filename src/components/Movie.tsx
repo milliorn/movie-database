@@ -17,7 +17,7 @@ import Spinner from "./Spinner";
  */
 function Movie(): React.JSX.Element {
   const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
-  const { state: movie, loading, error } = useMovieFetch(movieId || ""); // Always call the hook unconditionally
+  const { state: movie, loading, error } = useMovieFetch(movieId ?? ""); // Always call the hook unconditionally
 
   useEffect(() => {
     if (!movieId) {
@@ -25,15 +25,13 @@ function Movie(): React.JSX.Element {
     }
     fetch("manifest.json")
       .then((response) => response.json())
-      .then((data) => {
-        const websiteName = data.name;
+      .then((data: { name: string }) => {
         // Update the title of the page when movie data changes
-        if (movie && movie.original_title) {
-          const newTitle = `${movie.original_title} - ${websiteName}`;
-          document.title = newTitle;
+        if (movie.original_title) {
+          document.title = `${movie.original_title} - ${data.name}`;
         }
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         console.error("Error fetching manifest.json", error);
       });
   }, [movie, movieId]); // Dependency array includes movieId to handle changes

@@ -1,6 +1,8 @@
+import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { MoviesState, moviesState } from "./props";
+import type { MoviesState } from "./props";
+import { moviesState } from "./props";
 import { getPersistedState } from "../helpers";
 
 /**
@@ -15,12 +17,19 @@ import { getPersistedState } from "../helpers";
  *   setIsLoadingMore: (isLoading: boolean) => void
  * }} - An object containing the state, loading status, error status, search term, and functions to update the search term and loading status.
  */
-function useUpcomingMovies() {
+function useUpcomingMovies(): {
+  state: MoviesState;
+  loading: boolean;
+  error: boolean;
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setIsLoadingMore: React.Dispatch<React.SetStateAction<boolean>>;
+} {
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [state, setState] = useState<MoviesState>(moviesState);
+  const [state, setState] = useState(moviesState);
 
   /**
    * Fetches upcoming movies from the API.
@@ -73,13 +82,13 @@ function useUpcomingMovies() {
     console.log("Grabbing from API");
 
     setState(moviesState);
-    fetchMovies(1, searchTerm);
+    void fetchMovies(1, searchTerm);
   }, [searchTerm, fetchMovies]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
 
-    fetchMovies(state.page + 1, searchTerm);
+    void fetchMovies(state.page + 1, searchTerm);
     setIsLoadingMore(false);
   }, [fetchMovies, isLoadingMore, searchTerm, state.page]);
 

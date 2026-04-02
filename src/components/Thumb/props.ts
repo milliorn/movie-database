@@ -1,7 +1,7 @@
 /**
  * Represents the props for the Thumb component.
  */
-export type ThumbProps = {
+export interface ThumbProps {
   /**
    * Specifies whether the Thumb component is clickable or not.
    */
@@ -26,4 +26,4 @@ export type ThumbProps = {
    * The vote count of the movie associated with the Thumb component.
    */
   vote_count?: number;
-};
+}

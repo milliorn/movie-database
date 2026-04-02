@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
@@ -15,7 +15,7 @@ import {
  * Renders the header component of the movie database.
  * @returns The rendered header component.
  */
-function Header() {
+function Header(): React.JSX.Element {
   const [navOpen, setNavOpen] = useState(false);
 
   /**
@@ -37,13 +37,28 @@ function Header() {
         />
 
         <NavOverlay $show={navOpen}>
-          <NavItem to="/" onClick={() => setNavOpen(false)}>
+          <NavItem
+            to="/"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Popular
           </NavItem>
-          <NavItem to="/now_playing" onClick={() => setNavOpen(false)}>
+          <NavItem
+            to="/now_playing"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Now Playing
           </NavItem>
-          <NavItem to="/upcoming" onClick={() => setNavOpen(false)}>
+          <NavItem
+            to="/upcoming"
+            onClick={() => {
+              setNavOpen(false);
+            }}
+          >
             Upcoming
           </NavItem>
         </NavOverlay>
