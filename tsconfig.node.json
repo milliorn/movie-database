@@ -7,7 +7,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
@@ -31,5 +30,5 @@
     "allowUnusedLabels": false,
     "noPropertyAccessFromIndexSignature": true
   },
-  "include": ["vite.config.ts", "eslint.config.js"]
+  "include": ["vite.config.ts"]
 }
