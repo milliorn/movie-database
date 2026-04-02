@@ -3,6 +3,7 @@ import tseslint from "typescript-eslint";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 
+// eslint-disable-next-line @typescript-eslint/no-deprecated -- requires ESLint 10; using tseslint.config() on ESLint 9
 export default tseslint.config(
   { ignores: ["dist/**", "node_modules/**"] },
   js.configs.recommended,
@@ -42,6 +43,7 @@ export default tseslint.config(
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/no-misused-promises": "error",
       "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/restrict-template-expressions": ["error", { "allowNumber": true }],
       "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
       "@typescript-eslint/consistent-type-exports": ["error", { "fixMixedExportsWithInlineTypeSpecifier": true }],
     },

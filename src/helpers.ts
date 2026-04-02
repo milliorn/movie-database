@@ -34,6 +34,7 @@ function convertMoney(money: number): string {
  * @param stateName - The name of the state to retrieve.
  * @returns The persisted state if found, otherwise null.
  */
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 function getPersistedState<T>(stateName: string): T | null | Error {
   const sessionState = sessionStorage.getItem(stateName);
   try {

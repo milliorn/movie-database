@@ -3,18 +3,18 @@
  */
 interface MoviePropTypes {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   budget: number;
   genres: { id: number; name: string }[];
   homepage: string;
   id: number;
-  logo_path: string;
+  logo_path: string | null;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
-  production_companies: { name: string; id: number; logo_path: string }[];
+  poster_path: string | null;
+  production_companies: { name: string; id: number; logo_path: string | null }[];
   release_date: string;
   revenue: number;
   runtime: number;
@@ -41,7 +41,7 @@ interface Cast {
   character: string;
   credit_id: string;
   name: string;
-  profile_path: string;
+  profile_path: string | null;
 }
 
 export type { MoviePropTypes, Crew, Cast };

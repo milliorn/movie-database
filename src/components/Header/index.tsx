@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RMDBLogo from "../../images/react-movie-logo.svg";
 import TMDBLogo from "../../images/tmdb_logo.svg";
@@ -15,7 +15,7 @@ import {
  * Renders the header component of the movie database.
  * @returns The rendered header component.
  */
-function Header() {
+function Header(): React.JSX.Element {
   const [navOpen, setNavOpen] = useState(false);
 
   /**

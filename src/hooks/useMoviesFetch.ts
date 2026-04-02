@@ -58,7 +58,7 @@ function useMovieFetch(movieId: string): {
       }
     };
 
-    fetchMovie();
+    void fetchMovie();
   }, [movieId]);
 
   // Write to sessionStorage

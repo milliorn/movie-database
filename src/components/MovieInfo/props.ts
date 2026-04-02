@@ -4,7 +4,7 @@ import type { MovieState } from "../../hooks/props";
  * Props for the wrapper component of the MovieInfo component.
  */
 interface WrapperProps {
-  $backdrop: string;
+  $backdrop: string | null;
 }
 
 /**

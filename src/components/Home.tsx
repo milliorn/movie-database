@@ -23,11 +23,10 @@ function Home(): React.JSX.Element {
   useEffect(() => {
     fetch("manifest.json")
       .then((response) => response.json())
-      .then((data) => {
-        const websiteName = data.name;
-        document.title = websiteName;
+      .then((data: { name: string }) => {
+        document.title = data.name;
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         console.error("Error fetching manifest.json", error);
       });
   }, []);

@@ -1,3 +1,4 @@
+import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import { getPersistedState } from "../helpers";
@@ -7,7 +8,14 @@ import { initialState } from "./props";
  * Custom hook for fetching movies from the API based on the specified page and search term.
  * @returns An object containing the state, loading status, error status, search term, and functions to update the search term and load more movies.
  */
-function useHomeFetch() {
+function useHomeFetch(): {
+  state: typeof initialState;
+  loading: boolean;
+  error: boolean;
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setIsLoadingMore: React.Dispatch<React.SetStateAction<boolean>>;
+  } {
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,8 +39,8 @@ function useHomeFetch() {
           ...movies,
           results:
             page > 1
-              ? [...prev.results, ...(movies.results || [])]
-              : [...(movies.results || [])],
+              ? [...prev.results, ...movies.results]
+              : [...movies.results],
         }));
       } catch (error) {
         setError(true);
@@ -62,7 +70,7 @@ function useHomeFetch() {
       await fetchMovies(1, searchTerm);
     };
 
-    load();
+    void load();
   }, [fetchMovies, searchTerm]);
 
   useEffect(() => {
@@ -73,7 +81,7 @@ function useHomeFetch() {
       setIsLoadingMore(false);
     };
 
-    loadMore();
+    void loadMore();
   }, [isLoadingMore, state.page, searchTerm, fetchMovies]);
 
   useEffect(() => {
