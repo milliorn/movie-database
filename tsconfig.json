@@ -26,14 +26,6 @@
     "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
     "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
   },
-  "include": ["src", "api"],
-  "exclude": ["node_modules"], // Exclude node_modules to speed up the compilation
-  "overrides": [
-    {
-      "files": ["api/*.ts"],
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      }
-    }
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"] // Exclude node_modules to speed up the compilation
 }
