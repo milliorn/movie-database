@@ -8,3 +8,10 @@ public
 # Binary files:
 *.png
 *.ico
+*.svg
+*.woff
+*.woff2
+*.ttf
+
+# Generated files:
+package-lock.json
