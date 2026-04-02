@@ -1,6 +1,6 @@
 import React from "react";
 import { calcTime, convertMoney } from "../../helpers";
-import { MovieInfoBarProps } from "./props";
+import type { MovieInfoBarProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 /**

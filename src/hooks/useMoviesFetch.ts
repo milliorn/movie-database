@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../API";
 import { getPersistedState } from "../helpers";
-import { MovieState } from "./props";
+import type { MovieState } from "./props";
 
 /**
  * Custom hook for fetching movie data.
@@ -14,7 +14,7 @@ function useMovieFetch(movieId: string): {
   loading: boolean;
   error: boolean;
 } {
-  const [state, setState] = useState<MovieState>({} as MovieState);
+  const [state, setState] = useState({} as MovieState);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 

@@ -1,24 +1,24 @@
 import { BACKEND_API_URL } from "./config";
-import { Cast, Crew, MoviePropTypes } from "./Global.props";
+import type { Cast, Crew, MoviePropTypes } from "./Global.props";
 
 /**
  * Represents a collection of movies.
  */
-type Movies = {
+interface Movies {
   page: number;
   results: MoviePropTypes[];
   total_pages: number;
   total_results: number;
-};
+}
 
 /**
  * Represents the credits for a movie or TV show.
  */
-type Credits = {
+interface Credits {
   cast: Cast[];
   crew: Crew[];
   id: number;
-};
+}
 
 /**
  * The API object provides methods for fetching movies, movie details, credits, and more.

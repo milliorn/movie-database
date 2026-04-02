@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../images/search-icon.svg";
-import { SearchBarProps } from "./props";
+import type { SearchBarProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 /**
@@ -23,7 +23,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
       setSearchTerm(state);
     }, 500);
 
-    return () => clearTimeout(timer);
+    return () => { clearTimeout(timer); };
   }, [setSearchTerm, state]);
 
   return (
@@ -44,7 +44,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
         <input
           id="searchBar"
           name="searchBar"
-          onChange={(event) => setState(event.currentTarget.value)}
+          onChange={(event) => { setState(event.currentTarget.value); }}
           placeholder="Search Movie"
           type="text"
           value={state}

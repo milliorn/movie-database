@@ -1,8 +1,8 @@
 /**
  * Represents the props for the MovieInfoBar component.
  */
-export type MovieInfoBarProps = {
+export interface MovieInfoBarProps {
   budget: number;
   revenue: number;
   time: number;
-};
+}

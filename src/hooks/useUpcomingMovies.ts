@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { MoviesState, moviesState } from "./props";
+import type { MoviesState} from "./props";
+import { moviesState } from "./props";
 import { getPersistedState } from "../helpers";
 
 /**
@@ -20,7 +21,7 @@ function useUpcomingMovies() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [state, setState] = useState<MoviesState>(moviesState);
+  const [state, setState] = useState(moviesState);
 
   /**
    * Fetches upcoming movies from the API.

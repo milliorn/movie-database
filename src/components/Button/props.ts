@@ -1,7 +1,7 @@
 /**
  * Represents the props for the Button component.
  */
-export type ButtonProps = {
+export interface ButtonProps {
   /**
    * The callback function to be executed when the button is clicked.
    */
@@ -11,4 +11,4 @@ export type ButtonProps = {
    * The text to be displayed on the button.
    */
   text: string;
-};
+}

@@ -1,4 +1,4 @@
-import { Cast, Crew, MoviePropTypes } from "../Global.props";
+import type { Cast, Crew, MoviePropTypes } from "../Global.props";
 
 /**
  * Represents the state of a movie with additional properties for actors and directors.

@@ -2,7 +2,7 @@ import React from "react";
 import { COMPANY_POSTER_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import NoImage from "../../images/no_image.jpg";
 import Thumb from "../Thumb";
-import { MovieInfoProps } from "./props";
+import type { MovieInfoProps } from "./props";
 import { Content, Text, Wrapper } from "./styles";
 
 /**

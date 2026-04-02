@@ -7,7 +7,7 @@
  */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { BreadCrumbProps } from "./props";
+import type { BreadCrumbProps } from "./props";
 import { Content, Wrapper } from "./styles";
 
 function BreadCrumb({ movieTitle }: BreadCrumbProps): React.JSX.Element {

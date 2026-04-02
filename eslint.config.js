@@ -6,7 +6,8 @@ import reactHooks from "eslint-plugin-react-hooks";
 export default tseslint.config(
   { ignores: ["dist/**", "node_modules/**"] },
   js.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   {
     plugins: {
       react,
@@ -26,11 +27,23 @@ export default tseslint.config(
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      "indent": ["error", 2],
+
+      // React
       "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
+      "react/prop-types": "off",
+
+      // Formatting
+      "indent": ["error", 2],
+
+      // TypeScript - strictness
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/explicit-module-boundary-types": "error",
       "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/no-misused-promises": "error",
+      "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
+      "@typescript-eslint/consistent-type-exports": ["error", { "fixMixedExportsWithInlineTypeSpecifier": true }],
     },
   },
 );

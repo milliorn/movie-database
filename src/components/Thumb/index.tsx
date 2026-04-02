@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ThumbProps } from "./props";
+import type { ThumbProps } from "./props";
 import { Image, RatingText, ThumbInfoContainer } from "./styles";
 
 /**

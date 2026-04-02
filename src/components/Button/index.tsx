@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonProps } from "./props";
+import type { ButtonProps } from "./props";
 import { Wrapper } from "./styles";
 
 /**

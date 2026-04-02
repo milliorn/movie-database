@@ -1,7 +1,7 @@
 /**
  * Represents the properties of a movie.
  */
-type MoviePropTypes = {
+interface MoviePropTypes {
   adult: boolean;
   backdrop_path: string;
   budget: number;
@@ -23,25 +23,25 @@ type MoviePropTypes = {
   title: string;
   vote_average: number;
   vote_count: number;
-};
+}
 
 /**
  * Represents a crew member in a movie.
  */
-type Crew = {
+interface Crew {
   credit_id: number;
   job: string;
   name: string;
-};
+}
 
 /**
  * Represents the cast of a movie.
  */
-type Cast = {
+interface Cast {
   character: string;
   credit_id: string;
   name: string;
   profile_path: string;
-};
+}
 
 export type { MoviePropTypes, Crew, Cast };
