@@ -3,7 +3,7 @@
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
-    "skipLibCheck": false, // Enable type checking of declaration files (*.d.ts)
+    "skipLibCheck": true, // Skip type checking of declaration files (*.d.ts) in node_modules
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -24,7 +24,13 @@
     "strictBindCallApply": true, // Ensure the arguments for bind, call, and apply methods are strictly validated
     "noImplicitReturns": true, // Prevent functions from ending without a return value
     "noImplicitOverride": true, // Ensure overridden methods are explicitly marked with an 'override' modifier
-    "useUnknownInCatchVariables": true // Catch clause variables use 'unknown' type instead of 'any'
+    "useUnknownInCatchVariables": true, // Catch clause variables use 'unknown' type instead of 'any'
+    "noUnusedLocals": true, // Error on unused local variables
+    "noUnusedParameters": true, // Error on unused function parameters
+    "exactOptionalPropertyTypes": true, // Disallow assigning undefined to optional properties explicitly
+    "noUncheckedIndexedAccess": true, // Add undefined to array/object index signatures
+    "allowUnreachableCode": false, // Error on unreachable code
+    "allowUnusedLabels": false // Error on unused labels
   },
   "include": ["src"],
   "exclude": ["node_modules"] // Exclude node_modules to speed up the compilation
