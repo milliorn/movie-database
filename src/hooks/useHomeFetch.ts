@@ -46,26 +46,34 @@ function useHomeFetch() {
 
   // Initial and search
   useEffect(() => {
-    if (!searchTerm) {
-      const sessionState = getPersistedState<typeof initialState>("homeState");
+    const load = async () => {
+      if (!searchTerm) {
+        const sessionState = getPersistedState<typeof initialState>("homeState");
 
-      if (sessionState) {
-        console.log("Grabbing from sessionStorage");
-        setState(sessionState as typeof initialState);
-        return;
+        if (sessionState) {
+          console.log("Grabbing from sessionStorage");
+          setState(sessionState as typeof initialState);
+          return;
+        }
       }
-    }
-    console.log("Grabbing from API");
+      console.log("Grabbing from API");
 
-    setState(initialState);
-    fetchMovies(1, searchTerm);
+      setState(initialState);
+      await fetchMovies(1, searchTerm);
+    };
+
+    load();
   }, [fetchMovies, searchTerm]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
 
-    fetchMovies(state.page + 1, searchTerm);
-    setIsLoadingMore(false);
+    const loadMore = async () => {
+      await fetchMovies(state.page + 1, searchTerm);
+      setIsLoadingMore(false);
+    };
+
+    loadMore();
   }, [isLoadingMore, state.page, searchTerm, fetchMovies]);
 
   useEffect(() => {

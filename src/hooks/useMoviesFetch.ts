@@ -20,6 +20,21 @@ function useMovieFetch(movieId: string): {
 
   useEffect(() => {
     const fetchMovie = async () => {
+      const sessionState = getPersistedState<MovieState>(movieId);
+
+      if (sessionState instanceof Error) {
+        console.error("Error retrieving state:", sessionState);
+        setError(true);
+        setLoading(false);
+        return;
+      }
+
+      if (sessionState) {
+        setState(sessionState);
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         setError(false);
@@ -38,26 +53,10 @@ function useMovieFetch(movieId: string): {
         });
 
         setLoading(false);
-      } catch (error) {
+      } catch (_err) {
         setError(true);
       }
     };
-
-    const sessionState = getPersistedState<MovieState>(movieId);
-
-    if (sessionState instanceof Error) {
-      console.error("Error retrieving state:", sessionState);
-
-      setError(true);
-      setLoading(false);
-      return;
-    }
-
-    if (sessionState) {
-      setState(sessionState);
-      setLoading(false);
-      return;
-    }
 
     fetchMovie();
   }, [movieId]);
