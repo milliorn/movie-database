@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
     "skipLibCheck": true, // Skip type checking of declaration files (*.d.ts) in node_modules
