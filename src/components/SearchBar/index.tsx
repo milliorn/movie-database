@@ -20,7 +20,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
     }
 
     const timer = setTimeout(() => {
-      setSearchTerm(state);
+      setSearchTerm(state.trim());
     }, 500);
 
     return () => {
