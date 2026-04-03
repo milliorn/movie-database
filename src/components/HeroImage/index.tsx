@@ -23,7 +23,7 @@ function HeroImage({ image, title, text }: HeroImageProps): React.JSX.Element {
     img.onload = () => {
       setLoaded(true);
     };
-    
+
     return () => {
       img.onload = null;
     };
