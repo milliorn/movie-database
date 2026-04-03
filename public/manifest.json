@@ -1,12 +1,12 @@
 {
   "author": "Scott Milliorn",
-  "background_color": "#ffffff",
-  "description": "A comprehensive database for movies built with React.",
+  "background_color": "#000000",
+  "description": "A comprehensive database for movies built with React and the TMDB API.",
   "display": "standalone",
   "name": "React Movie Database",
   "orientation": "portrait",
   "short_name": "Movie Db",
-  "start_url": ".",
+  "start_url": "/",
   "theme_color": "#000000",
   "categories": ["Entertainment", "Reference"],
   "icons": [
@@ -14,7 +14,7 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon",
-      "purpose": "maskable"
+      "purpose": "any"
     },
     {
       "src": "android-chrome-192x192.png",
@@ -27,24 +27,20 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
-    },
-    {
-      "src": "apple-touch-icon.png",
-      "type": "image/png",
-      "sizes": "180x180",
-      "purpose": "maskable any"
     }
   ],
   "screenshots": [
     {
       "src": "screenshot1.png",
       "sizes": "1270x1214",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide"
     },
     {
       "src": "screenshot2.png",
       "sizes": "1265x990",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }

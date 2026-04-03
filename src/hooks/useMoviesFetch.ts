@@ -10,11 +10,11 @@ import type { MovieState } from "./props";
  * @returns An object containing the movie state, loading status, and error status.
  */
 function useMovieFetch(movieId: string): {
-  state: MovieState;
+  state: MovieState | null;
   loading: boolean;
   error: boolean;
 } {
-  const [state, setState] = useState({} as MovieState);
+  const [state, setState] = useState<MovieState | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -61,9 +61,11 @@ function useMovieFetch(movieId: string): {
     void fetchMovie();
   }, [movieId]);
 
-  // Write to sessionStorage
+  // Write to sessionStorage only when state has been populated
   useEffect(() => {
-    sessionStorage.setItem(movieId, JSON.stringify(state));
+    if (state) {
+      sessionStorage.setItem(movieId, JSON.stringify(state));
+    }
   }, [movieId, state]);
 
   return { state, loading, error };

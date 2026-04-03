@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "ES2022"],
     "allowJs": false, // Only allow TypeScript files, disallow plain JavaScript files
     "skipLibCheck": true, // Skip type checking of declaration files (*.d.ts) in node_modules
     "esModuleInterop": true,
@@ -9,10 +9,9 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": true, // Ensure all variables and parameters explicitly have a type
@@ -34,5 +33,5 @@
     "noPropertyAccessFromIndexSignature": true // Require bracket notation for index signature access
   },
   "include": ["src"],
-  "exclude": ["node_modules"] // Exclude node_modules to speed up the compilation
+  "exclude": ["node_modules"]
 }

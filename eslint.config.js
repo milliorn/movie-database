@@ -3,13 +3,19 @@ import tseslint from "typescript-eslint";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 
-// eslint-disable-next-line @typescript-eslint/no-deprecated -- requires ESLint 10; using tseslint.config() on ESLint 9
-export default tseslint.config(
+export default [
   { ignores: ["dist/**", "node_modules/**"] },
   js.configs.recommended,
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+  ...tseslint.configs.strictTypeChecked.map((config) => ({
+    ...config,
+    files: ["**/*.ts", "**/*.tsx"],
+  })),
+  ...tseslint.configs.stylisticTypeChecked.map((config) => ({
+    ...config,
+    files: ["**/*.ts", "**/*.tsx"],
+  })),
   {
+    files: ["**/*.ts", "**/*.tsx"],
     plugins: {
       react,
       "react-hooks": reactHooks,
@@ -32,9 +38,6 @@ export default tseslint.config(
       // React
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-
-      // Formatting
-      indent: ["error", 2],
 
       // TypeScript - strictness
       "@typescript-eslint/no-explicit-any": "error",
@@ -60,4 +63,4 @@ export default tseslint.config(
       ],
     },
   },
-);
+];
