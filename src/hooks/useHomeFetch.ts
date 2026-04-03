@@ -1,7 +1,7 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { getPersistedState } from "../helpers";
+import { getPersistedState, setPersistedState } from "../helpers";
 import { initialState } from "./props";
 
 /**
@@ -27,46 +27,42 @@ function useHomeFetch(): {
    * @param page - The page number to fetch movies from.
    * @param searchTerm - The search term to filter movies by.
    */
-  const fetchMovies = useCallback(
-    async (page: number, searchTerm = "") => {
-      try {
-        setError(false);
-        setLoading(true);
+  const fetchMovies = useCallback(async (page: number, searchTerm = "") => {
+    try {
+      setError(false);
+      setLoading(true);
 
-        const movies = await api.fetchMovies(searchTerm, page);
+      const movies = await api.fetchMovies(searchTerm, page);
 
-        setState((prev) => ({
-          ...movies,
-          results:
-            page > 1
-              ? [...prev.results, ...movies.results]
-              : [...movies.results],
-        }));
-      } catch (error) {
-        setError(true);
-        console.error("Failed to fetch movies:", error);
-      }
+      setState((prev) => ({
+        ...movies,
+        results:
+          page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
+      }));
+    } catch (error) {
+      setError(true);
+      console.error("Failed to fetch movies:", error);
+    }
 
-      setLoading(false);
-    },
-    [setError, setLoading, setState],
-  );
+    setLoading(false);
+  }, []);
 
   // Initial and search
   useEffect(() => {
     const load = async () => {
-      if (!searchTerm) {
-        const sessionState =
-          getPersistedState<typeof initialState>("homeState");
+      const cacheKey = searchTerm
+        ? `homeSearch_${encodeURIComponent(searchTerm)}`
+        : "homeState";
 
-        if (sessionState) {
-          console.log("Grabbing from sessionStorage");
-          setState(sessionState as typeof initialState);
-          return;
-        }
+      const cached = getPersistedState<typeof initialState>(cacheKey);
+
+      if (cached) {
+        console.log("Grabbing from localStorage:", cacheKey);
+        setState(cached);
+        return;
       }
-      console.log("Grabbing from API");
 
+      console.log("Grabbing from API");
       setState(initialState);
       await fetchMovies(1, searchTerm);
     };
@@ -86,7 +82,13 @@ function useHomeFetch(): {
   }, [isLoadingMore, state.page, searchTerm, fetchMovies]);
 
   useEffect(() => {
-    if (!searchTerm) sessionStorage.setItem("homeState", JSON.stringify(state));
+    if (state.results.length === 0) return;
+
+    const cacheKey = searchTerm
+      ? `homeSearch_${encodeURIComponent(searchTerm)}`
+      : "homeState";
+      
+    setPersistedState(cacheKey, state);
   }, [searchTerm, state]);
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };

@@ -1,3 +1,10 @@
+const TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+interface CachedEntry<T> {
+  data: T;
+  timestamp: number;
+}
+
 /**
  * Calculates the time in hours and minutes based on the given time in minutes.
  * @param time - The time in minutes.
@@ -29,25 +36,42 @@ function convertMoney(money: number): string {
 }
 
 /**
- * Retrieves the persisted state from the session storage.
+ * Persists state to localStorage with a timestamp for TTL checking.
  *
- * @param stateName - The name of the state to retrieve.
- * @returns The persisted state if found, otherwise null.
+ * @param key - The localStorage key.
+ * @param data - The data to persist.
+ */
+function setPersistedState(key: string, data: unknown): void {
+  try {
+    const entry: CachedEntry<unknown> = { data, timestamp: Date.now() };
+    localStorage.setItem(key, JSON.stringify(entry));
+  } catch (error) {
+    console.error("Failed to save state for key", key, ":", error);
+  }
+}
+
+/**
+ * Retrieves persisted state from localStorage, returning null if missing or expired.
+ *
+ * @param key - The localStorage key.
+ * @returns The cached data, or null if not found or expired.
  */
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-function getPersistedState<T>(stateName: string): T | null | Error {
-  const sessionState = sessionStorage.getItem(stateName);
+function getPersistedState<T>(key: string): T | null {
   try {
-    return sessionState ? (JSON.parse(sessionState) as T) : null;
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const entry = JSON.parse(raw) as CachedEntry<T>;
+    if (Date.now() - entry.timestamp > TTL_MS) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return entry.data;
   } catch (error) {
-    console.error(
-      "Failed to parse session state for key",
-      stateName,
-      ":",
-      error,
-    );
+    console.error("Failed to parse state for key", key, ":", error);
+    localStorage.removeItem(key);
     return null;
   }
 }
 
-export { calcTime, convertMoney, getPersistedState };
+export { calcTime, convertMoney, getPersistedState, setPersistedState };

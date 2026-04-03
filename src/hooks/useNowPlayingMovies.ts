@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import type { MoviesState } from "./props";
 import { moviesState } from "./props";
-import { getPersistedState } from "../helpers";
+import { getPersistedState, setPersistedState } from "../helpers";
 
 /**
  * Custom hook for fetching now playing movies.
@@ -35,63 +35,73 @@ function useNowPlayingMovies(): {
    * @param {number} page - The page number of the movies to fetch.
    * @returns {Promise<void>} - A promise that resolves when the movies are fetched.
    */
-  const fetchMovies = useCallback(
-    async (page: number, searchTerm = "") => {
-      try {
-        setError(false);
-        setLoading(true);
+  const fetchMovies = useCallback(async (page: number, searchTerm = "") => {
+    try {
+      setError(false);
+      setLoading(true);
 
-        const movies = await api.fetchNowPlayingMovies(page, searchTerm);
+      const movies = await api.fetchNowPlayingMovies(page, searchTerm);
 
-        movies.results.sort(
-          (a, b) =>
-            new Date(b.release_date).getTime() -
-            new Date(a.release_date).getTime(),
-        );
+      movies.results.sort(
+        (a, b) =>
+          new Date(b.release_date).getTime() -
+          new Date(a.release_date).getTime(),
+      );
 
-        setState((prev) => ({
-          ...movies,
-          results:
-            page > 1 ? [...prev.results, ...movies.results] : movies.results,
-        }));
-      } catch (err) {
-        setError(true);
-        console.error("Failed to fetch now playing movies:", err);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [setError, setLoading, setState],
-  );
+      setState((prev) => ({
+        ...movies,
+        results:
+          page > 1 ? [...prev.results, ...movies.results] : movies.results,
+      }));
+    } catch (err) {
+      setError(true);
+      console.error("Failed to fetch now playing movies:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    if (!searchTerm) {
-      const sessionState =
-        getPersistedState<typeof moviesState>("nowPlayingState");
+    const load = async () => {
+      const cacheKey = searchTerm
+        ? `nowPlayingSearch_${encodeURIComponent(searchTerm)}`
+        : "nowPlayingState";
 
-      if (sessionState) {
-        console.log("Grabbing from sessionStorage");
-        setState(sessionState as typeof moviesState);
+      const cached = getPersistedState<typeof moviesState>(cacheKey);
+
+      if (cached) {
+        console.log("Grabbing from localStorage:", cacheKey);
+        setState(cached);
         return;
       }
-    }
 
-    console.log("Grabbing from API");
+      console.log("Grabbing from API");
+      setState(moviesState);
+      await fetchMovies(1, searchTerm);
+    };
 
-    setState(moviesState);
-    void fetchMovies(1, searchTerm);
+    void load();
   }, [searchTerm, fetchMovies]);
 
   useEffect(() => {
     if (!isLoadingMore) return;
 
-    void fetchMovies(state.page + 1, searchTerm);
-    setIsLoadingMore(false);
+    const loadMore = async () => {
+      await fetchMovies(state.page + 1, searchTerm);
+      setIsLoadingMore(false);
+    };
+
+    void loadMore();
   }, [fetchMovies, isLoadingMore, searchTerm, state.page]);
 
   useEffect(() => {
-    if (!searchTerm)
-      sessionStorage.setItem("nowPlayingState", JSON.stringify(state));
+    if (state.results.length === 0) return;
+
+    const cacheKey = searchTerm
+      ? `nowPlayingSearch_${encodeURIComponent(searchTerm)}`
+      : "nowPlayingState";
+      
+    setPersistedState(cacheKey, state);
   }, [searchTerm, state]);
 
   return {
