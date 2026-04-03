@@ -20,28 +20,26 @@ function Movie(): React.JSX.Element {
   const { state: movie, loading, error } = useMovieFetch(movieId ?? ""); // Always call the hook unconditionally
 
   useEffect(() => {
-    if (!movieId) {
-      return; // Do nothing if no movieId
+    if (!movieId || !movie) {
+      return;
     }
     fetch("manifest.json")
       .then((response) => response.json())
       .then((data: { name: string }) => {
-        // Update the title of the page when movie data changes
-        if (movie.original_title) {
-          document.title = `${movie.original_title} - ${data.name}`;
-        }
+        document.title = `${movie.original_title} - ${data.name}`;
       })
       .catch((error: unknown) => {
         console.error("Error fetching manifest.json", error);
       });
-  }, [movie, movieId]); // Dependency array includes movieId to handle changes
+  }, [movie, movieId]);
 
   if (!movieId) {
-    return <div>No movie selected</div>; // Handling the case when no movieId is present
+    return <div>No movie selected</div>;
   }
 
   if (loading) return <Spinner />;
   if (error) return <div>Something went wrong...</div>;
+  if (!movie) return <div>Something went wrong...</div>;
 
   // console.log(movie);
   return (
