@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import type { MoviesState } from "./props";
 import { moviesState } from "./props";
-import { getPersistedState, setPersistedState } from "../helpers";
+import { getCacheKey, getPersistedState, setPersistedState } from "../helpers";
 
 /**
  * Custom hook for fetching upcoming movies from the API.
@@ -66,9 +66,7 @@ function useUpcomingMovies(): {
 
   useEffect(() => {
     const load = async () => {
-      const cacheKey = searchTerm
-        ? `upcomingSearch_${encodeURIComponent(searchTerm)}`
-        : "upcomingState";
+      const cacheKey = getCacheKey("upcoming", searchTerm);
 
       const cached = getPersistedState<typeof moviesState>(cacheKey);
 
@@ -100,11 +98,7 @@ function useUpcomingMovies(): {
   useEffect(() => {
     if (state.results.length === 0) return;
 
-    const cacheKey = searchTerm
-      ? `upcomingSearch_${encodeURIComponent(searchTerm)}`
-      : "upcomingState";
-      
-    setPersistedState(cacheKey, state);
+    setPersistedState(getCacheKey("upcoming", searchTerm), state);
   }, [searchTerm, state]);
 
   return {

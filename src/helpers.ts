@@ -60,12 +60,16 @@ function setPersistedState(key: string, data: unknown): void {
 function getPersistedState<T>(key: string): T | null {
   try {
     const raw = localStorage.getItem(key);
+
     if (!raw) return null;
+
     const entry = JSON.parse(raw) as CachedEntry<T>;
+
     if (Date.now() - entry.timestamp > TTL_MS) {
       localStorage.removeItem(key);
       return null;
     }
+    
     return entry.data;
   } catch (error) {
     console.error("Failed to parse state for key", key, ":", error);
@@ -74,4 +78,10 @@ function getPersistedState<T>(key: string): T | null {
   }
 }
 
-export { calcTime, convertMoney, getPersistedState, setPersistedState };
+function getCacheKey(prefix: string, searchTerm: string): string {
+  return searchTerm
+    ? `${prefix}Search_${encodeURIComponent(searchTerm)}`
+    : `${prefix}State`;
+}
+
+export { calcTime, convertMoney, getCacheKey, getPersistedState, setPersistedState };

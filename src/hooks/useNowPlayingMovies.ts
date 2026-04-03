@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
 import type { MoviesState } from "./props";
 import { moviesState } from "./props";
-import { getPersistedState, setPersistedState } from "../helpers";
+import { getCacheKey, getPersistedState, setPersistedState } from "../helpers";
 
 /**
  * Custom hook for fetching now playing movies.
@@ -63,9 +63,7 @@ function useNowPlayingMovies(): {
 
   useEffect(() => {
     const load = async () => {
-      const cacheKey = searchTerm
-        ? `nowPlayingSearch_${encodeURIComponent(searchTerm)}`
-        : "nowPlayingState";
+      const cacheKey = getCacheKey("nowPlaying", searchTerm);
 
       const cached = getPersistedState<typeof moviesState>(cacheKey);
 
@@ -97,11 +95,7 @@ function useNowPlayingMovies(): {
   useEffect(() => {
     if (state.results.length === 0) return;
 
-    const cacheKey = searchTerm
-      ? `nowPlayingSearch_${encodeURIComponent(searchTerm)}`
-      : "nowPlayingState";
-      
-    setPersistedState(cacheKey, state);
+    setPersistedState(getCacheKey("nowPlaying", searchTerm), state);
   }, [searchTerm, state]);
 
   return {

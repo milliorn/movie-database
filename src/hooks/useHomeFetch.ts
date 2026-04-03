@@ -1,7 +1,7 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../API";
-import { getPersistedState, setPersistedState } from "../helpers";
+import { getCacheKey, getPersistedState, setPersistedState } from "../helpers";
 import { initialState } from "./props";
 
 /**
@@ -42,17 +42,15 @@ function useHomeFetch(): {
     } catch (error) {
       setError(true);
       console.error("Failed to fetch movies:", error);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }, []);
 
   // Initial and search
   useEffect(() => {
     const load = async () => {
-      const cacheKey = searchTerm
-        ? `homeSearch_${encodeURIComponent(searchTerm)}`
-        : "homeState";
+      const cacheKey = getCacheKey("home", searchTerm);
 
       const cached = getPersistedState<typeof initialState>(cacheKey);
 
@@ -84,11 +82,7 @@ function useHomeFetch(): {
   useEffect(() => {
     if (state.results.length === 0) return;
 
-    const cacheKey = searchTerm
-      ? `homeSearch_${encodeURIComponent(searchTerm)}`
-      : "homeState";
-      
-    setPersistedState(cacheKey, state);
+    setPersistedState(getCacheKey("home", searchTerm), state);
   }, [searchTerm, state]);
 
   return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
