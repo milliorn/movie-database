@@ -84,4 +84,41 @@ function getCacheKey(prefix: string, searchTerm: string): string {
     : `${prefix}State`;
 }
 
-export { calcTime, convertMoney, getCacheKey, getPersistedState, setPersistedState };
+const SEARCH_CACHE_LIMIT = 30;
+
+/**
+ * Evicts the oldest search cache entries for a given prefix when the count
+ * exceeds SEARCH_CACHE_LIMIT, preventing unbounded localStorage growth.
+ *
+ * @param prefix - The cache key prefix (e.g. "home", "nowPlaying").
+ */
+function pruneSearchCache(prefix: string): void {
+  const pattern = `${prefix}Search_`;
+  const entries: { key: string; timestamp: number }[] = [];
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    if (key?.startsWith(pattern)) {
+      try {
+        const raw = localStorage.getItem(key);
+        
+        if (raw) {
+          const { timestamp } = JSON.parse(raw) as CachedEntry<unknown>;
+          entries.push({ key, timestamp });
+        }
+      } catch {
+        localStorage.removeItem(key);
+      }
+    }
+  }
+
+  if (entries.length > SEARCH_CACHE_LIMIT) {
+    entries
+      .sort((a, b) => a.timestamp - b.timestamp)
+      .slice(0, entries.length - SEARCH_CACHE_LIMIT)
+      .forEach(({ key }) => { localStorage.removeItem(key); });
+  }
+}
+
+export { calcTime, convertMoney, getCacheKey, getPersistedState, pruneSearchCache, setPersistedState };
