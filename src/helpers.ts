@@ -96,13 +96,11 @@ function pruneSearchCache(prefix: string): void {
   const pattern = `${prefix}Search_`;
   const entries: { key: string; timestamp: number }[] = [];
 
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-
-    if (key?.startsWith(pattern)) {
+  for (const key of Object.keys(localStorage)) {
+    if (key.startsWith(pattern)) {
       try {
         const raw = localStorage.getItem(key);
-        
+
         if (raw) {
           const { timestamp } = JSON.parse(raw) as CachedEntry<unknown>;
           entries.push({ key, timestamp });
