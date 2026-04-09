@@ -88,7 +88,7 @@ function useMovieFetch(
   }, [fetchMovies, isLoadingMore, searchTerm, state.page]);
 
   useEffect(() => {
-    if (state.results.length === 0) return;
+    if (state.results.length === 0 || state.page !== 1) return;
 
     setPersistedState(getCacheKey(cachePrefix, searchTerm), state);
     if (searchTerm) pruneSearchCache(cachePrefix);
