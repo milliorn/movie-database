@@ -6,16 +6,6 @@ import type { Cast, Crew, MoviePropTypes } from "../Global.props";
 type MovieState = MoviePropTypes & { actors: Cast[]; directors: Crew[] };
 
 /**
- * Represents the initial state for movies.
- */
-const initialState = {
-  page: 0,
-  results: [] as MoviePropTypes[],
-  total_pages: 0,
-  total_results: 0,
-};
-
-/**
  * Represents the state of movies.
  */
 interface MoviesState {
@@ -37,4 +27,4 @@ const moviesState: MoviesState = {
 
 export type { MovieState, MoviesState };
 
-export { initialState, moviesState };
+export { moviesState };

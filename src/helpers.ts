@@ -69,7 +69,7 @@ function getPersistedState<T>(key: string): T | null {
       localStorage.removeItem(key);
       return null;
     }
-    
+
     return entry.data;
   } catch (error) {
     console.error("Failed to parse state for key", key, ":", error);
@@ -115,8 +115,17 @@ function pruneSearchCache(prefix: string): void {
     entries
       .sort((a, b) => a.timestamp - b.timestamp)
       .slice(0, entries.length - SEARCH_CACHE_LIMIT)
-      .forEach(({ key }) => { localStorage.removeItem(key); });
+      .forEach(({ key }) => {
+        localStorage.removeItem(key);
+      });
   }
 }
 
-export { calcTime, convertMoney, getCacheKey, getPersistedState, pruneSearchCache, setPersistedState };
+export {
+  calcTime,
+  convertMoney,
+  getCacheKey,
+  getPersistedState,
+  pruneSearchCache,
+  setPersistedState,
+};

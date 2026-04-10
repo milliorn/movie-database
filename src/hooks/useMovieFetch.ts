@@ -1,6 +1,11 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
-import { getCacheKey, getPersistedState, pruneSearchCache, setPersistedState } from "../helpers";
+import {
+  getCacheKey,
+  getPersistedState,
+  pruneSearchCache,
+  setPersistedState,
+} from "../helpers";
 import type { MoviesState } from "./props";
 import { moviesState } from "./props";
 
@@ -40,7 +45,9 @@ function useMovieFetch(
             return isNaN(t) ? -Infinity : t;
           };
 
-          movies.results.sort((a, b) => getTime(b.release_date) - getTime(a.release_date));
+          movies.results.sort(
+            (a, b) => getTime(b.release_date) - getTime(a.release_date),
+          );
         }
 
         setState((prev) => ({
