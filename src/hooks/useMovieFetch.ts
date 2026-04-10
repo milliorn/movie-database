@@ -35,11 +35,12 @@ function useMovieFetch(
         const movies = await fetcher(page, searchTerm);
 
         if (sortByDate) {
-          movies.results.sort(
-            (a, b) =>
-              new Date(b.release_date).getTime() -
-              new Date(a.release_date).getTime(),
-          );
+          const getTime = (date: string) => {
+            const t = new Date(date).getTime();
+            return isNaN(t) ? -Infinity : t;
+          };
+
+          movies.results.sort((a, b) => getTime(b.release_date) - getTime(a.release_date));
         }
 
         setState((prev) => ({
