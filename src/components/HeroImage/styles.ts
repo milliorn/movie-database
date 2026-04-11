@@ -41,11 +41,15 @@ const Overlay = styled.div`
 `;
 
 const Content = styled.div`
+  bottom: 0;
+  left: 0;
   margin: 0 auto;
   max-width: var(--maxWidth);
   padding: 1.25rem;
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
 `;
 
 const Text = styled.div`
