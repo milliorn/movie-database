@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   /**
    * Styles for the heading inside the Grid component.
    */
-  h1 {
+  h2 {
     color: var(--white);
 
     @media screen and (max-width: 768px) {

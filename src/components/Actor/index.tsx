@@ -14,7 +14,7 @@ import { Image, Wrapper } from "./styles";
 function Actor({ name, character, imageUrl }: ActorProps): React.JSX.Element {
   return (
     <Wrapper>
-      <Image src={imageUrl} alt="actor-thumb" />
+      <Image src={imageUrl} alt="actor-thumb" width={200} height={200} />
       <h3>{name}</h3>
       <p>{character}</p>
     </Wrapper>
