@@ -26,7 +26,7 @@ function Movie(): React.JSX.Element {
     fetch("manifest.json")
       .then((response) => response.json())
       .then((data: { name: string }) => {
-        document.title = `${movie.original_title} - ${data.name}`;
+        document.title = `${movie.title} - ${data.name}`;
       })
       .catch((error: unknown) => {
         console.error("Error fetching manifest.json", error);
@@ -44,7 +44,7 @@ function Movie(): React.JSX.Element {
   // console.log(movie);
   return (
     <>
-      <BreadCrumb movieTitle={movie.original_title} />
+      <BreadCrumb movieTitle={movie.title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar
         time={movie.runtime}
