@@ -72,8 +72,6 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
                     src={`${IMAGE_BASE_URL}${COMPANY_POSTER_SIZE}${company.logo_path}`}
                     alt={company.name}
                     className="company-logo"
-                    width={170}
-                    height={100}
                   />
                 ),
             )}
