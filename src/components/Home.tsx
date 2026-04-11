@@ -35,13 +35,15 @@ function Home(): React.JSX.Element {
 
   return (
     <div className="">
-      {state.results[0] ? (
-        <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
-          title={state.results[0].original_title}
-          text={state.results[0].overview}
-        />
-      ) : null}
+      <HeroImage
+        image={
+          state.results[0]
+            ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`
+            : ""
+        }
+        title={state.results[0]?.original_title ?? ""}
+        text={state.results[0]?.overview ?? ""}
+      />
       <SearchBar setSearchTerm={setSearchTerm} />
       <Grid header={searchTerm ? "Search Results" : "Popular Movies"}>
         {state.results.map((movie) => (
