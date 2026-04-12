@@ -32,7 +32,8 @@ function Home(): React.JSX.Element {
       });
   }, []);
 
-  if (error) return <ErrorView message="Failed to load movies. Please try again." />;
+  if (error)
+    return <ErrorView message="Failed to load movies. Please try again." />;
 
   return (
     <div className="">

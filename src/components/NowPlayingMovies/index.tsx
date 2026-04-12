@@ -23,7 +23,10 @@ function NowPlayingMovies(): React.JSX.Element {
     document.title = "Now Playing Movies"; // Set the page title
   }, []);
 
-  if (error) return <ErrorView message="Failed to load now playing movies. Please try again." />;
+  if (error)
+    return (
+      <ErrorView message="Failed to load now playing movies. Please try again." />
+    );
 
   // console.log(state.results);
 

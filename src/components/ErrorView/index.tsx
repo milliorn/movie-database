@@ -9,7 +9,9 @@ interface ErrorViewProps {
 /**
  * Renders an error state with a retry button and a link back to home.
  */
-function ErrorView({ message = "Something went wrong." }: ErrorViewProps): React.JSX.Element {
+function ErrorView({
+  message = "Something went wrong.",
+}: ErrorViewProps): React.JSX.Element {
   const navigate = useNavigate();
 
   return (

@@ -23,7 +23,10 @@ function UpcomingMovies(): React.JSX.Element {
     document.title = "Upcoming Movies"; // Set the page title
   }, []);
 
-  if (error) return <ErrorView message="Failed to load upcoming movies. Please try again." />;
+  if (error)
+    return (
+      <ErrorView message="Failed to load upcoming movies. Please try again." />
+    );
 
   // console.log(state.results);
 

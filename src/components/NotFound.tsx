@@ -13,7 +13,12 @@ function NotFound(): React.JSX.Element {
 
   return (
     <Wrapper>
-      <GoBack type="button" onClick={() => { void navigate(-1); }}>
+      <GoBack
+        type="button"
+        onClick={() => {
+          void navigate(-1);
+        }}
+      >
         &larr; Go back
       </GoBack>
       <Title>Page Not Found</Title>

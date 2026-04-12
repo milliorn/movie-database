@@ -40,7 +40,10 @@ function Movie(): React.JSX.Element {
   }
 
   if (loading) return <Spinner />;
-  if (error) return <ErrorView message="Failed to load movie details. Please try again." />;
+  if (error)
+    return (
+      <ErrorView message="Failed to load movie details. Please try again." />
+    );
   if (!movie) return <ErrorView message="Movie not found." />;
 
   // console.log(movie);
