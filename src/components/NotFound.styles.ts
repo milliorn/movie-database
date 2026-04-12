@@ -4,9 +4,9 @@ export const Wrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 3.75rem 1.25rem;
 `;
 
 export const GoBack = styled.button`

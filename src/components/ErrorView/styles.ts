@@ -41,9 +41,13 @@ export const ActionButton = styled.button`
   cursor: pointer;
   font-size: var(--fontMed);
   min-width: 140px;
-  outline: none;
   padding: 0.6rem 1.5rem;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+
+  &:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+  }
 
   &:hover {
     background: var(--lightGrey);
