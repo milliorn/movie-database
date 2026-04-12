@@ -62,7 +62,6 @@ function useMovieFetch(movieId: string): {
     void fetchMovie();
   }, [movieId]);
 
-  // Write to localStorage only when state has been populated
   useEffect(() => {
     if (state) {
       setPersistedState(movieId, state);

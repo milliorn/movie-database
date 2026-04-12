@@ -22,7 +22,7 @@ function Thumb({
   return (
     <div className="">
       {clickable && movieId != null ? (
-        <Link to={`/${movieId}`} aria-label={movieTitle ?? "View movie"}>
+        <Link to={`/${movieId}`}>
           <Image
             src={image}
             alt={altText}

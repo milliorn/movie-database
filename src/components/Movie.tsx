@@ -18,8 +18,8 @@ import Spinner from "./Spinner";
  * @returns The JSX.Element representing the Movie component.
  */
 function Movie(): React.JSX.Element {
-  const { movieId } = useParams<{ movieId?: string }>(); // Ensure movieId is possibly undefined
-  const { state: movie, loading, error } = useMovieFetch(movieId ?? ""); // Always call the hook unconditionally
+  const { movieId } = useParams<{ movieId?: string }>();
+  const { state: movie, loading, error } = useMovieFetch(movieId ?? "");
 
   useEffect(() => {
     if (!movieId || !movie) {

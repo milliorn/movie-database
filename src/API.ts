@@ -20,6 +20,13 @@ interface Credits {
   id: number;
 }
 
+async function fetchJSON<T>(url: string): Promise<T> {
+  const response = await fetch(url);
+  if (!response.ok)
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  return (await response.json()) as unknown as T;
+}
+
 /**
  * The API object provides methods for fetching movies, movie details, credits, and more.
  */
@@ -34,46 +41,29 @@ const api = {
     const endpoint = searchTerm
       ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies?page=${page}`;
-    const response = await fetch(endpoint);
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as Movies;
+    return fetchJSON<Movies>(endpoint);
   },
   /**
    * Fetches details of a specific movie.
    * @param movieId - The ID of the movie.
    * @returns A promise that resolves to a MoviePropTypes object.
    */
-  fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
-    const response = await fetch(`${BACKEND_API_URL}/api/movie/${movieId}`);
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as MoviePropTypes;
-  },
+  fetchMovie: async (movieId: string): Promise<MoviePropTypes> =>
+    fetchJSON<MoviePropTypes>(`${BACKEND_API_URL}/api/movie/${movieId}`),
   /**
    * Fetches the credits for a specific movie.
    * @param movieId - The ID of the movie.
    * @returns A promise that resolves to a Credits object.
    */
-  fetchCredits: async (movieId: string): Promise<Credits> => {
-    const response = await fetch(`${BACKEND_API_URL}/api/credits/${movieId}`);
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as Credits;
-  },
+  fetchCredits: async (movieId: string): Promise<Credits> =>
+    fetchJSON<Credits>(`${BACKEND_API_URL}/api/credits/${movieId}`),
   /**
    * Fetches a list of top rated movies based on the page number.
    * @param page - The page number of the movie list.
    * @returns A promise that resolves to a Movies object.
    */
-  fetchTopRatedMovies: async (page: number): Promise<Movies> => {
-    const response = await fetch(
-      `${BACKEND_API_URL}/api/movies/top_rated?page=${page}`,
-    );
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as Movies;
-  },
+  fetchTopRatedMovies: async (page: number): Promise<Movies> =>
+    fetchJSON<Movies>(`${BACKEND_API_URL}/api/movies/top_rated?page=${page}`),
   /**
    * Fetches a list of upcoming movies based on the page number.
    * @param page - The page number of the movie list.
@@ -86,11 +76,7 @@ const api = {
     const endpoint = searchTerm
       ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`;
-
-    const response = await fetch(endpoint);
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as Movies;
+    return fetchJSON<Movies>(endpoint);
   },
   /**
    * Fetches a list of now playing movies based on the page number.
@@ -104,11 +90,7 @@ const api = {
     const endpoint = searchTerm
       ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies/now_playing?page=${page}`;
-
-    const response = await fetch(endpoint);
-    if (!response.ok)
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    return (await response.json()) as unknown as Movies;
+    return fetchJSON<Movies>(endpoint);
   },
 };
 
