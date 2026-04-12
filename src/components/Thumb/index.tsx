@@ -15,21 +15,24 @@ function Thumb({
   clickable,
   rating,
   vote_count,
+  movieTitle,
 }: ThumbProps): React.JSX.Element {
+  const altText = movieTitle ? `${movieTitle} poster` : "movie poster";
+
   return (
     <div className="">
       {clickable ? (
-        <Link to={`/${movieId}`}>
+        <Link to={`/${movieId}`} aria-label={movieTitle ?? "View movie"}>
           <Image
             src={image}
-            alt="movie-thumb"
+            alt={altText}
             $isClicked={true}
             width={780}
             height={1170}
           />
         </Link>
       ) : (
-        <Image src={image} alt="movie-thumb" $isClicked={false} />
+        <Image src={image} alt={altText} $isClicked={false} />
       )}
       <ThumbInfoContainer>
         <RatingText>Rating: {rating?.toFixed(1)}</RatingText>

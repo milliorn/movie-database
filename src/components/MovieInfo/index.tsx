@@ -25,6 +25,7 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
               : NoImage
           }
           clickable={false}
+          movieTitle={movie.title}
         />
         <Text>
           <h1>{movie.title}</h1>

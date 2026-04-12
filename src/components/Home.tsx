@@ -57,6 +57,7 @@ function Home(): React.JSX.Element {
                 : NoImage
             }
             movieId={movie.id}
+            movieTitle={movie.title}
             rating={movie.vote_average}
             vote_count={movie.vote_count}
           />
