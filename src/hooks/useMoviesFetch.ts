@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../API";
-import { getPersistedState } from "../helpers";
+import { getPersistedState, setPersistedState } from "../helpers";
 import type { MovieState } from "./props";
 
 /**
@@ -55,16 +55,16 @@ function useMovieFetch(movieId: string): {
         setLoading(false);
       } catch (_err) {
         setError(true);
+        setLoading(false);
       }
     };
 
     void fetchMovie();
   }, [movieId]);
 
-  // Write to sessionStorage only when state has been populated
   useEffect(() => {
     if (state) {
-      sessionStorage.setItem(movieId, JSON.stringify(state));
+      setPersistedState(movieId, state);
     }
   }, [movieId, state]);
 

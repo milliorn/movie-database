@@ -46,6 +46,7 @@ function SearchBar({ setSearchTerm }: SearchBarProps): React.JSX.Element {
         <input
           id="searchBar"
           name="searchBar"
+          aria-label="Search movies"
           onChange={(event) => {
             setState(event.currentTarget.value);
           }}

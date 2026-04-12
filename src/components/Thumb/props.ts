@@ -26,4 +26,9 @@ export interface ThumbProps {
    * The vote count of the movie associated with the Thumb component.
    */
   vote_count?: number;
+
+  /**
+   * The title of the movie, used for accessible alt and aria-label text.
+   */
+  movieTitle?: string;
 }
