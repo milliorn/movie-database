@@ -34,7 +34,10 @@ const api = {
     const endpoint = searchTerm
       ? `${BACKEND_API_URL}/api/movies?searchTerm=${searchTerm}&page=${page}`
       : `${BACKEND_API_URL}/api/movies?page=${page}`;
-    return (await (await fetch(endpoint)).json()) as unknown as Movies;
+    const response = await fetch(endpoint);
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    return (await response.json()) as unknown as Movies;
   },
   /**
    * Fetches details of a specific movie.
@@ -43,6 +46,8 @@ const api = {
    */
   fetchMovie: async (movieId: string): Promise<MoviePropTypes> => {
     const response = await fetch(`${BACKEND_API_URL}/api/movie/${movieId}`);
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
     return (await response.json()) as unknown as MoviePropTypes;
   },
   /**
@@ -52,6 +57,8 @@ const api = {
    */
   fetchCredits: async (movieId: string): Promise<Credits> => {
     const response = await fetch(`${BACKEND_API_URL}/api/credits/${movieId}`);
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
     return (await response.json()) as unknown as Credits;
   },
   /**
@@ -63,6 +70,8 @@ const api = {
     const response = await fetch(
       `${BACKEND_API_URL}/api/movies/top_rated?page=${page}`,
     );
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
     return (await response.json()) as unknown as Movies;
   },
   /**
@@ -79,6 +88,8 @@ const api = {
       : `${BACKEND_API_URL}/api/movies/upcoming?page=${page}`;
 
     const response = await fetch(endpoint);
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
     return (await response.json()) as unknown as Movies;
   },
   /**
@@ -95,6 +106,8 @@ const api = {
       : `${BACKEND_API_URL}/api/movies/now_playing?page=${page}`;
 
     const response = await fetch(endpoint);
+    if (!response.ok)
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
     return (await response.json()) as unknown as Movies;
   },
 };
