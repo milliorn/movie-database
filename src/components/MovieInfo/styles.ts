@@ -58,12 +58,12 @@ export const Text = styled.div`
    * Company logo container.
    */
   .company-logo {
-    align-items: center;
     backdrop-filter: invert(100%);
     border: 1px solid var(--white);
     display: block;
-    justify-content: center;
+    height: 100px;
     margin: 1rem auto;
+    object-fit: contain;
     width: 50%;
 
     @media screen and (min-width: 640px) {

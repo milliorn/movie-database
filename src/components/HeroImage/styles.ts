@@ -1,20 +1,11 @@
 import styled from "styled-components";
-import type { WrapperProps } from "./props";
 
-/**
- * Represents a styled div component for the hero image wrapper.
- * @param $image - The URL of the image to be displayed as the background.
- */
-const Wrapper = styled.div<WrapperProps>`
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0) 41%, rgba(0, 0, 0, 0.65) 100%),
-    url(${({ $image }) => $image}),
-    var(--darkGrey) no-repeat center center / cover;
+const Wrapper = styled.div`
   animation: animateHeroImage 1s;
-  background-position: center;
-  background-size: 100%, cover;
+  background: var(--darkGrey);
   display: block;
   height: 38rem;
+  overflow: hidden;
   position: relative;
 
   @keyframes animateHeroImage {
@@ -27,42 +18,64 @@ const Wrapper = styled.div<WrapperProps>`
   }
 `;
 
-/**
- * Represents a styled div component for the content within the hero image.
- */
-const Content = styled.div`
-  margin: 0 auto;
-  max-width: var(--maxWidth);
-  padding: 1.25rem; /* 20px */
+const BackgroundImage = styled.img`
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
 `;
 
-/**
- * Represents a styled div component for displaying text within the hero image.
- */
+const Overlay = styled.div`
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 41%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
+const Content = styled.div`
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  max-width: var(--maxWidth);
+  padding: 1.25rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+`;
+
 const Text = styled.div`
   bottom: 40px;
   color: var(--white);
-  margin-right: 1.25rem; /* 20px */
-  max-width: 42rem; /* 672px */
-  min-height: 6rem; /* 96px */
+  margin-right: 1.25rem;
+  max-width: 42rem;
+  min-height: 6rem;
   position: absolute;
   z-index: 1;
 
   h1 {
     font-size: var(--fontSuperBig);
 
-    @media screen and(max-width: 720px) {
+    @media screen and (max-width: 720px) {
       font-size: var(--fontBig);
     }
   }
 
   p {
+    backdrop-filter: blur(4px);
     font-size: var(--fontMed);
-    line-height: 1.5; /* Improved line height for better readability */
-    letter-spacing: 0.5px; /* Slightly increased letter spacing */
-    backdrop-filter: blur(4px); // Background blur for readability
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Text shadow for readability
-    
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
     @media screen and (max-width: 720px) {
       font-size: var(--fontSmall);
     }
@@ -71,7 +84,6 @@ const Text = styled.div`
   @media screen and (max-width: 720px) {
     max-width: 100%;
   }
-};
 `;
 
-export { Content, Text, Wrapper };
+export { BackgroundImage, Content, Overlay, Text, Wrapper };

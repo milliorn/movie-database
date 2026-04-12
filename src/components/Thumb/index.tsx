@@ -20,7 +20,13 @@ function Thumb({
     <div className="">
       {clickable ? (
         <Link to={`/${movieId}`}>
-          <Image src={image} alt="movie-thumb" $isClicked={true} />
+          <Image
+            src={image}
+            alt="movie-thumb"
+            $isClicked={true}
+            width={780}
+            height={1170}
+          />
         </Link>
       ) : (
         <Image src={image} alt="movie-thumb" $isClicked={false} />

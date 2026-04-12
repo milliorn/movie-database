@@ -28,7 +28,7 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
         />
         <Text>
           <h1>{movie.title}</h1>
-          {movie.tagline && <h3>{movie.tagline}</h3>}
+          {movie.tagline && <h2>{movie.tagline}</h2>}
           <p className="movie-overview">{movie.overview}</p>
           {movie.homepage && (
             <div className="website">
@@ -39,26 +39,26 @@ function MovieInfo({ movie }: MovieInfoProps): React.JSX.Element {
           )}
           <div className="rating-directors">
             <div className="rating">
-              <h3>RATING</h3>
+              <h2>RATING</h2>
               <div className="score">{movie.vote_average.toFixed()}/10</div>
             </div>
             <div className="director">
-              <h3>DIRECTOR{movie.directors.length > 1 ? "S" : ""}</h3>
+              <h2>DIRECTOR{movie.directors.length > 1 ? "S" : ""}</h2>
               {movie.directors.map((director) => (
                 <p key={director.credit_id}>{director.name}</p>
               ))}
             </div>
             <div className="release">
-              <h3>RELEASE DATE</h3>
+              <h2>RELEASE DATE</h2>
               <p>{movie.release_date}</p>
             </div>
             <div className="status">
-              <h3>STATUS</h3>
+              <h2>STATUS</h2>
               <p>{movie.status}</p>
             </div>
           </div>
           <div className="genre">
-            <h3>GENRE{movie.genres.length > 1 ? "S:" : ":"}</h3>
+            <h2>GENRE{movie.genres.length > 1 ? "S:" : ":"}</h2>
             {movie.genres.map((genre) => (
               <p key={genre.id}>{genre.name}</p>
             ))}
