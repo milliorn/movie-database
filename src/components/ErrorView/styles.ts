@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   text-align: center;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   color: var(--white);
   font-size: var(--fontSuperBig);
   margin: 0;
@@ -46,6 +46,7 @@ export const ActionButton = styled.button`
   transition: background 0.2s;
 
   &:hover {
-    background: var(--medGrey);
+    background: var(--lightGrey);
+    color: var(--darkGrey);
   }
 `;
