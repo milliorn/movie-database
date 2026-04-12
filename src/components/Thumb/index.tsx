@@ -20,10 +20,10 @@ function Thumb({
     <div className="">
       {clickable ? (
         <Link to={`/${movieId}`}>
-          <Image src={image} alt="movie-thumb" $isClicked={true} width={780} height={1170} />
+          <Image src={image} alt="movie-thumb" $isClicked={true} />
         </Link>
       ) : (
-        <Image src={image} alt="movie-thumb" $isClicked={false} width={780} height={1170} />
+        <Image src={image} alt="movie-thumb" $isClicked={false} />
       )}
       <ThumbInfoContainer>
         <RatingText>Rating: {rating?.toFixed(1)}</RatingText>
