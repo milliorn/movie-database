@@ -3,6 +3,7 @@ import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 import useHomeFetch from "../hooks/useHomeFetch";
 import NoImage from "../images/no_image.jpg";
 import Button from "./Button";
+import ErrorView from "./ErrorView";
 import Grid from "./Grid";
 import HeroImage from "./HeroImage";
 import SearchBar from "./SearchBar";
@@ -31,7 +32,7 @@ function Home(): React.JSX.Element {
       });
   }, []);
 
-  if (error) return <div>Something went wrong...oops!</div>;
+  if (error) return <ErrorView message="Failed to load movies. Please try again." />;
 
   return (
     <div className="">

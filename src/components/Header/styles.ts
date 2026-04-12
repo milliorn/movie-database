@@ -32,7 +32,7 @@ const NavItem = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: var(--medGrey);
+    color: var(--lightGrey);
   }
 `;
 

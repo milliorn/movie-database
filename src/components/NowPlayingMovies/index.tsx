@@ -3,6 +3,7 @@ import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
 import NoImage from "../../images/no_image.jpg";
 import Button from "../Button";
+import ErrorView from "../ErrorView";
 import Grid from "../Grid";
 import HeroImage from "../HeroImage";
 import SearchBar from "../SearchBar";
@@ -22,7 +23,7 @@ function NowPlayingMovies(): React.JSX.Element {
     document.title = "Now Playing Movies"; // Set the page title
   }, []);
 
-  if (error) return <div>Something went wrong...oops!</div>;
+  if (error) return <ErrorView message="Failed to load now playing movies. Please try again." />;
 
   // console.log(state.results);
 

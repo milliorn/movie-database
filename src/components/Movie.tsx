@@ -5,9 +5,11 @@ import useMovieFetch from "../hooks/useMoviesFetch";
 import NoImage from "../images/no_image.jpg";
 import Actor from "./Actor";
 import BreadCrumb from "./BreadCrumb";
+import ErrorView from "./ErrorView";
 import Grid from "./Grid";
 import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
+import NotFound from "./NotFound";
 import Spinner from "./Spinner";
 
 /**
@@ -33,13 +35,13 @@ function Movie(): React.JSX.Element {
       });
   }, [movie, movieId]);
 
-  if (!movieId) {
-    return <div>No movie selected</div>;
+  if (!movieId || !/^\d+$/.test(movieId)) {
+    return <NotFound />;
   }
 
   if (loading) return <Spinner />;
-  if (error) return <div>Something went wrong...</div>;
-  if (!movie) return <div>Something went wrong...</div>;
+  if (error) return <ErrorView message="Failed to load movie details. Please try again." />;
+  if (!movie) return <ErrorView message="Movie not found." />;
 
   // console.log(movie);
   return (

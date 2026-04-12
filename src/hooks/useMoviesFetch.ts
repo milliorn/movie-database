@@ -55,6 +55,7 @@ function useMovieFetch(movieId: string): {
         setLoading(false);
       } catch (_err) {
         setError(true);
+        setLoading(false);
       }
     };
 
