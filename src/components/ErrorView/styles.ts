@@ -36,7 +36,7 @@ const actionButtonStyles = `
   font-size: var(--fontMed);
   min-width: 140px;
   padding: 0.6rem 1.5rem;
-  text-decoration: none; /* for ActionLinkButton */
+  text-decoration: none;
   transition:
     background 0.2s,
     color 0.2s;
