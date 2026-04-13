@@ -22,13 +22,6 @@ function useMovieFetch(movieId: string): {
     const fetchMovie = async () => {
       const sessionState = getPersistedState<MovieState>(movieId);
 
-      if (sessionState instanceof Error) {
-        console.error("Error retrieving state:", sessionState);
-        setError(true);
-        setLoading(false);
-        return;
-      }
-
       if (sessionState) {
         setState(sessionState);
         setLoading(false);
@@ -39,18 +32,21 @@ function useMovieFetch(movieId: string): {
         setLoading(true);
         setError(false);
 
-        const movie = await api.fetchMovie(movieId);
-        const credits = await api.fetchCredits(movieId);
-        // Get directors only
+        const [movie, credits] = await Promise.all([
+          api.fetchMovie(movieId),
+          api.fetchCredits(movieId),
+        ]);
         const directors = credits.crew.filter(
           (member) => member.job === "Director",
         );
 
-        setState({
+        const nextState: MovieState = {
           ...movie,
           actors: credits.cast,
           directors,
-        });
+        };
+        setPersistedState(movieId, nextState);
+        setState(nextState);
 
         setLoading(false);
       } catch (_err) {
@@ -61,12 +57,6 @@ function useMovieFetch(movieId: string): {
 
     void fetchMovie();
   }, [movieId]);
-
-  useEffect(() => {
-    if (state) {
-      setPersistedState(movieId, state);
-    }
-  }, [movieId, state]);
 
   return { state, loading, error };
 }

@@ -12,6 +12,16 @@ import MovieInfoBar from "./MovieInfoBar";
 import NotFound from "./NotFound";
 import Spinner from "./Spinner";
 
+const MOVIE_ID_RE = /^\d+$/;
+
+const appNamePromise: Promise<string> = fetch("manifest.json")
+  .then((r) => {
+    if (!r.ok) throw new Error(`${r.status}`);
+    return r.json() as Promise<{ name: string }>;
+  })
+  .then((d) => d.name)
+  .catch(() => "");
+
 /**
  * Renders the Movie component.
  *
@@ -25,17 +35,12 @@ function Movie(): React.JSX.Element {
     if (!movieId || !movie) {
       return;
     }
-    fetch("manifest.json")
-      .then((response) => response.json())
-      .then((data: { name: string }) => {
-        document.title = `${movie.title} - ${data.name}`;
-      })
-      .catch((error: unknown) => {
-        console.error("Error fetching manifest.json", error);
-      });
+    void appNamePromise.then((appName) => {
+      document.title = appName ? `${movie.title} - ${appName}` : movie.title;
+    });
   }, [movie, movieId]);
 
-  if (!movieId || !/^\d+$/.test(movieId)) {
+  if (!movieId || !MOVIE_ID_RE.test(movieId)) {
     return <NotFound />;
   }
 
@@ -46,7 +51,6 @@ function Movie(): React.JSX.Element {
     );
   if (!movie) return <ErrorView message="Movie not found." />;
 
-  // console.log(movie);
   return (
     <>
       <BreadCrumb movieTitle={movie.title} />

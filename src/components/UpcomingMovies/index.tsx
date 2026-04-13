@@ -28,8 +28,6 @@ function UpcomingMovies(): React.JSX.Element {
       <ErrorView message="Failed to load upcoming movies. Please try again." />
     );
 
-  // console.log(state.results);
-
   return (
     <div>
       <HeroImage

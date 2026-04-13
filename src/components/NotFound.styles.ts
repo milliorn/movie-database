@@ -1,11 +1,8 @@
 import styled from "styled-components";
+import { PageMessage, PageTitle, PageWrapper } from "./pageStyles";
 
-export const Wrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+export const Wrapper = styled(PageWrapper)`
   gap: 1.5rem;
-  justify-content: center;
   padding: 3.75rem 1.25rem;
 `;
 
@@ -22,15 +19,10 @@ export const GoBack = styled.button`
   }
 `;
 
-export const Title = styled.h1`
-  color: var(--white);
+export const Title = styled(PageTitle)`
   font-size: var(--fontBig);
-  margin: 0;
 `;
 
-export const Message = styled.p`
-  color: var(--lightGrey);
+export const Message = styled(PageMessage)`
   font-size: var(--fontSmall);
-  margin: 0;
-  text-align: center;
 `;
