@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PageMessage, PageTitle, PageWrapper } from "../pageStyles";
 
@@ -26,7 +27,7 @@ export const Actions = styled.div`
   margin-top: 1rem;
 `;
 
-export const ActionButton = styled.button`
+const actionButtonStyles = `
   background: var(--darkGrey);
   border: 2px solid var(--white);
   border-radius: 1rem;
@@ -49,4 +50,12 @@ export const ActionButton = styled.button`
     background: var(--lightGrey);
     color: var(--darkGrey);
   }
+`;
+
+export const ActionButton = styled.button`
+  ${actionButtonStyles}
+`;
+
+export const ActionLinkButton = styled(Link)`
+  ${actionButtonStyles}
 `;

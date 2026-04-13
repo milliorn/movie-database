@@ -1,6 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ActionButton, Actions, Message, Title, Wrapper } from "./styles";
+import {
+  ActionButton,
+  ActionLinkButton,
+  Actions,
+  Message,
+  Title,
+  Wrapper,
+} from "./styles";
 
 interface ErrorViewProps {
   message?: string;
@@ -22,9 +28,7 @@ function ErrorView({
         >
           Try Again
         </ActionButton>
-        <ActionButton as={Link} to="/">
-          Go Home
-        </ActionButton>
+        <ActionLinkButton to="/">Go Home</ActionLinkButton>
       </Actions>
     </Wrapper>
   );
