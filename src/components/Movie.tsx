@@ -12,6 +12,8 @@ import MovieInfoBar from "./MovieInfoBar";
 import NotFound from "./NotFound";
 import Spinner from "./Spinner";
 
+const MOVIE_ID_RE = /^\d+$/;
+
 /**
  * Renders the Movie component.
  *
@@ -35,7 +37,7 @@ function Movie(): React.JSX.Element {
       });
   }, [movie, movieId]);
 
-  if (!movieId || !/^\d+$/.test(movieId)) {
+  if (!movieId || !MOVIE_ID_RE.test(movieId)) {
     return <NotFound />;
   }
 
@@ -46,7 +48,6 @@ function Movie(): React.JSX.Element {
     );
   if (!movie) return <ErrorView message="Movie not found." />;
 
-  // console.log(movie);
   return (
     <>
       <BreadCrumb movieTitle={movie.title} />
