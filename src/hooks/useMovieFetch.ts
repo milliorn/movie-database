@@ -71,7 +71,7 @@ function useMovieFetch(
       const cached = getPersistedState<MoviesState>(cacheKey);
 
       if (cached) {
-        //Grabbing from localStorage
+        // Grabbing from localStorage
         setState(cached);
         return;
       }
