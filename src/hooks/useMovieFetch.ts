@@ -71,12 +71,12 @@ function useMovieFetch(
       const cached = getPersistedState<MoviesState>(cacheKey);
 
       if (cached) {
-        console.log("Grabbing from localStorage:", cacheKey);
+        //Grabbing from localStorage
         setState(cached);
         return;
       }
 
-      console.log("Grabbing from API");
+      // Grabbing from API
       setState(moviesState);
       await fetchMovies(1, searchTerm);
     };
