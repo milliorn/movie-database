@@ -1,47 +1,41 @@
 import styled from "styled-components";
+import { PageMessage, PageTitle, PageWrapper } from "../pageStyles";
 
-export const Wrapper = styled.div`
-  align-items: center;
+export const Wrapper = styled(PageWrapper)`
   color: var(--white);
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
   margin: 6rem auto;
   max-width: 480px;
   padding: 0 1rem;
   text-align: center;
 `;
 
-export const Title = styled.h1`
-  color: var(--white);
+export const Title = styled(PageTitle)`
   font-size: var(--fontSuperBig);
-  margin: 0;
 `;
 
-export const Message = styled.p`
-  color: var(--lightGrey);
+export const Message = styled(PageMessage)`
   font-size: var(--fontMed);
-  margin: 0;
 `;
 
 export const Actions = styled.div`
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
 `;
 
 export const ActionButton = styled.button`
   background: var(--darkGrey);
-  border-radius: 1rem;
   border: 2px solid var(--white);
+  border-radius: 1rem;
   color: var(--white);
   cursor: pointer;
   font-size: var(--fontMed);
   min-width: 140px;
   padding: 0.6rem 1.5rem;
+  text-decoration: none;
   transition:
     background 0.2s,
     color 0.2s;
