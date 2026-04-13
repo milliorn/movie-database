@@ -14,16 +14,21 @@ import Spinner from "./Spinner";
 
 const MOVIE_ID_RE = /^\d+$/;
 
-const appNamePromise: Promise<string> = (async () => {
-  try {
-    const response = await fetch("manifest.json");
-    if (!response.ok) throw new Error(`${response.status}`);
-    const data = (await response.json()) as { name: string };
-    return data.name;
-  } catch {
-    return "";
-  }
-})();
+let appNamePromise: Promise<string> | null = null;
+
+function getAppName(): Promise<string> {
+  appNamePromise ??= (async () => {
+    try {
+      const response = await fetch("manifest.json");
+      if (!response.ok) throw new Error(`${response.status}`);
+      const data = (await response.json()) as { name: string };
+      return data.name;
+    } catch {
+      return "";
+    }
+  })();
+  return appNamePromise;
+}
 
 /**
  * Renders the Movie component.
@@ -38,7 +43,7 @@ function Movie(): React.JSX.Element {
     if (!movieId || !movie) {
       return;
     }
-    void appNamePromise.then((appName) => {
+    void getAppName().then((appName) => {
       document.title = appName ? `${movie.title} - ${appName}` : movie.title;
     });
   }, [movie, movieId]);
