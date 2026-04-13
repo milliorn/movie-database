@@ -28,8 +28,6 @@ function NowPlayingMovies(): React.JSX.Element {
       <ErrorView message="Failed to load now playing movies. Please try again." />
     );
 
-  // console.log(state.results);
-
   return (
     <div>
       <HeroImage
