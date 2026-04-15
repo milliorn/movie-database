@@ -49,6 +49,26 @@ export const mockCredits = {
   ],
 };
 
+export const mockMoviesPage1 = {
+  page: 1,
+  results: [
+    { ...mockMovie, id: 1, title: "Movie A", release_date: "2024-01-01" },
+    { ...mockMovie, id: 2, title: "Movie B", release_date: "2023-06-15" },
+  ],
+  total_pages: 2,
+  total_results: 4,
+};
+
+export const mockMoviesPage2 = {
+  page: 2,
+  results: [
+    { ...mockMovie, id: 3, title: "Movie C", release_date: "2022-03-10" },
+    { ...mockMovie, id: 4, title: "Movie D", release_date: "2021-11-20" },
+  ],
+  total_pages: 2,
+  total_results: 4,
+};
+
 export const handlers = [
   http.get(`${BASE}/api/movie/:movieId`, () => {
     return HttpResponse.json(mockMovie);
@@ -56,5 +76,9 @@ export const handlers = [
 
   http.get(`${BASE}/api/credits/:movieId`, () => {
     return HttpResponse.json(mockCredits);
+  }),
+
+  http.get(`${BASE}/api/movies`, () => {
+    return HttpResponse.json(mockMoviesPage1);
   }),
 ];
