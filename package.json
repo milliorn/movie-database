@@ -35,7 +35,10 @@
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "vite",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "browserslist": {
     "production": [
