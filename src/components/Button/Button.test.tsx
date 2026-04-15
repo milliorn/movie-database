@@ -6,7 +6,9 @@ import Button from "./index";
 describe("Button", () => {
   it("renders the button text", () => {
     render(<Button text="Load More" callback={vi.fn()} />);
-    expect(screen.getByRole("button", { name: "Load More" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Load More" }),
+    ).toBeInTheDocument();
   });
 
   it("calls callback when clicked", async () => {

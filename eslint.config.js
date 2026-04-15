@@ -25,7 +25,11 @@ export default [
         ecmaVersion: 2020,
         sourceType: "module",
         ecmaFeatures: { jsx: true },
-        project: ["./tsconfig.json", "./tsconfig.node.json", "./tsconfig.test.json"],
+        project: [
+          "./tsconfig.json",
+          "./tsconfig.node.json",
+          "./tsconfig.test.json",
+        ],
       },
     },
     settings: {
@@ -61,6 +65,16 @@ export default [
         "error",
         { fixMixedExportsWithInlineTypeSpecifier: true },
       ],
+    },
+  },
+  {
+    files: ["src/test/**/*.ts", "src/**/*.test.ts", "src/**/*.test.tsx"],
+    rules: {
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
     },
   },
 ];
