@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it, vi } from "vitest";
 import { server } from "../test/server";
-import { mockMovie, mockMoviesPage1, mockMoviesPage2 } from "../test/handlers";
+import { mockMovie, mockMoviesPage1, mockMoviesPage2, BASE } from "../test/handlers";
 import { TTL_MS } from "../helpers";
 import type { MoviePropTypes } from "../Global.props";
 import type { MoviesState } from "./props";

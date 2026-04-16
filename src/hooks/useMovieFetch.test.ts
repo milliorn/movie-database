@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { server } from "../test/server";
-import { mockCredits, mockMovie } from "../test/handlers";
+import { mockCredits, mockMovie, BASE } from "../test/handlers";
 import { TTL_MS } from "../helpers";
 import useMovieFetch from "./useMoviesFetch";
 
@@ -34,7 +34,7 @@ describe("useMovieFetch", () => {
 
   it("sets error state when the movie fetch fails", async () => {
     server.use(
-      http.get("http://localhost:3001/api/movie/:movieId", () =>
+      http.get(`${BASE}/api/movie/:movieId`, () =>
         HttpResponse.error(),
       ),
     );
@@ -51,7 +51,7 @@ describe("useMovieFetch", () => {
 
   it("sets error state when the credits fetch fails", async () => {
     server.use(
-      http.get("http://localhost:3001/api/credits/:movieId", () =>
+      http.get(`${BASE}/api/credits/:movieId`, () =>
         HttpResponse.error(),
       ),
     );
@@ -89,7 +89,7 @@ describe("useMovieFetch", () => {
 
     // Block the API so a real fetch would fail
     server.use(
-      http.get("http://localhost:3001/api/movie/:id", () =>
+      http.get(`${BASE}/api/movie/:id`, () =>
         HttpResponse.json({}, { status: 500 }),
       ),
     );
@@ -113,7 +113,7 @@ describe("useMovieFetch", () => {
 
     let fetchCalled = false;
     server.use(
-      http.get("http://localhost:3001/api/movie/:movieId", () => {
+      http.get(`${BASE}/api/movie/:movieId`, () => {
         fetchCalled = true;
         return HttpResponse.json(mockMovie);
       }),
@@ -134,7 +134,7 @@ describe("useMovieFetch", () => {
     let lastFetchedId = "";
 
     server.use(
-      http.get("http://localhost:3001/api/movie/:movieId", ({ params }) => {
+      http.get(`${BASE}/api/movie/:movieId`, ({ params }) => {
         lastFetchedId = params["movieId"] as string;
         return HttpResponse.json(
           lastFetchedId === "456" ? secondMovie : mockMovie,
@@ -162,7 +162,7 @@ describe("useMovieFetch", () => {
 
   it("crew with no directors results in an empty directors array", async () => {
     server.use(
-      http.get("http://localhost:3001/api/credits/:movieId", () => {
+      http.get(`${BASE}/api/credits/:movieId`, () => {
         return HttpResponse.json({
           id: 123,
           cast: mockCredits.cast,

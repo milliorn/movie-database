@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { server } from "../test/server";
-import { mockMovie } from "../test/handlers";
+import { mockMovie, BASE } from "../test/handlers";
 import type { MoviesState } from "./props";
 import useUpcomingMovies from "./useUpcomingMovies";
 
@@ -10,7 +10,7 @@ describe("useUpcomingMovies", () => {
   it("fetches from /api/movies/upcoming on mount", async () => {
     let capturedUrl = "";
     server.use(
-      http.get("http://localhost:3001/api/movies/upcoming", ({ request }) => {
+      http.get(`${BASE}/api/movies/upcoming`, ({ request }) => {
         capturedUrl = request.url;
         return HttpResponse.json({
           page: 1,
@@ -33,7 +33,7 @@ describe("useUpcomingMovies", () => {
 
   it("caches results under the upcoming prefix", async () => {
     server.use(
-      http.get("http://localhost:3001/api/movies/upcoming", () => {
+      http.get(`${BASE}/api/movies/upcoming`, () => {
         return HttpResponse.json({
           page: 1,
           results: [mockMovie],
@@ -57,7 +57,7 @@ describe("useUpcomingMovies", () => {
     const newer: typeof mockMovie = { ...mockMovie, id: 2, title: "Newer", release_date: "2025-03-15" };
 
     server.use(
-      http.get("http://localhost:3001/api/movies/upcoming", () => {
+      http.get(`${BASE}/api/movies/upcoming`, () => {
         return HttpResponse.json({
           page: 1,
           results: [older, newer],
@@ -79,7 +79,7 @@ describe("useUpcomingMovies", () => {
 
   it("sets error state when the API fails", async () => {
     server.use(
-      http.get("http://localhost:3001/api/movies/upcoming", () => {
+      http.get(`${BASE}/api/movies/upcoming`, () => {
         return HttpResponse.json({ message: "Server Error" }, { status: 500 });
       }),
     );
