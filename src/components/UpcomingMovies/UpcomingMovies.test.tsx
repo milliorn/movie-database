@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import useUpcomingMovies from "../../hooks/useUpcomingMovies";
 import { mockMovie } from "../../test/handlers";
 import UpcomingMovies from "./index";
@@ -22,6 +22,10 @@ const defaultHook = {
 
 beforeEach(() => {
   vi.mocked(useUpcomingMovies).mockReturnValue(defaultHook);
+});
+
+afterEach(() => {
+  vi.clearAllMocks();
 });
 
 function renderUpcomingMovies() {
