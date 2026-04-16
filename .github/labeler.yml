@@ -1,53 +1,53 @@
 components:
-  - src/components/**
+  - "src/components/**"
 
 hooks:
-  - src/hooks/**
+  - "src/hooks/**"
 
 testing:
-  - src/**/*.test.ts
-  - src/**/*.test.tsx
-  - src/test/**
+  - "src/**/*.test.ts"
+  - "src/**/*.test.tsx"
+  - "src/test/**"
 
 styles:
-  - src/**/*.styles.ts
-  - src/**/*.styles.tsx
-  - src/Global.styles.ts
+  - "src/**/*.styles.ts"
+  - "src/**/*.styles.tsx"
+  - "src/Global.styles.ts"
 
 api:
-  - src/API.ts
-  - src/API.test.ts
+  - "src/API.ts"
+  - "src/API.test.ts"
 
 javascript:
-  - src/**/*.ts
-  - src/**/*.tsx
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
 
 dependencies:
-  - package.json
-  - package-lock.json
-  - yarn.lock
+  - "package.json"
+  - "package-lock.json"
+  - "yarn.lock"
 
 github_actions:
-  - .github/**
+  - ".github/**"
 
 documentation:
-  - README.md
-  - CHANGELOG.md
-  - LICENSE
+  - "README.md"
+  - "CHANGELOG.md"
+  - "LICENSE"
 
 configuration:
-  - tsconfig.json
-  - tsconfig.node.json
-  - tsconfig.test.json
-  - eslint.config.js
-  - vite.config.ts
-  - vercel.json
-  - index.html
+  - "tsconfig.json"
+  - "tsconfig.node.json"
+  - "tsconfig.test.json"
+  - "eslint.config.js"
+  - "vite.config.ts"
+  - "vercel.json"
+  - "index.html"
 
 build:
-  - dist/**
-  - vite.config.ts
+  - "dist/**"
+  - "vite.config.ts"
 
 images:
-  - src/images/**
-  - public/**
+  - "src/images/**"
+  - "public/**"
