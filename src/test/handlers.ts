@@ -81,4 +81,16 @@ export const handlers = [
   http.get(`${BASE}/api/movies`, () => {
     return HttpResponse.json(mockMoviesPage1);
   }),
+
+  http.get(`${BASE}/api/movies/top_rated`, () => {
+    return HttpResponse.json(mockMoviesPage1);
+  }),
+
+  http.get(`${BASE}/api/movies/upcoming`, () => {
+    return HttpResponse.json(mockMoviesPage1);
+  }),
+
+  http.get(`${BASE}/api/movies/now_playing`, () => {
+    return HttpResponse.json(mockMoviesPage1);
+  }),
 ];
