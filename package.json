@@ -46,7 +46,8 @@
     "start": "vite",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "release": "standard-version"
   },
   "browserslist": {
     "production": [
