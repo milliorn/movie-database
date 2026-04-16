@@ -1,53 +1,77 @@
 components:
-  - src/components/**
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/components/**
 
 hooks:
-  - src/hooks/**
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/hooks/**
 
 testing:
-  - src/**/*.test.ts
-  - src/**/*.test.tsx
-  - src/test/**
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/**/*.test.ts
+      - src/**/*.test.tsx
+      - src/test/**
 
 styles:
-  - src/**/*.styles.ts
-  - src/**/*.styles.tsx
-  - src/Global.styles.ts
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/**/*.styles.ts
+      - src/**/*.styles.tsx
+      - src/Global.styles.ts
 
 api:
-  - src/API.ts
-  - src/API.test.ts
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/API.ts
+      - src/API.test.ts
 
 javascript:
-  - src/**/*.ts
-  - src/**/*.tsx
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/**/*.ts
+      - src/**/*.tsx
 
 dependencies:
-  - package.json
-  - package-lock.json
-  - yarn.lock
+  - changed-files:
+    - any-glob-to-any-file:
+      - package.json
+      - package-lock.json
+      - yarn.lock
 
 github_actions:
-  - .github/**
+  - changed-files:
+    - any-glob-to-any-file:
+      - .github/**
 
 documentation:
-  - README.md
-  - CHANGELOG.md
-  - LICENSE
+  - changed-files:
+    - any-glob-to-any-file:
+      - README.md
+      - CHANGELOG.md
+      - LICENSE
 
 configuration:
-  - tsconfig.json
-  - tsconfig.node.json
-  - tsconfig.test.json
-  - eslint.config.js
-  - vite.config.ts
-  - vercel.json
-  - index.html
+  - changed-files:
+    - any-glob-to-any-file:
+      - tsconfig.json
+      - tsconfig.node.json
+      - tsconfig.test.json
+      - eslint.config.js
+      - vite.config.ts
+      - vercel.json
+      - index.html
 
 build:
-  - dist/**
-  - vite.config.ts
+  - changed-files:
+    - any-glob-to-any-file:
+      - dist/**
+      - vite.config.ts
 
 images:
-  - src/images/**
-  - public/**
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/images/**
+      - public/**
