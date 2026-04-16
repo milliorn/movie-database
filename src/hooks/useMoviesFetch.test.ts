@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
-import { mockMovie, mockCredits } from "../test/handlers";
+import { mockCredits } from "../test/handlers";
 import { server } from "../test/server";
 import useMovieFetch from "./useMoviesFetch";
 
@@ -42,7 +42,7 @@ describe("useMoviesFetch", () => {
   it("loads from cache and skips the API on a second render", async () => {
     // Prime the cache via a first render
     const { result: first } = renderHook(() => useMovieFetch("123"));
-    await waitFor(() => expect(first.current.loading).toBe(false));
+    await waitFor(() => { expect(first.current.loading).toBe(false); });
 
     // Block the API so a real fetch would fail
     server.use(
@@ -52,7 +52,7 @@ describe("useMoviesFetch", () => {
     );
 
     const { result: second } = renderHook(() => useMovieFetch("123"));
-    await waitFor(() => expect(second.current.loading).toBe(false));
+    await waitFor(() => { expect(second.current.loading).toBe(false); });
 
     expect(second.current.state?.title).toBe("Test Movie");
     expect(second.current.error).toBe(false);
