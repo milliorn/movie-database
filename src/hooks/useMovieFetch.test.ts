@@ -3,7 +3,7 @@ import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { server } from "../test/server";
 import { mockCredits, mockMovie } from "../test/handlers";
-import { TTL_MS } from "../test/constants";
+import { TTL_MS } from "../helpers";
 import useMovieFetch from "./useMoviesFetch";
 
 describe("useMovieFetch", () => {

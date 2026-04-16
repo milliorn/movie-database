@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import type { MoviePropTypes } from "../Global.props";
 
-const BASE = "http://localhost:3001";
+export const BASE = "http://localhost:3001";
 
 export const mockMovie: MoviePropTypes = {
   adult: false,

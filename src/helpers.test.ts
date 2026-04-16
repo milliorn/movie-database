@@ -74,7 +74,7 @@ describe("setPersistedState / getPersistedState", () => {
   });
 
   it("catches and logs when the data cannot be serialized", () => {
-    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce((_msg) => void _msg);
+    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce(vi.fn());
     const circular: Record<string, unknown> = {};
     circular["self"] = circular;
     setPersistedState("anyKey", circular);

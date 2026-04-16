@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 import { MemoryRouter } from "react-router-dom";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import useHomeFetch from "../hooks/useHomeFetch";
 import { mockMovie } from "../test/handlers";
 import { server } from "../test/server";
@@ -31,9 +31,6 @@ beforeEach(() => {
   );
 });
 
-afterEach(() => {
-  vi.clearAllMocks();
-});
 
 function renderHome() {
   return render(

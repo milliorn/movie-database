@@ -2,9 +2,7 @@ import { describe, expect, it } from "vitest";
 import { http, HttpResponse } from "msw";
 import { server } from "./test/server";
 import { api } from "./API";
-import { mockMovie, mockCredits, mockMoviesPage1 } from "./test/handlers";
-
-const BASE = "http://localhost:3001";
+import { mockMovie, mockCredits, mockMoviesPage1, BASE } from "./test/handlers";
 
 describe("api.fetchMovies", () => {
   it("fetches without a search term using only page param", async () => {
