@@ -83,6 +83,25 @@ describe("useMovieFetch", () => {
     expect(result.current.error).toBe(false);
   });
 
+  it("loads from cache and skips the API on a second render", async () => {
+    // Prime the cache via a first render
+    const { result: first } = renderHook(() => useMovieFetch("123"));
+    await waitFor(() => { expect(first.current.loading).toBe(false); });
+
+    // Block the API so a real fetch would fail
+    server.use(
+      http.get("http://localhost:3001/api/movie/:id", () =>
+        HttpResponse.json({}, { status: 500 }),
+      ),
+    );
+
+    const { result: second } = renderHook(() => useMovieFetch("123"));
+    await waitFor(() => { expect(second.current.loading).toBe(false); });
+
+    expect(second.current.state?.title).toBe("Test Movie");
+    expect(second.current.error).toBe(false);
+  });
+
   it("re-fetches when the cache entry has expired", async () => {
     const expiredTimestamp = Date.now() - TTL_MS - 1000;
     localStorage.setItem(
