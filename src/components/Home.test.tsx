@@ -110,11 +110,11 @@ describe("Home", () => {
     });
   });
 
-  it("handles manifest.json fetch failure gracefully", async () => {
+  it("handles manifest.json fetch failure gracefully", () => {
     server.use(
       http.get("*/manifest.json", () => HttpResponse.error()),
     );
-    vi.spyOn(console, "error").mockImplementationOnce(() => {});
+    vi.spyOn(console, "error").mockImplementationOnce(vi.fn());
     renderHome();
     // Component still renders; failure is caught silently
     expect(screen.getByText("Popular Movies")).toBeInTheDocument();
