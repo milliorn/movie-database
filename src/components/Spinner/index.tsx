@@ -1,6 +1,9 @@
 /**
  * A spinner component that indicates loading or processing state.
  */
-import { Spinner } from "./styles";
+import type { ReactElement } from "react";
+import { Spinner as SpinnerEl } from "./styles";
 
-export default Spinner;
+export default function Spinner(): ReactElement {
+  return <SpinnerEl data-testid="spinner" />;
+}

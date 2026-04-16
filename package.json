@@ -1,6 +1,6 @@
 {
   "name": "react-rmdb",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -21,6 +21,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.4",
     "@vitest/ui": "^4.1.4",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
@@ -45,7 +46,8 @@
     "start": "vite",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "release": "standard-version"
   },
   "browserslist": {
     "production": [

@@ -1,4 +1,4 @@
-const TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+export const TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 interface CachedEntry<T> {
   data: T;
