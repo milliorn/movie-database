@@ -29,3 +29,25 @@ dependencies:
 
 github_actions:
   - .github/**
+
+documentation:
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+
+configuration:
+  - tsconfig.json
+  - tsconfig.node.json
+  - tsconfig.test.json
+  - eslint.config.js
+  - vite.config.ts
+  - vercel.json
+  - index.html
+
+build:
+  - dist/**
+  - vite.config.ts
+
+images:
+  - src/images/**
+  - public/**
