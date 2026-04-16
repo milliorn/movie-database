@@ -7,6 +7,8 @@ import type { MoviePropTypes } from "../Global.props";
 import type { MoviesState } from "./props";
 import useMovieFetch from "./useMovieFetch";
 
+const TTL_MS = 24 * 60 * 60 * 1000;
+
 const fetcher = vi.fn((page: number, _searchTerm: string) =>
   Promise.resolve(page === 1 ? mockMoviesPage1 : mockMoviesPage2),
 );
@@ -148,5 +150,64 @@ describe("useMovieFetch (list hook)", () => {
     });
 
     expect(result.current.state.results).toHaveLength(2);
+  });
+
+  it("re-fetches when the cache entry has expired", async () => {
+    const expiredTimestamp = Date.now() - TTL_MS - 1000;
+    localStorage.setItem(
+      "homeState",
+      JSON.stringify({ data: mockMoviesPage1, timestamp: expiredTimestamp }),
+    );
+
+    let fetchCalled = false;
+    server.use(
+      http.get("http://localhost:3001/api/movies", () => {
+        fetchCalled = true;
+        return HttpResponse.json(mockMoviesPage1);
+      }),
+    );
+
+    const apiFetcher = (page: number, searchTerm: string) =>
+      fetch(
+        `http://localhost:3001/api/movies?searchTerm=${searchTerm}&page=${String(page)}`,
+      ).then((r) => r.json() as Promise<typeof mockMoviesPage1>);
+
+    const { result } = renderHook(() => useMovieFetch(apiFetcher, "home"));
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(fetchCalled).toBe(true);
+  });
+
+  it("calls pruneSearchCache when a search term is set", async () => {
+    // Populate 31 search cache entries to exceed the limit
+    for (let i = 0; i < 31; i++) {
+      localStorage.setItem(
+        `homeSearch_query${String(i)}`,
+        JSON.stringify({ data: mockMoviesPage1, timestamp: Date.now() }),
+      );
+    }
+
+    const { result } = renderHook(() => useMovieFetch(fetcher, "home"));
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    act(() => {
+      result.current.setSearchTerm("batman");
+    });
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    // After pruning, only 30 search entries should remain
+    const remaining = Object.keys(localStorage).filter((k) =>
+      k.startsWith("homeSearch_"),
+    );
+    expect(remaining.length).toBeLessThanOrEqual(30);
   });
 });
