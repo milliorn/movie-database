@@ -169,14 +169,14 @@ describe("useMovieFetch (list hook)", () => {
 
   it("uses MSW-intercepted fetch when the api object is the fetcher", async () => {
     server.use(
-      http.get("http://localhost:3001/api/movies", () => {
+      http.get(`${BASE}/api/movies`, () => {
         return HttpResponse.json(mockMoviesPage1);
       }),
     );
 
     const apiFetcher = (_page: number, searchTerm: string) =>
       fetch(
-        `http://localhost:3001/api/movies?searchTerm=${searchTerm}&page=${String(_page)}`,
+        `${BASE}/api/movies?searchTerm=${searchTerm}&page=${String(_page)}`,
       ).then((r) => r.json() as Promise<typeof mockMoviesPage1>);
 
     const { result } = renderHook(() => useMovieFetch(apiFetcher, "home"));
@@ -197,7 +197,7 @@ describe("useMovieFetch (list hook)", () => {
 
     let fetchCalled = false;
     server.use(
-      http.get("http://localhost:3001/api/movies", () => {
+      http.get(`${BASE}/api/movies`, () => {
         fetchCalled = true;
         return HttpResponse.json(mockMoviesPage1);
       }),
@@ -205,7 +205,7 @@ describe("useMovieFetch (list hook)", () => {
 
     const apiFetcher = (page: number, searchTerm: string) =>
       fetch(
-        `http://localhost:3001/api/movies?searchTerm=${searchTerm}&page=${String(page)}`,
+        `${BASE}/api/movies?searchTerm=${searchTerm}&page=${String(page)}`,
       ).then((r) => r.json() as Promise<typeof mockMoviesPage1>);
 
     const { result } = renderHook(() => useMovieFetch(apiFetcher, "home"));
