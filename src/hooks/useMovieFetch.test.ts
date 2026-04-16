@@ -3,9 +3,8 @@ import { http, HttpResponse } from "msw";
 import { describe, expect, it } from "vitest";
 import { server } from "../test/server";
 import { mockCredits, mockMovie } from "../test/handlers";
+import { TTL_MS } from "../test/constants";
 import useMovieFetch from "./useMoviesFetch";
-
-const TTL_MS = 24 * 60 * 60 * 1000;
 
 describe("useMovieFetch", () => {
   it("starts in a loading state", () => {

@@ -3,11 +3,10 @@ import { http, HttpResponse } from "msw";
 import { describe, expect, it, vi } from "vitest";
 import { server } from "../test/server";
 import { mockMovie, mockMoviesPage1, mockMoviesPage2 } from "../test/handlers";
+import { TTL_MS } from "../test/constants";
 import type { MoviePropTypes } from "../Global.props";
 import type { MoviesState } from "./props";
 import useMovieFetch from "./useMovieFetch";
-
-const TTL_MS = 24 * 60 * 60 * 1000;
 
 const fetcher = vi.fn((page: number, _searchTerm: string) =>
   Promise.resolve(page === 1 ? mockMoviesPage1 : mockMoviesPage2),
