@@ -34,9 +34,7 @@ describe("useMovieFetch", () => {
 
   it("sets error state when the movie fetch fails", async () => {
     server.use(
-      http.get(`${BASE}/api/movie/:movieId`, () =>
-        HttpResponse.error(),
-      ),
+      http.get(`${BASE}/api/movie/:movieId`, () => HttpResponse.error()),
     );
 
     const { result } = renderHook(() => useMovieFetch("123"));
@@ -51,9 +49,7 @@ describe("useMovieFetch", () => {
 
   it("sets error state when the credits fetch fails", async () => {
     server.use(
-      http.get(`${BASE}/api/credits/:movieId`, () =>
-        HttpResponse.error(),
-      ),
+      http.get(`${BASE}/api/credits/:movieId`, () => HttpResponse.error()),
     );
 
     const { result } = renderHook(() => useMovieFetch("123"));
@@ -85,7 +81,9 @@ describe("useMovieFetch", () => {
   it("loads from cache and skips the API on a second render", async () => {
     // Prime the cache via a first render
     const { result: first } = renderHook(() => useMovieFetch("123"));
-    await waitFor(() => { expect(first.current.loading).toBe(false); });
+    await waitFor(() => {
+      expect(first.current.loading).toBe(false);
+    });
 
     // Block the API so a real fetch would fail
     server.use(
@@ -95,7 +93,9 @@ describe("useMovieFetch", () => {
     );
 
     const { result: second } = renderHook(() => useMovieFetch("123"));
-    await waitFor(() => { expect(second.current.loading).toBe(false); });
+    await waitFor(() => {
+      expect(second.current.loading).toBe(false);
+    });
 
     expect(second.current.state?.title).toBe("Test Movie");
     expect(second.current.error).toBe(false);
@@ -194,5 +194,4 @@ describe("useMovieFetch", () => {
     const parsed = JSON.parse(cached ?? "{}") as { data: { title: string } };
     expect(parsed.data.title).toBe(mockMovie.title);
   });
-
 });

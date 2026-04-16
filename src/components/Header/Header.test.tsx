@@ -31,9 +31,10 @@ describe("Header", () => {
       "href",
       "/",
     );
-    expect(
-      screen.getByRole("link", { name: "Now Playing" }),
-    ).toHaveAttribute("href", "/now_playing");
+    expect(screen.getByRole("link", { name: "Now Playing" })).toHaveAttribute(
+      "href",
+      "/now_playing",
+    );
     expect(screen.getByRole("link", { name: "Upcoming" })).toHaveAttribute(
       "href",
       "/upcoming",

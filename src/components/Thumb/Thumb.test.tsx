@@ -13,7 +13,11 @@ function renderThumb(props: React.ComponentProps<typeof Thumb>) {
 
 describe("Thumb", () => {
   it("renders the image with the movie title as alt text", () => {
-    renderThumb({ image: "/poster.jpg", clickable: false, movieTitle: "Inception" });
+    renderThumb({
+      image: "/poster.jpg",
+      clickable: false,
+      movieTitle: "Inception",
+    });
     expect(screen.getByAltText("Inception poster")).toBeInTheDocument();
   });
 
@@ -23,7 +27,12 @@ describe("Thumb", () => {
   });
 
   it("wraps the image in a link when clickable and movieId are provided", () => {
-    renderThumb({ image: "/poster.jpg", clickable: true, movieId: 42, movieTitle: "Dune" });
+    renderThumb({
+      image: "/poster.jpg",
+      clickable: true,
+      movieId: 42,
+      movieTitle: "Dune",
+    });
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute("href", "/42");
   });

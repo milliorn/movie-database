@@ -4,8 +4,14 @@ import Grid from "./index";
 
 describe("Grid", () => {
   it("renders the header text", () => {
-    render(<Grid header="Popular Movies"><div /></Grid>);
-    expect(screen.getByRole("heading", { name: "Popular Movies", level: 2 })).toBeInTheDocument();
+    render(
+      <Grid header="Popular Movies">
+        <div />
+      </Grid>,
+    );
+    expect(
+      screen.getByRole("heading", { name: "Popular Movies", level: 2 }),
+    ).toBeInTheDocument();
   });
 
   it("renders children inside the grid", () => {

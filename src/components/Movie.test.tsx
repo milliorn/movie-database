@@ -77,7 +77,9 @@ describe("Movie", () => {
       state: mockMovieState,
     });
     renderMovie("123");
-    expect(screen.getByRole("heading", { name: "Test Movie", level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Test Movie", level: 1 }),
+    ).toBeInTheDocument();
     expect(screen.getByText("Just a test.")).toBeInTheDocument();
     expect(screen.getByText("A test movie overview.")).toBeInTheDocument();
   });
@@ -108,6 +110,8 @@ describe("Movie", () => {
     });
     renderMovie("123");
     const imgs = screen.getAllByAltText("actor-thumb");
-    expect(imgs.some((img) => (img as HTMLImageElement).src.includes("/actor.jpg"))).toBe(true);
+    expect(
+      imgs.some((img) => (img as HTMLImageElement).src.includes("/actor.jpg")),
+    ).toBe(true);
   });
 });

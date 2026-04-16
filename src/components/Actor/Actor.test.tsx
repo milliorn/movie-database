@@ -2,7 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Actor from "./index";
 
-function renderActor(overrides?: Partial<{ name: string; character: string; imageUrl: string }>) {
+function renderActor(
+  overrides?: Partial<{ name: string; character: string; imageUrl: string }>,
+) {
   const props = {
     name: "Actor One",
     character: "Hero",

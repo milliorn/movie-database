@@ -53,8 +53,18 @@ describe("useNowPlayingMovies", () => {
   });
 
   it("sorts results by release_date descending", async () => {
-    const older: typeof mockMovie = { ...mockMovie, id: 1, title: "Older", release_date: "2022-01-01" };
-    const newer: typeof mockMovie = { ...mockMovie, id: 2, title: "Newer", release_date: "2024-06-01" };
+    const older: typeof mockMovie = {
+      ...mockMovie,
+      id: 1,
+      title: "Older",
+      release_date: "2022-01-01",
+    };
+    const newer: typeof mockMovie = {
+      ...mockMovie,
+      id: 2,
+      title: "Newer",
+      release_date: "2024-06-01",
+    };
 
     server.use(
       http.get(`${BASE}/api/movies/now_playing`, () => {

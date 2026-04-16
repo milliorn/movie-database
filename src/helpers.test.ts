@@ -74,7 +74,9 @@ describe("setPersistedState / getPersistedState", () => {
   });
 
   it("catches and logs when the data cannot be serialized", () => {
-    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce(vi.fn());
+    const consoleSpy = vi
+      .spyOn(console, "error")
+      .mockImplementationOnce(vi.fn());
     const circular: Record<string, unknown> = {};
     circular["self"] = circular;
     setPersistedState("anyKey", circular);
@@ -127,9 +129,7 @@ describe("pruneSearchCache", () => {
     );
     expect(remaining).toHaveLength(30);
     for (let i = 0; i < 5; i++) {
-      expect(
-        localStorage.getItem(`homeSearch_query${String(i)}`),
-      ).toBeNull();
+      expect(localStorage.getItem(`homeSearch_query${String(i)}`)).toBeNull();
     }
     for (let i = 5; i < 35; i++) {
       expect(

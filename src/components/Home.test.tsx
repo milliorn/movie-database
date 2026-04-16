@@ -25,12 +25,9 @@ const defaultHook = {
 beforeEach(() => {
   vi.mocked(useHomeFetch).mockReturnValue(defaultHook);
   server.use(
-    http.get("*/manifest.json", () =>
-      HttpResponse.json({ name: "RMDB" }),
-    ),
+    http.get("*/manifest.json", () => HttpResponse.json({ name: "RMDB" })),
   );
 });
-
 
 function renderHome() {
   return render(
@@ -112,9 +109,7 @@ describe("Home", () => {
   });
 
   it("handles manifest.json fetch failure gracefully", () => {
-    server.use(
-      http.get("*/manifest.json", () => HttpResponse.error()),
-    );
+    server.use(http.get("*/manifest.json", () => HttpResponse.error()));
     vi.spyOn(console, "error").mockImplementationOnce(vi.fn());
     renderHome();
     // Component still renders; failure is caught silently

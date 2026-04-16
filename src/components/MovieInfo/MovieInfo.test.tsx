@@ -22,7 +22,9 @@ function renderMovieInfo(movie: MovieState = baseMovie) {
 describe("MovieInfo", () => {
   it("renders the movie title", () => {
     renderMovieInfo();
-    expect(screen.getByRole("heading", { name: "Test Movie", level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Test Movie", level: 1 }),
+    ).toBeInTheDocument();
   });
 
   it("renders the tagline", () => {
@@ -80,7 +82,9 @@ describe("MovieInfo", () => {
 
   it("renders homepage link when homepage is truthy", () => {
     renderMovieInfo({ ...baseMovie, homepage: "https://example.com" });
-    expect(screen.getByRole("link", { name: /official website/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /official website/i }),
+    ).toBeInTheDocument();
   });
 
   it("does not render tagline h2 when tagline is empty", () => {

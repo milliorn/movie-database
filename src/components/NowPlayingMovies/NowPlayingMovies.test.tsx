@@ -44,9 +44,7 @@ describe("NowPlayingMovies", () => {
     });
     renderNowPlayingMovies();
     expect(
-      screen.getByText(
-        "Failed to load now playing movies. Please try again.",
-      ),
+      screen.getByText("Failed to load now playing movies. Please try again."),
     ).toBeInTheDocument();
   });
 

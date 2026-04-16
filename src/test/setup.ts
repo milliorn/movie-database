@@ -33,7 +33,11 @@ const localStorageMock = new Proxy(store, {
   },
   getOwnPropertyDescriptor(target, prop) {
     if (Object.prototype.hasOwnProperty.call(target, prop)) {
-      return { enumerable: true, configurable: true, value: target[prop as string] };
+      return {
+        enumerable: true,
+        configurable: true,
+        value: target[prop as string],
+      };
     }
     return undefined;
   },
