@@ -1,6 +1,8 @@
 /**
  * A spinner component that indicates loading or processing state.
  */
-import { Spinner } from "./styles";
+import { Spinner as SpinnerEl } from "./styles";
 
-export default Spinner;
+export default function Spinner() {
+  return <SpinnerEl data-testid="spinner" />;
+}
