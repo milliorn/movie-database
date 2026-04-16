@@ -40,36 +40,55 @@ describe("Header", () => {
     );
   });
 
-  it("clicking the logo toggles the nav open", async () => {
+  it("logo starts with aria-expanded false", () => {
+    renderHeader();
+    expect(screen.getByAltText("RMDB Logo")).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+  });
+
+  it("clicking the logo sets aria-expanded to true", async () => {
     const user = userEvent.setup();
     renderHeader();
     const logo = screen.getByAltText("RMDB Logo");
-    // Clicking should not throw; nav items remain in DOM regardless
     await user.click(logo);
-    expect(screen.getByRole("link", { name: "Popular" })).toBeInTheDocument();
+    expect(logo).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("clicking the logo twice sets aria-expanded back to false", async () => {
+    const user = userEvent.setup();
+    renderHeader();
+    const logo = screen.getByAltText("RMDB Logo");
+    await user.click(logo);
+    await user.click(logo);
+    expect(logo).toHaveAttribute("aria-expanded", "false");
   });
 
   it("clicking the Now Playing nav item closes the nav", async () => {
     const user = userEvent.setup();
     renderHeader();
-    await user.click(screen.getByAltText("RMDB Logo"));
+    const logo = screen.getByAltText("RMDB Logo");
+    await user.click(logo);
     await user.click(screen.getByRole("link", { name: "Now Playing" }));
-    expect(screen.getByRole("link", { name: "Now Playing" })).toBeInTheDocument();
+    expect(logo).toHaveAttribute("aria-expanded", "false");
   });
 
   it("clicking the Popular nav item closes the nav", async () => {
     const user = userEvent.setup();
     renderHeader();
-    await user.click(screen.getByAltText("RMDB Logo"));
+    const logo = screen.getByAltText("RMDB Logo");
+    await user.click(logo);
     await user.click(screen.getByRole("link", { name: "Popular" }));
-    expect(screen.getByRole("link", { name: "Popular" })).toBeInTheDocument();
+    expect(logo).toHaveAttribute("aria-expanded", "false");
   });
 
   it("clicking the Upcoming nav item closes the nav", async () => {
     const user = userEvent.setup();
     renderHeader();
-    await user.click(screen.getByAltText("RMDB Logo"));
+    const logo = screen.getByAltText("RMDB Logo");
+    await user.click(logo);
     await user.click(screen.getByRole("link", { name: "Upcoming" }));
-    expect(screen.getByRole("link", { name: "Upcoming" })).toBeInTheDocument();
+    expect(logo).toHaveAttribute("aria-expanded", "false");
   });
 });

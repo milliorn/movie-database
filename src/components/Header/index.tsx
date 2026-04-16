@@ -32,6 +32,7 @@ function Header(): React.JSX.Element {
           src={RMDBLogo}
           alt="RMDB Logo"
           onClick={toggleNav}
+          aria-expanded={navOpen}
           width="334"
           height="52"
         />
