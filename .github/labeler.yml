@@ -1,77 +1,53 @@
 components:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/components/**
+  - "src/components/**"
 
 hooks:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/hooks/**
+  - "src/hooks/**"
 
 testing:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/**/*.test.ts
-      - src/**/*.test.tsx
-      - src/test/**
+  - "src/**/*.test.ts"
+  - "src/**/*.test.tsx"
+  - "src/test/**"
 
 styles:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/**/*.styles.ts
-      - src/**/*.styles.tsx
-      - src/Global.styles.ts
+  - "src/**/*.styles.ts"
+  - "src/**/*.styles.tsx"
+  - "src/Global.styles.ts"
 
 api:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/API.ts
-      - src/API.test.ts
+  - "src/API.ts"
+  - "src/API.test.ts"
 
 javascript:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/**/*.ts
-      - src/**/*.tsx
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
 
 dependencies:
-  - changed-files:
-    - any-glob-to-any-file:
-      - package.json
-      - package-lock.json
-      - yarn.lock
+  - "package.json"
+  - "package-lock.json"
+  - "yarn.lock"
 
 github_actions:
-  - changed-files:
-    - any-glob-to-any-file:
-      - .github/**
+  - ".github/**"
 
 documentation:
-  - changed-files:
-    - any-glob-to-any-file:
-      - README.md
-      - CHANGELOG.md
-      - LICENSE
+  - "README.md"
+  - "CHANGELOG.md"
+  - "LICENSE"
 
 configuration:
-  - changed-files:
-    - any-glob-to-any-file:
-      - tsconfig.json
-      - tsconfig.node.json
-      - tsconfig.test.json
-      - eslint.config.js
-      - vite.config.ts
-      - vercel.json
-      - index.html
+  - "tsconfig.json"
+  - "tsconfig.node.json"
+  - "tsconfig.test.json"
+  - "eslint.config.js"
+  - "vite.config.ts"
+  - "vercel.json"
+  - "index.html"
 
 build:
-  - changed-files:
-    - any-glob-to-any-file:
-      - dist/**
-      - vite.config.ts
+  - "dist/**"
+  - "vite.config.ts"
 
 images:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/images/**
-      - public/**
+  - "src/images/**"
+  - "public/**"
