@@ -1,0 +1,31 @@
+components:
+  - src/components/**
+
+hooks:
+  - src/hooks/**
+
+testing:
+  - src/**/*.test.ts
+  - src/**/*.test.tsx
+  - src/test/**
+
+styles:
+  - src/**/*.styles.ts
+  - src/**/*.styles.tsx
+  - src/Global.styles.ts
+
+api:
+  - src/API.ts
+  - src/API.test.ts
+
+javascript:
+  - src/**/*.ts
+  - src/**/*.tsx
+
+dependencies:
+  - package.json
+  - package-lock.json
+  - yarn.lock
+
+github_actions:
+  - .github/**
