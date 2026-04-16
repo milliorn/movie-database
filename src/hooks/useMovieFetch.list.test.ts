@@ -114,6 +114,43 @@ describe("useMovieFetch (list hook)", () => {
     expect(dates[1]).toBe("2023-06-15");
   });
 
+  it("sorts movies with invalid release_date to the end when sortByDate is true", async () => {
+    const validMovie: MoviePropTypes = {
+      ...mockMovie,
+      id: 1,
+      title: "Valid Date Movie",
+      release_date: "2024-01-01",
+    };
+    const invalidMovie: MoviePropTypes = {
+      ...mockMovie,
+      id: 2,
+      title: "Invalid Date Movie",
+      release_date: "not-a-date",
+    };
+    const badDateFetcher = vi.fn(
+      (): Promise<MoviesState> =>
+        Promise.resolve({
+          page: 1,
+          results: [invalidMovie, validMovie],
+          total_pages: 1,
+          total_results: 2,
+        }),
+    );
+
+    const { result } = renderHook(() =>
+      useMovieFetch(badDateFetcher, "home", true),
+    );
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    const titles = result.current.state.results.map((r) => r.title);
+    // Valid date sorts before invalid date (isNaN → -Infinity)
+    expect(titles[0]).toBe("Valid Date Movie");
+    expect(titles[1]).toBe("Invalid Date Movie");
+  });
+
   it("loads from cache and skips the fetcher", async () => {
     const cached = { ...mockMoviesPage1 };
     localStorage.setItem(

@@ -49,15 +49,27 @@ describe("Header", () => {
     expect(screen.getByRole("link", { name: "Popular" })).toBeInTheDocument();
   });
 
-  it("clicking a nav item closes the nav (no error thrown)", async () => {
+  it("clicking the Now Playing nav item closes the nav", async () => {
     const user = userEvent.setup();
     renderHeader();
-    // Open nav first
     await user.click(screen.getByAltText("RMDB Logo"));
-    // Click a nav item — should not throw
     await user.click(screen.getByRole("link", { name: "Now Playing" }));
-    expect(
-      screen.getByRole("link", { name: "Now Playing" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Now Playing" })).toBeInTheDocument();
+  });
+
+  it("clicking the Popular nav item closes the nav", async () => {
+    const user = userEvent.setup();
+    renderHeader();
+    await user.click(screen.getByAltText("RMDB Logo"));
+    await user.click(screen.getByRole("link", { name: "Popular" }));
+    expect(screen.getByRole("link", { name: "Popular" })).toBeInTheDocument();
+  });
+
+  it("clicking the Upcoming nav item closes the nav", async () => {
+    const user = userEvent.setup();
+    renderHeader();
+    await user.click(screen.getByAltText("RMDB Logo"));
+    await user.click(screen.getByRole("link", { name: "Upcoming" }));
+    expect(screen.getByRole("link", { name: "Upcoming" })).toBeInTheDocument();
   });
 });

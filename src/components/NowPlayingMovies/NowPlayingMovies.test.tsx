@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import { mockMovie } from "../../test/handlers";
 import NowPlayingMovies from "./index";
 
 vi.mock("../../hooks/useNowPlayingMovies");
@@ -100,5 +101,23 @@ describe("NowPlayingMovies", () => {
   it("sets document.title to 'Now Playing Movies'", () => {
     renderNowPlayingMovies();
     expect(document.title).toBe("Now Playing Movies");
+  });
+
+  it("renders Thumb components when results are present", () => {
+    vi.mocked(useNowPlayingMovies).mockReturnValue({
+      ...defaultHook,
+      state: {
+        page: 1,
+        total_pages: 1,
+        total_results: 2,
+        results: [
+          { ...mockMovie, id: 1, title: "Movie A", poster_path: "/a.jpg" },
+          { ...mockMovie, id: 2, title: "Movie B", poster_path: null },
+        ],
+      },
+    });
+    renderNowPlayingMovies();
+    expect(screen.getByAltText("Movie A poster")).toBeInTheDocument();
+    expect(screen.getByAltText("Movie B poster")).toBeInTheDocument();
   });
 });

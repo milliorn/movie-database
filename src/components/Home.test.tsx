@@ -4,6 +4,7 @@ import { http, HttpResponse } from "msw";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import useHomeFetch from "../hooks/useHomeFetch";
+import { mockMovie } from "../test/handlers";
 import { server } from "../test/server";
 import Home from "./Home";
 
@@ -107,5 +108,34 @@ describe("Home", () => {
     await waitFor(() => {
       expect(document.title).toBe("RMDB");
     });
+  });
+
+  it("handles manifest.json fetch failure gracefully", async () => {
+    server.use(
+      http.get("*/manifest.json", () => HttpResponse.error()),
+    );
+    vi.spyOn(console, "error").mockImplementationOnce(() => {});
+    renderHome();
+    // Component still renders; failure is caught silently
+    expect(screen.getByText("Popular Movies")).toBeInTheDocument();
+  });
+
+  it("renders Thumb components when results are present", () => {
+    vi.mocked(useHomeFetch).mockReturnValue({
+      ...defaultHook,
+      state: {
+        page: 1,
+        total_pages: 1,
+        total_results: 2,
+        results: [
+          { ...mockMovie, id: 1, title: "Movie A", poster_path: "/a.jpg" },
+          { ...mockMovie, id: 2, title: "Movie B", poster_path: null },
+        ],
+      },
+    });
+    renderHome();
+    expect(screen.getByAltText("Movie A poster")).toBeInTheDocument();
+    // Movie B has no poster_path — falls back to NoImage
+    expect(screen.getByAltText("Movie B poster")).toBeInTheDocument();
   });
 });

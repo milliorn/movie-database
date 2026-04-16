@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import useUpcomingMovies from "../../hooks/useUpcomingMovies";
+import { mockMovie } from "../../test/handlers";
 import UpcomingMovies from "./index";
 
 vi.mock("../../hooks/useUpcomingMovies");
@@ -98,5 +99,23 @@ describe("UpcomingMovies", () => {
   it("sets document.title to 'Upcoming Movies'", () => {
     renderUpcomingMovies();
     expect(document.title).toBe("Upcoming Movies");
+  });
+
+  it("renders Thumb components when results are present", () => {
+    vi.mocked(useUpcomingMovies).mockReturnValue({
+      ...defaultHook,
+      state: {
+        page: 1,
+        total_pages: 1,
+        total_results: 2,
+        results: [
+          { ...mockMovie, id: 1, title: "Movie A", poster_path: "/a.jpg" },
+          { ...mockMovie, id: 2, title: "Movie B", poster_path: null },
+        ],
+      },
+    });
+    renderUpcomingMovies();
+    expect(screen.getByAltText("Movie A poster")).toBeInTheDocument();
+    expect(screen.getByAltText("Movie B poster")).toBeInTheDocument();
   });
 });

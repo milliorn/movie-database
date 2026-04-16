@@ -72,6 +72,19 @@ describe("setPersistedState / getPersistedState", () => {
     expect(getPersistedState("badKey")).toBeNull();
     expect(localStorage.getItem("badKey")).toBeNull();
   });
+
+  it("catches and logs when the data cannot be serialized", () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce(() => {});
+    const circular: Record<string, unknown> = {};
+    circular.self = circular;
+    setPersistedState("anyKey", circular);
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Failed to save state for key",
+      "anyKey",
+      ":",
+      expect.any(TypeError),
+    );
+  });
 });
 
 describe("pruneSearchCache", () => {

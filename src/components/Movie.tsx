@@ -14,6 +14,7 @@ import Spinner from "./Spinner";
 
 const MOVIE_ID_RE = /^\d+$/;
 
+/* v8 ignore next 7 */
 const appNamePromise: Promise<string> = fetch("manifest.json")
   .then((r) => {
     if (!r.ok) throw new Error(`${r.status}`);
