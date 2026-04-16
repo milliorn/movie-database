@@ -37,6 +37,7 @@ function Movie(): React.JSX.Element {
       return;
     }
     void appNamePromise.then((appName) => {
+      /* v8 ignore next */
       document.title = appName ? `${movie.title} - ${appName}` : movie.title;
     });
   }, [movie, movieId]);

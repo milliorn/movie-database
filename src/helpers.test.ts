@@ -74,9 +74,9 @@ describe("setPersistedState / getPersistedState", () => {
   });
 
   it("catches and logs when the data cannot be serialized", () => {
-    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce(() => {});
+    const consoleSpy = vi.spyOn(console, "error").mockImplementationOnce((_msg) => void _msg);
     const circular: Record<string, unknown> = {};
-    circular.self = circular;
+    circular["self"] = circular;
     setPersistedState("anyKey", circular);
     expect(consoleSpy).toHaveBeenCalledWith(
       "Failed to save state for key",
@@ -166,5 +166,14 @@ describe("pruneSearchCache", () => {
     pruneSearchCache("home");
 
     expect(localStorage.getItem("homeSearch_corrupt")).toBeNull();
+  });
+
+  it("skips entries whose getItem returns a falsy value", () => {
+    localStorage.setItem("homeSearch_empty", "");
+
+    pruneSearchCache("home");
+
+    // Entry is silently skipped (not pushed to entries, not removed)
+    expect(localStorage.getItem("homeSearch_empty")).toBe("");
   });
 });

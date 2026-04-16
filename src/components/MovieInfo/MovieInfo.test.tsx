@@ -71,4 +71,42 @@ describe("MovieInfo", () => {
     renderMovieInfo(movieWithCompany);
     expect(screen.queryByAltText("No Logo Studios")).not.toBeInTheDocument();
   });
+
+  it("uses NoImage when poster_path is null", () => {
+    renderMovieInfo({ ...baseMovie, poster_path: null });
+    const img = screen.getByAltText("Test Movie poster");
+    expect((img as HTMLImageElement).src).toContain("no_image");
+  });
+
+  it("renders homepage link when homepage is truthy", () => {
+    renderMovieInfo({ ...baseMovie, homepage: "https://example.com" });
+    expect(screen.getByRole("link", { name: /official website/i })).toBeInTheDocument();
+  });
+
+  it("does not render tagline h2 when tagline is empty", () => {
+    renderMovieInfo({ ...baseMovie, tagline: "" });
+    expect(screen.queryByText("Just a test.")).not.toBeInTheDocument();
+  });
+
+  it("renders DIRECTORS (plural) when there are multiple directors", () => {
+    renderMovieInfo({
+      ...baseMovie,
+      directors: [
+        { credit_id: 1, job: "Director", name: "Director One" },
+        { credit_id: 2, job: "Director", name: "Director Two" },
+      ],
+    });
+    expect(screen.getByText("DIRECTORS")).toBeInTheDocument();
+  });
+
+  it("renders GENRES: (plural) when there are multiple genres", () => {
+    renderMovieInfo({
+      ...baseMovie,
+      genres: [
+        { id: 1, name: "Action" },
+        { id: 2, name: "Drama" },
+      ],
+    });
+    expect(screen.getByText("GENRES:")).toBeInTheDocument();
+  });
 });

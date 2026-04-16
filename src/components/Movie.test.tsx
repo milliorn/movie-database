@@ -90,4 +90,24 @@ describe("Movie", () => {
     renderMovie("123");
     expect(screen.getByText("Actors")).toBeInTheDocument();
   });
+
+  it("renders actor image from profile_path when present", () => {
+    vi.mocked(useMovieFetch).mockReturnValue({
+      ...defaultHook,
+      state: {
+        ...mockMovieState,
+        actors: [
+          {
+            credit_id: "abc",
+            name: "Actor With Photo",
+            character: "Hero",
+            profile_path: "/actor.jpg",
+          },
+        ],
+      },
+    });
+    renderMovie("123");
+    const imgs = screen.getAllByAltText("actor-thumb");
+    expect(imgs.some((img) => (img as HTMLImageElement).src.includes("/actor.jpg"))).toBe(true);
+  });
 });
