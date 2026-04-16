@@ -12,19 +12,19 @@ The app runs at `http://localhost:5173`.
 
 ## Scripts
 
-| Script                   | Description                             |
-| ------------------------ | --------------------------------------- |
-| `npm start`              | Start the Vite dev server               |
-| `npm run build`          | Build for production                    |
-| `npm run preview`        | Preview the production build locally    |
-| `npm run lint`           | Lint with ESLint                        |
-| `npm run lint:fix`       | Lint and auto-fix with ESLint           |
-| `npm run prettier:check` | Check formatting with Prettier          |
-| `npm run prettier:write` | Format all files with Prettier          |
-| `npm test`               | Run tests with Vitest                   |
-| `npm run test:ui`        | Run tests with Vitest UI                |
-| `npm run test:coverage`  | Run tests with coverage report          |
-| `npm run release`        | Create a release with standard-version  |
+| Script                   | Description                            |
+| ------------------------ | -------------------------------------- |
+| `npm start`              | Start the Vite dev server              |
+| `npm run build`          | Build for production                   |
+| `npm run preview`        | Preview the production build locally   |
+| `npm run lint`           | Lint with ESLint                       |
+| `npm run lint:fix`       | Lint and auto-fix with ESLint          |
+| `npm run prettier:check` | Check formatting with Prettier         |
+| `npm run prettier:write` | Format all files with Prettier         |
+| `npm test`               | Run tests with Vitest                  |
+| `npm run test:ui`        | Run tests with Vitest UI               |
+| `npm run test:coverage`  | Run tests with coverage report         |
+| `npm run release`        | Create a release with standard-version |
 
 ## Dependencies
 
