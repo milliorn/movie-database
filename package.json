@@ -28,7 +28,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "happy-dom": "^20.9.0",
     "jsdom": "^29.1.1",
-    "msw": "^2.13.3",
+    "msw": "^2.14.6",
     "prettier": "^3.8.1",
     "prop-types": "15.8.1",
     "typescript": "^6.0.3",
