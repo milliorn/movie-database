@@ -59,8 +59,17 @@ jobs:
 
       # --auto queues the merge so all required branch protection checks must
       # pass first before the merge goes through.
+      #
+      # Uses DEPENDABOT_REBASE_PAT instead of the default GITHUB_TOKEN here:
+      # GitHub does not let GITHUB_TOKEN-authored events trigger other
+      # workflows (loop prevention), so a GITHUB_TOKEN merge silently never
+      # fired dependabot-rebase-cascade.yml's pull_request_target: closed
+      # trigger. A PAT-authored merge is a normal user action and does
+      # trigger it.
       - name: Allow — merge
         if: steps.decision.outputs.action == 'allow'
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPENDABOT_REBASE_PAT }}
         run: |
           gh pr merge "$PR_URL" --squash --auto
 
