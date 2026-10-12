@@ -24,8 +24,8 @@ function App(): React.JSX.Element {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:movieId" element={<Movie />} />
-            <Route path="now_playing" element={<NowPlayingMovies />} />
-            <Route path="upcoming" element={<UpcomingMovies />} />
+            <Route path="/now_playing" element={<NowPlayingMovies />} />
+            <Route path="/upcoming" element={<UpcomingMovies />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
           <GlobalStyle />

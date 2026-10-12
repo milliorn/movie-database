@@ -19,8 +19,6 @@ function Home(): React.JSX.Element {
   const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
     useHomeFetch();
 
-  // console.log(state);
-
   useEffect(() => {
     fetch("manifest.json")
       .then((response) => response.json())
