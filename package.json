@@ -29,7 +29,7 @@
     "happy-dom": "^20.14.5",
     "jsdom": "^29.1.1",
     "msw": "^2.15.0",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "prop-types": "15.8.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
