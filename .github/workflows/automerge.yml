@@ -2,7 +2,7 @@ name: Dependabot reviewer
 
 # Fires whenever Dependabot opens, updates, or reopens a PR targeting main.
 # pull_request_target runs in the context of the base branch, which gives the
-# GITHUB_TOKEN enough permission to approve and merge without extra secrets.
+# GITHUB_TOKEN enough permission to merge or close without extra secrets.
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 # Minimum permissions needed:
-# - pull-requests: approve and comment on PRs
+# - pull-requests: close and comment on PRs
 # - contents: enable auto-merge (writes to the merge queue)
 permissions:
   pull-requests: write
@@ -39,41 +39,52 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v3.1.0
 
-      # Allow: github_actions (major version tags are safe), patch/minor npm/pip/etc.,
-      # or grouped PRs where update-type is null (dependabot.yml already blocks npm majors).
-      # Deny: anything else (unexpected major npm/pip bumps that slip through).
+      # Allow: github_actions updates at any explicit version (this includes
+      # Dependabot's own actions such as dependabot/fetch-metadata), or an
+      # explicit semver-patch / semver-minor update in any other ecosystem.
+      # Deny: everything else -- majors outside github_actions, and any PR in
+      # any ecosystem whose update-type is missing, empty, or "null" (fail
+      # closed if metadata can't be parsed).
+      # The deny reason is decided here, alongside the action, so the policy
+      # lives in one place; the Deny step only posts it.
       - name: Decide
         id: decision
+        env:
+          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
         run: |
-          ecosystem="${{ steps.metadata.outputs.package-ecosystem }}"
-          update_type="${{ steps.metadata.outputs.update-type }}"
-          if [[ "$ecosystem" == "github_actions" ]] || \
-             [[ "$update_type" == "version-update:semver-patch" ]] || \
-             [[ "$update_type" == "version-update:semver-minor" ]] || \
-             [[ "$update_type" == "null" ]] || \
-             [[ -z "$update_type" ]]; then
-            echo "action=allow" >> "$GITHUB_OUTPUT"
-          else
-            echo "action=deny" >> "$GITHUB_OUTPUT"
+          action=deny
+          # Missing metadata is checked first so it fails closed for every
+          # ecosystem, github_actions included.
+          case "$UPDATE_TYPE" in
+            ""|null)
+              reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
+            version-update:semver-patch|version-update:semver-minor)
+              action=allow ;;
+            *)
+              if [[ "$ECOSYSTEM" == "github_actions" ]]; then
+                action=allow
+              elif [[ "$UPDATE_TYPE" == "version-update:semver-major" ]]; then
+                reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually."
+              else
+                reason="this update-type is not on the allow-list (only semver-patch and semver-minor auto-merge)."
+              fi ;;
+          esac
+          echo "action=$action" >> "$GITHUB_OUTPUT"
+          if [[ "$action" == "deny" ]]; then
+            echo "comment=Auto-closed (ecosystem \`${ECOSYSTEM:-<missing>}\`, update-type \`${UPDATE_TYPE:-<missing>}\`): $reason" >> "$GITHUB_OUTPUT"
           fi
 
       # --auto queues the merge so all required branch protection checks must
       # pass first before the merge goes through.
-      #
-      # Uses DEPENDABOT_REBASE_PAT instead of the default GITHUB_TOKEN here:
-      # GitHub does not let GITHUB_TOKEN-authored events trigger other
-      # workflows (loop prevention), so a GITHUB_TOKEN merge silently never
-      # fired dependabot-rebase-cascade.yml's pull_request_target: closed
-      # trigger. A PAT-authored merge is a normal user action and does
-      # trigger it.
       - name: Allow — merge
         if: steps.decision.outputs.action == 'allow'
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPENDABOT_REBASE_PAT }}
         run: |
           gh pr merge "$PR_URL" --squash --auto
 
       - name: Deny — unexpected update
         if: steps.decision.outputs.action == 'deny'
+        env:
+          COMMENT: ${{ steps.decision.outputs.comment }}
         run: |
-          gh pr close "$PR_URL" --comment "Auto-closed: ecosystem \`${{ steps.metadata.outputs.package-ecosystem }}\` / update-type \`${{ steps.metadata.outputs.update-type }}\` did not match any allow-list rule. Check dependabot.yml if this is unexpected."
+          gh pr close "$PR_URL" --comment "$COMMENT"
