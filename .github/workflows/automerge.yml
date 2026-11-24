@@ -39,9 +39,11 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v3.1.0
 
-      # Allow: github_actions (major version tags are safe), patch/minor npm/pip/etc.,
-      # or grouped PRs where update-type is null (dependabot.yml already blocks npm majors).
-      # Deny: anything else (unexpected major npm/pip bumps that slip through).
+      # Allow: github_actions updates at any version (this includes Dependabot's
+      # own actions such as dependabot/fetch-metadata), or an explicit
+      # semver-patch / semver-minor update in any other ecosystem.
+      # Deny: everything else -- majors, and any PR whose update-type is
+      # missing, empty, or "null" (fail closed if metadata can't be parsed).
       - name: Decide
         id: decision
         env:
@@ -50,9 +52,7 @@ jobs:
         run: |
           if [[ "$ecosystem" == "github_actions" ]] || \
              [[ "$update_type" == "version-update:semver-patch" ]] || \
-             [[ "$update_type" == "version-update:semver-minor" ]] || \
-             [[ "$update_type" == "null" ]] || \
-             [[ -z "$update_type" ]]; then
+             [[ "$update_type" == "version-update:semver-minor" ]]; then
             echo "action=allow" >> "$GITHUB_OUTPUT"
           else
             echo "action=deny" >> "$GITHUB_OUTPUT"
