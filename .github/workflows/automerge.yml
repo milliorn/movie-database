@@ -44,18 +44,32 @@ jobs:
       # semver-patch / semver-minor update in any other ecosystem.
       # Deny: everything else -- majors, and any PR whose update-type is
       # missing, empty, or "null" (fail closed if metadata can't be parsed).
+      # The deny reason is decided here, alongside the action, so the policy
+      # lives in one place; the Deny step only posts it.
       - name: Decide
         id: decision
         env:
-          ecosystem: ${{ steps.metadata.outputs.package-ecosystem }}
-          update_type: ${{ steps.metadata.outputs.update-type }}
+          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
         run: |
-          if [[ "$ecosystem" == "github_actions" ]] || \
-             [[ "$update_type" == "version-update:semver-patch" ]] || \
-             [[ "$update_type" == "version-update:semver-minor" ]]; then
-            echo "action=allow" >> "$GITHUB_OUTPUT"
+          action=deny
+          if [[ "$ECOSYSTEM" == "github_actions" ]]; then
+            action=allow
           else
-            echo "action=deny" >> "$GITHUB_OUTPUT"
+            case "$UPDATE_TYPE" in
+              version-update:semver-patch|version-update:semver-minor)
+                action=allow ;;
+              version-update:semver-major)
+                reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually." ;;
+              ""|null)
+                reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
+              *)
+                reason="this update-type is not on the allow-list (only semver-patch and semver-minor auto-merge)." ;;
+            esac
+          fi
+          echo "action=$action" >> "$GITHUB_OUTPUT"
+          if [[ "$action" == "deny" ]]; then
+            echo "comment=Auto-closed (ecosystem \`${ECOSYSTEM:-<missing>}\`, update-type \`${UPDATE_TYPE:-<missing>}\`): $reason" >> "$GITHUB_OUTPUT"
           fi
 
       # --auto queues the merge so all required branch protection checks must
@@ -68,15 +82,6 @@ jobs:
       - name: Deny — unexpected update
         if: steps.decision.outputs.action == 'deny'
         env:
-          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
-          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+          COMMENT: ${{ steps.decision.outputs.comment }}
         run: |
-          case "$UPDATE_TYPE" in
-            version-update:semver-major)
-              reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually." ;;
-            ""|null)
-              reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
-            *)
-              reason="update-type \`$UPDATE_TYPE\` is not on the allow-list (only semver-patch and semver-minor auto-merge)." ;;
-          esac
-          gh pr close "$PR_URL" --comment "Auto-closed (ecosystem \`${ECOSYSTEM:-<missing>}\`, update-type \`${UPDATE_TYPE:-<missing>}\`): $reason"
+          gh pr close "$PR_URL" --comment "$COMMENT"
