@@ -39,11 +39,12 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v3.1.0
 
-      # Allow: github_actions updates at any version (this includes Dependabot's
-      # own actions such as dependabot/fetch-metadata), or an explicit
-      # semver-patch / semver-minor update in any other ecosystem.
-      # Deny: everything else -- majors, and any PR whose update-type is
-      # missing, empty, or "null" (fail closed if metadata can't be parsed).
+      # Allow: github_actions updates at any explicit version (this includes
+      # Dependabot's own actions such as dependabot/fetch-metadata), or an
+      # explicit semver-patch / semver-minor update in any other ecosystem.
+      # Deny: everything else -- majors outside github_actions, and any PR in
+      # any ecosystem whose update-type is missing, empty, or "null" (fail
+      # closed if metadata can't be parsed).
       # The deny reason is decided here, alongside the action, so the policy
       # lives in one place; the Deny step only posts it.
       - name: Decide
@@ -53,20 +54,22 @@ jobs:
           UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
         run: |
           action=deny
-          if [[ "$ECOSYSTEM" == "github_actions" ]]; then
-            action=allow
-          else
-            case "$UPDATE_TYPE" in
-              version-update:semver-patch|version-update:semver-minor)
-                action=allow ;;
-              version-update:semver-major)
-                reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually." ;;
-              ""|null)
-                reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
-              *)
-                reason="this update-type is not on the allow-list (only semver-patch and semver-minor auto-merge)." ;;
-            esac
-          fi
+          # Missing metadata is checked first so it fails closed for every
+          # ecosystem, github_actions included.
+          case "$UPDATE_TYPE" in
+            ""|null)
+              reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
+            version-update:semver-patch|version-update:semver-minor)
+              action=allow ;;
+            *)
+              if [[ "$ECOSYSTEM" == "github_actions" ]]; then
+                action=allow
+              elif [[ "$UPDATE_TYPE" == "version-update:semver-major" ]]; then
+                reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually."
+              else
+                reason="this update-type is not on the allow-list (only semver-patch and semver-minor auto-merge)."
+              fi ;;
+          esac
           echo "action=$action" >> "$GITHUB_OUTPUT"
           if [[ "$action" == "deny" ]]; then
             echo "comment=Auto-closed (ecosystem \`${ECOSYSTEM:-<missing>}\`, update-type \`${UPDATE_TYPE:-<missing>}\`): $reason" >> "$GITHUB_OUTPUT"
