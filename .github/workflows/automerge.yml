@@ -2,7 +2,7 @@ name: Dependabot reviewer
 
 # Fires whenever Dependabot opens, updates, or reopens a PR targeting main.
 # pull_request_target runs in the context of the base branch, which gives the
-# GITHUB_TOKEN enough permission to approve and merge without extra secrets.
+# GITHUB_TOKEN enough permission to merge or close without extra secrets.
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 # Minimum permissions needed:
-# - pull-requests: approve and comment on PRs
+# - pull-requests: close and comment on PRs
 # - contents: enable auto-merge (writes to the merge queue)
 permissions:
   pull-requests: write
