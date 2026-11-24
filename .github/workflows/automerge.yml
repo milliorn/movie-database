@@ -71,4 +71,12 @@ jobs:
           ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
           UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
         run: |
-          gh pr close "$PR_URL" --comment "Auto-closed: ecosystem \`$ECOSYSTEM\` / update-type \`$UPDATE_TYPE\` did not match any allow-list rule. Check dependabot.yml if this is unexpected."
+          case "$UPDATE_TYPE" in
+            version-update:semver-major)
+              reason="this is a major version bump. Only github_actions updates may auto-merge a major; upgrade this dependency manually." ;;
+            ""|null)
+              reason="Dependabot metadata did not report an update-type, so the bump size could not be verified. Failing closed; review and upgrade manually." ;;
+            *)
+              reason="update-type \`$UPDATE_TYPE\` is not on the allow-list (only semver-patch and semver-minor auto-merge)." ;;
+          esac
+          gh pr close "$PR_URL" --comment "Auto-closed (ecosystem \`${ECOSYSTEM:-<missing>}\`, update-type \`${UPDATE_TYPE:-<missing>}\`): $reason"
